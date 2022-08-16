@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" parallel="methods" thread-count="10">
+    <test verbose="2" preserve-order="true" name="C:/Z/����������������/kinopoisk1 �����">
+        <parameter name="platform" value="web"></parameter>
+        <classes>
+            <class name="org.example.DataProviderSetup">
+                <methods>
+                    <include name="myTest"/>
+                </methods>
+            </class>
+            <class name="org.example.Test.LoginPageTest.LoginTest">
+                <methods>
+                    <include name="checkLogin"/>
+                </methods>
+            </class>
+            <class name="org.example.Test.MainPageTest.FilmTicketsTest">
+                <methods>
+                    <include name="checkRegexFilmTickets"/>
+                    <include name="checkHeaderFilmTicketsBlock"/>
+                    <include name="checkLabelTickets"/>
+                    <include name="checkScrollTickets"/>
+                </methods>
+            </class>
+            <class name="org.example.Test.MainPageTest.NewTrailerTest">
+                <methods>
+                    <include name="checkRegexNewTrailer"/>
+                    <include name="checkHeaderNewTrailerBlock"/>
+                    <include name="checkPlayerTrailerBlock"/>
+                    <include name="checkScroll"/>
+                </methods>
+            </class>
+            <class name="org.example.Test.MainPageTest.PopoverTest">
+                <methods>
+                    <include name="checkPopover"/>
+                </methods>
+            </class>
+            <class name="org.example.Test.MainPageTest.PopularTest">
+                <methods>
+                    <include name="checkFirstNews"/>
+                    <include name="checkPopularBlock"/>
+                    <include name="checkNewsPopular"/>
+                </methods>
+            </class>
+            <class name="org.example.Test.MainPageTest.RecommendationsTest">
+                <methods>
+                    <include name="checkRegexRecommend"/>
+                    <include name="checkHeaderRecommendBlock"/>
+                    <include name="checkScroll"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test verbose="2" preserve-order="true" name="C:/Z/����������������/kinopoisk1 �����">
+        <parameter name="platform" value="web"></parameter>
+        <classes>
+            <class name="org.example.DataProviderSetup">
+                <methods>
+                    <include name="myTest"/>
+                </methods>
+            </class>
+            <class name="org.example.Test.LoginPageTest.LoginTest">
+                <methods>
+                    <include name="checkLogin"/>
+                </methods>
+            </class>
+            <class name="org.example.Test.MainPageTest.FilmTicketsTest">
+                <methods>
+                    <include name="checkRegexFilmTickets"/>
+                    <include name="checkHeaderFilmTicketsBlock"/>
+                    <include name="checkLabelTickets"/>
+                    <include name="checkScrollTickets"/>
+                </methods>
+            </class>
+            <class name="org.example.Test.MainPageTest.NewTrailerTest">
+                <methods>
+                    <include name="checkRegexNewTrailer"/>
+                    <include name="checkHeaderNewTrailerBlock"/>
+                    <include name="checkPlayerTrailerBlock"/>
+                    <include name="checkScroll"/>
+                </methods>
+            </class>
+            <class name="org.example.Test.MainPageTest.PopoverTest">
+                <methods>
+                    <include name="checkPopover"/>
+                </methods>
+            </class>
+            <class name="org.example.Test.MainPageTest.PopularTest">
+                <methods>
+                    <include name="checkFirstNews"/>
+                    <include name="checkPopularBlock"/>
+                    <include name="checkNewsPopular"/>
+                </methods>
+            </class>
+            <class name="org.example.Test.MainPageTest.RecommendationsTest">
+                <methods>
+                    <include name="checkRegexRecommend"/>
+                    <include name="checkHeaderRecommendBlock"/>
+                    <include name="checkScroll"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
