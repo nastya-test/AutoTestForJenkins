@@ -12,6 +12,4 @@ public interface Dao {
     Film findFilmByName(String name);
     boolean updateFilm(String name, String link);
     boolean deleteFilmByName(String name);
-
-
 }

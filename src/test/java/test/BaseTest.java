@@ -19,6 +19,12 @@ public class BaseTest {
     static SelenideElement iframe = $(By.xpath("/html/body/div[3]/div[3]/div/div/iframe"));
     static SelenideElement elementMainPage = $(".styles_link__KtvyW");
 
+    public static void baseOpenPage(String platform) {
+        configuration(platform);
+        clickStayButton(platform);
+        waitMainPage();
+    }
+
     public static void baseOpenPage(String platform, Integer pageDown) {
         configuration(platform);
         clickStayButton(platform);

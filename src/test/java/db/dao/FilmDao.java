@@ -3,6 +3,7 @@ package db.dao;
 import db.connection.JdbcConnection;
 import data.model.Film;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FilmDao implements Dao{
@@ -174,14 +175,16 @@ public class FilmDao implements Dao{
         return assertAffectedRows();
     }
 
+/*
 // Отладка методов взаимодействия с бд
     public static void main(String[] args) {
         FilmDao postgreSqlDao = new FilmDao();
-//        ArrayList<Film> filmList = new ArrayList();
-//        filmList.add(new Film("ftvvvvvgfd", "korfd", "jifc"));
-//        filmList.add(new Film("ftvgeeefd", "korfd", "jifc"));
-//        filmList.add(new Film("ftvgffrddd", "korfd", "jifc"));
-        postgreSqlDao.getFilm();
+        ArrayList<Film> filmList = new ArrayList();
+        filmList.add(new Film("ftvvvvvgfd", "korfd", "jifc"));
+        filmList.add(new Film("ftvgeeefd", "korfd", "jifc"));
+        filmList.add(new Film("ftvgffrddd", "korfd", "jifc"));
+        postgreSqlDao.insertManyFilm(filmList);
     }
+*/
 
 }
