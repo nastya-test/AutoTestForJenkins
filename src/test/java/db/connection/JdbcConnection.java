@@ -22,11 +22,13 @@ public class JdbcConnection {
             }
 
         } catch (ClassNotFoundException e) {
+            System.out.println("File -> ProjectStructure -> Libraries -> add org.postgresql.Driver");
             e.printStackTrace();
         }
         return conn;
     }
 
+//    Проверка соединения с базой
 //    public static void main (String[]args){
 //        JdbcConnection app = new JdbcConnection();
 //        app.connect();
