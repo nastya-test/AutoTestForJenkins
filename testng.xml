@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite" parallel="methods" thread-count="10">
+<suite name="All test Suite" parallel="methods" thread-count="10">
     <test verbose="2" preserve-order="true" name="C:/Z/����������������/kinopoisk1 �����">
         <parameter name="platform" value="web"></parameter>
         <classes>
@@ -9,12 +9,12 @@
                     <include name="myTest"/>
                 </methods>
             </class>
-            <class name="org.example.Test.LoginPageTest.LoginTest">
+            <class name="org.example.Test.loginPageTest.LoginTest">
                 <methods>
                     <include name="checkLogin"/>
                 </methods>
             </class>
-            <class name="org.example.Test.MainPageTest.FilmTicketsTest">
+            <class name="org.example.Test.mainPageTest.FilmTicketsTest">
                 <methods>
                     <include name="checkRegexFilmTickets"/>
                     <include name="checkHeaderFilmTicketsBlock"/>
@@ -22,7 +22,7 @@
                     <include name="checkScrollTickets"/>
                 </methods>
             </class>
-            <class name="org.example.Test.MainPageTest.NewTrailerTest">
+            <class name="org.example.Test.mainPageTest.NewTrailerTest">
                 <methods>
                     <include name="checkRegexNewTrailer"/>
                     <include name="checkHeaderNewTrailerBlock"/>
@@ -30,19 +30,19 @@
                     <include name="checkScroll"/>
                 </methods>
             </class>
-            <class name="org.example.Test.MainPageTest.PopoverTest">
+            <class name="org.example.Test.mainPageTest.PopoverTest">
                 <methods>
                     <include name="checkPopover"/>
                 </methods>
             </class>
-            <class name="org.example.Test.MainPageTest.PopularTest">
+            <class name="org.example.Test.mainPageTest.PopularTest">
                 <methods>
                     <include name="checkFirstNews"/>
                     <include name="checkPopularBlock"/>
                     <include name="checkNewsPopular"/>
                 </methods>
             </class>
-            <class name="org.example.Test.MainPageTest.RecommendationsTest">
+            <class name="org.example.Test.mainPageTest.RecommendationsTest">
                 <methods>
                     <include name="checkRegexRecommend"/>
                     <include name="checkHeaderRecommendBlock"/>
@@ -60,12 +60,12 @@
                     <include name="myTest"/>
                 </methods>
             </class>
-            <class name="org.example.Test.LoginPageTest.LoginTest">
+            <class name="org.example.Test.loginPageTest.LoginTest">
                 <methods>
                     <include name="checkLogin"/>
                 </methods>
             </class>
-            <class name="org.example.Test.MainPageTest.FilmTicketsTest">
+            <class name="org.example.Test.mainPageTest.FilmTicketsTest">
                 <methods>
                     <include name="checkRegexFilmTickets"/>
                     <include name="checkHeaderFilmTicketsBlock"/>
@@ -73,7 +73,7 @@
                     <include name="checkScrollTickets"/>
                 </methods>
             </class>
-            <class name="org.example.Test.MainPageTest.NewTrailerTest">
+            <class name="org.example.Test.mainPageTest.NewTrailerTest">
                 <methods>
                     <include name="checkRegexNewTrailer"/>
                     <include name="checkHeaderNewTrailerBlock"/>
@@ -81,19 +81,19 @@
                     <include name="checkScroll"/>
                 </methods>
             </class>
-            <class name="org.example.Test.MainPageTest.PopoverTest">
+            <class name="org.example.Test.mainPageTest.PopoverTest">
                 <methods>
                     <include name="checkPopover"/>
                 </methods>
             </class>
-            <class name="org.example.Test.MainPageTest.PopularTest">
+            <class name="org.example.Test.mainPageTest.PopularTest">
                 <methods>
                     <include name="checkFirstNews"/>
                     <include name="checkPopularBlock"/>
                     <include name="checkNewsPopular"/>
                 </methods>
             </class>
-            <class name="org.example.Test.MainPageTest.RecommendationsTest">
+            <class name="org.example.Test.mainPageTest.RecommendationsTest">
                 <methods>
                     <include name="checkRegexRecommend"/>
                     <include name="checkHeaderRecommendBlock"/>
