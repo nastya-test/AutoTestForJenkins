@@ -5,6 +5,10 @@ public class Film {
     private String link;
     private String yearAndGenre;
 
+    public Film() {
+
+    }
+
     public Film(String name, String link, String yearAndGenre) {
         this.name = name;
         this.link = link;
