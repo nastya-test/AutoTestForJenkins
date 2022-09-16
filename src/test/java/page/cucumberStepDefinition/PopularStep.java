@@ -41,7 +41,7 @@ public class PopularStep {
 
     @То("проверяет, что у первой новости есть изоображение")
     public void проверяет_что_у_первой_новости_есть_изоображение() {
-        pictureNewsFirstPopular.shouldHave(Condition.image);
+        pictureNewsFirstPopular.scrollIntoView("{behavior: \"instant\", block: \"center\", inline: \"end\"}").shouldHave(Condition.image);
     }
 
     @То("проверяет, название блока Популярное")

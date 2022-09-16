@@ -3,7 +3,10 @@ package page.cucumberStepDefinition;
 import com.codeborne.selenide.SelenideElement;
 import data.model.User;
 import io.cucumber.java.ru.Дано;
+import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.То;
+import org.openqa.selenium.By;
+
 import static com.codeborne.selenide.Selenide.$;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -27,6 +30,8 @@ public class LoginStep {
     SelenideElement textLoginMainPage =  $(".styles_primaryTitleDefaultAccount__a0_6V");
 
     SelenideElement all  =  $(".styles_root__RPFB8");
+
+    SelenideElement error  =  $(".Textinput-Hint");
 
     @Дано("переходит на страницу входа в аккаунт")
     public void переходит_на_страницу_входа_в_аккаунт() {
@@ -58,4 +63,14 @@ public class LoginStep {
     }
 
 
+    @То("отобразилось сообщение об ошибке")
+    public void отобразилось_сообщение_об_ошибке() {
+        assertThat(error.getText()).isEqualTo("Такой логин не подойдет");
+    }
+
+    @И("вводит в поле логин {string}")
+    public void вводитВПолеЛогин(String arg0) {
+        loginField.click();
+        loginField.setValue(arg0);
+    }
 }

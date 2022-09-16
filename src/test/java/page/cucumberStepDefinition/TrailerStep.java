@@ -5,9 +5,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.cucumber.java.ru.То;
 import page.mainPage.steps.CommonSteps;
-
 import java.time.Duration;
-
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
@@ -30,6 +28,12 @@ public class TrailerStep {
 
     //Заголовок блока
     SelenideElement headerTrailerBlock = $(byText("Новые трейлеры")).shouldBe(Condition.visible, Duration.ofMinutes(1));
+
+    //Стрелка назад
+    SelenideElement backArrowTrailer = $("[id ='new-trailers-block'] + div > div > [class *='carousel'] > [class *='carouselButtonLeft']");
+
+    //Стрелка вперед
+    SelenideElement forwardArrowTrailer = $("[id ='new-trailers-block'] + div > div > [class *='carousel'] > [class *='carouselButtonRight']");
 
     @То("проверяет, название блока Новые трейлеры")
     public void проверяет_название_блока_билеты_в_кино() {
@@ -77,4 +81,8 @@ public class TrailerStep {
         }
     }
 
+    @То("проверяет, что стрелка назад отсутствует, после нажатия стрелки вперед, стрелка назад появляется")
+    public void проверяет_что_стрелка_назад_отсутствует_после_нажатия_стрелки_вперед_стрелка_назад_появляется() {
+        CommonSteps.scroll(backArrowTrailer, forwardArrowTrailer);
+    }
 }
