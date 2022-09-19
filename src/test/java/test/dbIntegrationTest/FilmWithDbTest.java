@@ -14,11 +14,6 @@ public class FilmWithDbTest {
 
     private DbInteraction dbInteraction = new DbInteraction();
 
-    @BeforeMethod
-    public void openPage() {
-        BaseTest.baseOpenPage();
-    }
-
     @Test
     @Description("Добавление в DB фильмов из блока Новые трейлеры, у которых жанр и год не соответсвуют регулярному выраженю")
     public void checkDbInsertManyFilm(){

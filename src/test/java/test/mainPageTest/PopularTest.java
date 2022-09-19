@@ -12,7 +12,7 @@ public class PopularTest extends BaseTest{
 
     @BeforeMethod
     public void openPage() {
-        BaseTest.baseOpenPage();
+        //BaseTest.baseOpenPage();
         if (isMobile()) {
             sleep(500);
             page(PopularBlock.class).mobileButton();

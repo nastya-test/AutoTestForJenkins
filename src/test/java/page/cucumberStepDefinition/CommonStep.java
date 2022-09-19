@@ -7,8 +7,8 @@ import test.BaseTest;
 public class CommonStep {
     @Дано("открывает главную страницу")
     public void открывает_главную_страницу() {
-        BaseTest.baseOpenPage();
-//        int d= 1;
+//        BaseTest.baseOpenPage();
+////        int d= 1;
     }
 
 

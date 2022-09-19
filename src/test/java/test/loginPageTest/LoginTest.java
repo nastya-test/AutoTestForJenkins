@@ -8,10 +8,6 @@ import org.testng.annotations.Test;
 import static com.codeborne.selenide.Selenide.page;
 
 public class LoginTest {
-    @BeforeMethod
-    public void openPage() {
-        BaseTest.baseOpenPage();
-    }
 
     @Test
     @Description("Успешный вход в систему")

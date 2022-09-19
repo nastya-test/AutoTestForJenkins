@@ -11,7 +11,7 @@ public class RecommendationsTest extends BaseTest {
 
     @BeforeClass
     public void beforeAuthorized(){
-        baseOpenPage();
+       // baseOpenPage();
         authorized();
     }
 

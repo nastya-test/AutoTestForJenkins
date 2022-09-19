@@ -14,6 +14,7 @@ import org.openqa.selenium.Keys;
 import com.codeborne.selenide.ex.ElementNotFound;
 import config.ConfProperties;
 import util.parallelRunning.Mobile;
+import util.parallelRunning.PlatformSetup;
 import util.parallelRunning.Web;
 
 import java.time.Duration;
@@ -29,13 +30,13 @@ public class BaseTest {
     private static final String platform = ConfProperties.getProperty("platform");
     private static final Integer pageDown = 8;
 
-    @BeforeMethod
-    public static void baseOpenPage() {
-        configuration();
-        clickStayButton();
-        waitMainPage();
-        pageDown(pageDown);
-    }
+//    @BeforeMethod
+//    public static void baseOpenPage() {
+//        configuration();
+//        clickStayButton();
+//        waitMainPage();
+//        pageDown(pageDown);
+//    }
 
     public static void authorized(){
         LoginPage loginPage = new LoginPage();
@@ -92,7 +93,6 @@ public class BaseTest {
     }
 
     private void configurationParallel(){
-
         String platform = PlatformSetup.getPlatform();
         WebDriverManager.chromedriver().setup();
         switch (platform.toLowerCase()) {
@@ -107,15 +107,15 @@ public class BaseTest {
         open(url);
     }
 
-    @Parameters({"platform"})
+    @Parameters({"platforms"})
     @BeforeTest
-    public void baseOpenPageParallel(String platform) {
-        System.out.println("BASE TEST" + platform);
-        PlatformSetup.setPlatform(platform);
-        configuration();
+    public void baseOpenPageParallel(String platforms) {
+        System.out.println("BASE TEST" + platforms);
+        PlatformSetup.setPlatform(platforms);
+        configurationParallel();
         clickStayButton();
         waitMainPage();
-        pageDown(0);
+        pageDown(8);
     }
 
 }

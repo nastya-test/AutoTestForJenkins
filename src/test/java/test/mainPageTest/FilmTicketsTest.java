@@ -1,5 +1,6 @@
 package test.mainPageTest;
 
+import org.testng.annotations.Parameters;
 import page.mainPage.blocks.FilmTicketsBlock;
 import io.qameta.allure.Description;
 import test.BaseTest;
@@ -8,6 +9,7 @@ import static com.codeborne.selenide.Selenide.page;
 
 public class FilmTicketsTest extends BaseTest {
 
+    @Parameters({"platform"})
     @Test
     @Description("Regex. Название, год и жанр, ссылка, рейтинг. + у сниппета есть постер")
     public void checkRegexFilmTickets() {
