@@ -3,18 +3,10 @@ package test.mainPageTest;
 import page.mainPage.blocks.FilmTicketsBlock;
 import io.qameta.allure.Description;
 import test.BaseTest;
-import config.ConfProperties;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import static com.codeborne.selenide.Selenide.page;
 
-public class FilmTicketsTest {
-
-    @BeforeMethod
-    public void openPage() {
-        BaseTest.baseOpenPage(ConfProperties.getProperty("platform"), 0);
-    }
+public class FilmTicketsTest extends BaseTest {
 
     @Test
     @Description("Regex. Название, год и жанр, ссылка, рейтинг. + у сниппета есть постер")

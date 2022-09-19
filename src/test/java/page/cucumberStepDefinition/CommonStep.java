@@ -8,7 +8,7 @@ import test.BaseTest;
 public class CommonStep {
     @Дано("открывает главную страницу")
     public void открывает_главную_страницу() {
-        BaseTest.baseOpenPage(ConfProperties.getProperty("platform"),8);
+        BaseTest.baseOpenPage();
 //        int d= 1;
     }
 

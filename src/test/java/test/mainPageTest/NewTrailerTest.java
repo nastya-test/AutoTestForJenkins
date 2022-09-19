@@ -3,17 +3,10 @@ package test.mainPageTest;
 import page.mainPage.blocks.NewTrailersBlock;
 import io.qameta.allure.Description;
 import test.BaseTest;
-import config.ConfProperties;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import static com.codeborne.selenide.Selenide.page;
 
-public class NewTrailerTest {
-
-    @BeforeMethod
-    public void openPage() {
-        BaseTest.baseOpenPage(ConfProperties.getProperty("platform"),8);
-    }
+public class NewTrailerTest extends BaseTest {
 
     @Test
     @Description("Regex. Название, год и жанр, ссылка")

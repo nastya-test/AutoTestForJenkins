@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.page;
 public class LoginTest {
     @BeforeMethod
     public void openPage() {
-        BaseTest.baseOpenPage("web",0);
+        BaseTest.baseOpenPage();
     }
 
     @Test

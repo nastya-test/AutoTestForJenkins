@@ -3,22 +3,19 @@ package test.mainPageTest;
 import page.mainPage.blocks.PopularBlock;
 import io.qameta.allure.Description;
 import test.BaseTest;
-import config.ConfProperties;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import java.util.Objects;
 import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.Selenide.sleep;
 
-public class PopularTest {
+public class PopularTest extends BaseTest{
 
     @BeforeMethod
     public void openPage() {
-        BaseTest.baseOpenPage(ConfProperties.getProperty("platform"), 5);
-        if (Objects.equals(ConfProperties.getProperty("platform"), "mobile")) {
-            PopularBlock popularBlock = new PopularBlock();
+        BaseTest.baseOpenPage();
+        if (isMobile()) {
             sleep(500);
-            popularBlock.mobileButton();
+            page(PopularBlock.class).mobileButton();
         }
     }
 

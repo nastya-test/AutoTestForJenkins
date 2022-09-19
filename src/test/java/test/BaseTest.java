@@ -1,5 +1,6 @@
 package test;
 
+import org.testng.annotations.BeforeMethod;
 import page.authorizationPage.LoginPage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
@@ -8,38 +9,34 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import com.codeborne.selenide.ex.ElementNotFound;
 import config.ConfProperties;
-
 import java.time.Duration;
 import java.util.Objects;
 import static com.codeborne.selenide.Selenide.*;
 
 public class BaseTest {
 
-    static SelenideElement stayButton = $("#stay-button");
-    static SelenideElement iframe = $(By.xpath("/html/body/div[3]/div[3]/div/div/iframe"));
-    static SelenideElement elementMainPage = $(".styles_link__KtvyW");
+    private static final SelenideElement stayButton = $("#stay-button");
+    private static final SelenideElement iframe = $(By.xpath("/html/body/div[3]/div[3]/div/div/iframe"));
+    private static final SelenideElement elementMainPage = $(".styles_link__KtvyW");
+    private static final String platform = ConfProperties.getProperty("platform");
+    private static final Integer pageDown = 8;
 
-    public static void baseOpenPage(String platform) {
-        configuration(platform);
-        clickStayButton(platform);
-        waitMainPage();
-    }
-
-    public static void baseOpenPage(String platform, Integer pageDown) {
-        configuration(platform);
-        clickStayButton(platform);
+    @BeforeMethod
+    public static void baseOpenPage() {
+        configuration();
+        clickStayButton();
         waitMainPage();
         pageDown(pageDown);
     }
 
-    public static void authorized(String platform){
+    public static void authorized(){
         LoginPage loginPage = new LoginPage();
         loginPage.loginInToTheAccount();
         waitMainPage();
-        clickStayButton(platform);
+        clickStayButton();
     }
 
-    private static void clickStayButton(String platform){
+    private static void clickStayButton(){
         if (Objects.equals(platform, "mobile")) {
             System.out.println("Должен быть клик");
             try {
@@ -57,7 +54,7 @@ public class BaseTest {
     }
 
 
-    private static void configuration(String platform){
+    private static void configuration(){
         if (Objects.equals(platform, "mobile")) {
             System.setProperty("chromeoptions.mobileEmulation", "deviceName=Nexus 5");
         }

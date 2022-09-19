@@ -24,7 +24,7 @@ public class CommonSteps {
         assertThat(regLink).as("Ссылка элемента не соответствует регулярному выражению").isTrue();
     }
 
-    @Step("Вывод в консоль названия элемента")
+    @Step("Подскролл к элеиенту")
     public static void bestScroll(SelenideElement element) {
         element.scrollIntoView("{behavior: \"instant\", block: \"center\", inline: \"end\"}");
     }

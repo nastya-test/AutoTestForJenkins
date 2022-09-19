@@ -16,7 +16,7 @@ public class FilmWithDbTest {
 
     @BeforeMethod
     public void openPage() {
-        BaseTest.baseOpenPage("web",8);
+        BaseTest.baseOpenPage();
     }
 
     @Test

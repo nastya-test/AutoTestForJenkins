@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import static com.codeborne.selenide.Selenide.$;
 import static org.assertj.core.api.Assertions.assertThat;
+import static test.BaseTest.isMobile;
 
 public class LoginPage {
 
@@ -56,9 +57,13 @@ public class LoginPage {
 
     @Step ("Проверить, что вверху страницы отобразился введенный ранее логин")
     public LoginPage assertSuccessAuthorization() {
-        avatar.hover();
-        assertThat(textLoginMainPage.getText()).as("Логин не совпал с введенным ранее").isEqualTo(UserGenerator.validUserLogin());
-        all.hover();
+        if (!isMobile()) {
+            avatar.hover();
+            assertThat(textLoginMainPage.getText()).as("Логин не совпал с введенным ранее").isEqualTo(UserGenerator.validUserLogin());
+            all.hover();
+        } else {
+            System.out.println("Step assertSuccessAuthorization ignored for mobile");
+        }
         return this;
     }
 

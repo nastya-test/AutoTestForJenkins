@@ -1,27 +1,17 @@
 package test.mainPageTest;
 
-import page.mainPage.blocks.PopularBlock;
 import page.mainPage.blocks.RecommendationsBlock;
 import io.qameta.allure.Description;
 import test.BaseTest;
-import config.ConfProperties;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import static com.codeborne.selenide.Selenide.page;
 
-public class RecommendationsTest {
+public class RecommendationsTest extends BaseTest {
 
     @BeforeClass
-    public void authorized(){
-        BaseTest.baseOpenPage((ConfProperties.getProperty("platform")),0);
-        BaseTest.authorized(ConfProperties.getProperty("platform"));
-    }
-
-    @BeforeMethod
-    public void openPage() {
-        BaseTest.baseOpenPage(ConfProperties.getProperty("platform"),7);
+    public void beforeAuthorized(){
+        authorized();
     }
 
     @Test
