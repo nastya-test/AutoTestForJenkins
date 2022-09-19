@@ -7,6 +7,8 @@ import config.ConfProperties;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static com.codeborne.selenide.Selenide.page;
+
 public class FilmTicketsTest {
 
     @BeforeMethod
@@ -17,8 +19,7 @@ public class FilmTicketsTest {
     @Test
     @Description("Regex. Название, год и жанр, ссылка, рейтинг. + у сниппета есть постер")
     public void checkRegexFilmTickets() {
-        FilmTicketsBlock filmTicketsBlock = new FilmTicketsBlock();
-        filmTicketsBlock
+        page(FilmTicketsBlock.class)
                 .imgFilmTickets()
                 .assertNameFilmTicketsRegex()
                 .assertYearAndGenreFilmTicketsRegex()
@@ -29,8 +30,7 @@ public class FilmTicketsTest {
     @Test
     @Description("Название блока и ссылка")
     public void checkHeaderFilmTicketsBlock() {
-        FilmTicketsBlock filmTicketsBlock = new FilmTicketsBlock();
-        filmTicketsBlock
+        page(FilmTicketsBlock.class)
                 .nameTicketsBlock()
                 .hrefTicketsBlock();
     }
@@ -38,17 +38,15 @@ public class FilmTicketsTest {
     @Test
     @Description("Плашка с билетами")
     public void checkLabelTickets() {
-        FilmTicketsBlock filmTicketsBlock = new FilmTicketsBlock();
-        filmTicketsBlock
+        page(FilmTicketsBlock.class)
                 .assertIconFilmRegex(ConfProperties.getProperty("platform"));
     }
 
     @Test
     @Description("Скролл сниппетов")
     public void checkScrollTickets() {
-        FilmTicketsBlock filmTicketsBlock = new FilmTicketsBlock();
-            filmTicketsBlock
-                    .scrollTickets(ConfProperties.getProperty("platform"));
+        page(FilmTicketsBlock.class)
+                .scrollTickets(ConfProperties.getProperty("platform"));
         }
 
 

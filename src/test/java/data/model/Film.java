@@ -6,7 +6,6 @@ public class Film {
     private String yearAndGenre;
 
     public Film() {
-
     }
 
     public Film(String name, String link, String yearAndGenre) {

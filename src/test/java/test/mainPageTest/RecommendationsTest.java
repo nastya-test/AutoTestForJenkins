@@ -1,5 +1,6 @@
 package test.mainPageTest;
 
+import page.mainPage.blocks.PopularBlock;
 import page.mainPage.blocks.RecommendationsBlock;
 import io.qameta.allure.Description;
 import test.BaseTest;
@@ -7,6 +8,8 @@ import config.ConfProperties;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import static com.codeborne.selenide.Selenide.page;
 
 public class RecommendationsTest {
 
@@ -24,8 +27,7 @@ public class RecommendationsTest {
     @Test
     @Description("Regex. Название, год и жанр, ссылка, рейтинг. + у сниппета есть постер")
     public void checkRegexRecommend() {
-        RecommendationsBlock recommendationsBlock = new RecommendationsBlock();
-        recommendationsBlock
+        page(RecommendationsBlock.class)
                 .imgRecommend()
                 .assertNameRecommendRegex()
                 .assertYearAndGenreRecommendRegex()
@@ -36,8 +38,7 @@ public class RecommendationsTest {
     @Test
     @Description("Название блока и ссылка")
     public void checkHeaderRecommendBlock() {
-        RecommendationsBlock recommendationsBlock = new RecommendationsBlock();
-        recommendationsBlock
+        page(RecommendationsBlock.class)
                 .nameRecommendationsBlock()
                 .hrefRecommendationsBlock();
     }
@@ -45,8 +46,7 @@ public class RecommendationsTest {
     @Test
     @Description("Скролл")
     public void checkScroll() {
-        RecommendationsBlock recommendationsBlock = new RecommendationsBlock();
-        recommendationsBlock
+        page(RecommendationsBlock.class)
                 .scrollRecommend(ConfProperties.getProperty("platform"));
     }
 }

@@ -73,4 +73,13 @@ public class BaseTest {
             }
         }
     }
+
+    private boolean isMobile(){
+        boolean mobile=false;
+        if (ConfProperties.getProperty("platform")=="mobile"){
+            mobile=true;
+        }
+        return mobile;
+    }
+
 }

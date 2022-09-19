@@ -7,7 +7,7 @@ import config.ConfProperties;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import java.util.Objects;
-
+import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.Selenide.sleep;
 
 public class PopularTest {
@@ -25,8 +25,7 @@ public class PopularTest {
     @Test
     @Description("У первой новости: есть изоображение, текст новости жирный, при наведении текст оранжевый, ссылка картинки совпадает с ссылкой текста новости")
     public void checkFirstNews() {
-        PopularBlock popularBlock = new PopularBlock();
-        popularBlock
+        page(PopularBlock.class)
                 .imgPopular(ConfProperties.getProperty("platform"))
                 .boldNewsPopular(ConfProperties.getProperty("platform"))
                 .colourHoverNewsPopular(ConfProperties.getProperty("platform"))
@@ -36,8 +35,7 @@ public class PopularTest {
     @Test
     @Description("Название блока Популярное, в блоке 10 новостей")
     public void checkPopularBlock() {
-        PopularBlock popularBlock = new PopularBlock();
-        popularBlock
+        page(PopularBlock.class)
                 .headerTextPopularBlock(ConfProperties.getProperty("platform"))
                 .countNewsPopular(ConfProperties.getProperty("platform"));
     }
@@ -45,8 +43,7 @@ public class PopularTest {
     @Test
     @Description("У новостей оранжевый цвет, есть иконка комментирования, корректное количесвто комментариев")
     public void checkNewsPopular() {
-        PopularBlock popularBlock = new PopularBlock();
-        popularBlock
+        page(PopularBlock.class)
                 .colourNewsNumberPopular(ConfProperties.getProperty("platform"))
                 .commentNewsRegexPopular()
                 .iconCommentNewsPopular();

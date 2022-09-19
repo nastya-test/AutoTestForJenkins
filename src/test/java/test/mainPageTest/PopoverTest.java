@@ -7,12 +7,9 @@ import config.ConfProperties;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static com.codeborne.selenide.Selenide.page;
+
 public class PopoverTest {
-//    @BeforeClass
-//    public void authorized(){
-//        BaseTest.baseOpenPage("web",0);
-//        BaseTest.authorized();
-//    }
 
     @BeforeMethod
     public void openPage() {
@@ -21,8 +18,7 @@ public class PopoverTest {
     @Test
     @Description("Базовые проверки для поповера")
     public void checkPopover() {
-        Popover popover = new Popover();
-        popover
+        page(Popover.class)
                 .common();
 //                .displayPopover()
 //                .nameFilmPopover()

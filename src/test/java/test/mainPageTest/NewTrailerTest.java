@@ -6,6 +6,7 @@ import test.BaseTest;
 import config.ConfProperties;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import static com.codeborne.selenide.Selenide.page;
 
 public class NewTrailerTest {
 
@@ -17,8 +18,7 @@ public class NewTrailerTest {
     @Test
     @Description("Regex. Название, год и жанр, ссылка")
     public void checkRegexNewTrailer(){
-        NewTrailersBlock newTrailersBlock = new NewTrailersBlock();
-        newTrailersBlock
+        page(NewTrailersBlock.class)
                 .assertNameTrailerRegex()
                 .assertYearAndGenreTrailerRegex()
                 .assertHrefTrailerRegex();
@@ -27,8 +27,7 @@ public class NewTrailerTest {
     @Test
     @Description("Название блока и ссылка")
     public void checkHeaderNewTrailerBlock() {
-        NewTrailersBlock newTrailersBlock = new NewTrailersBlock();
-        newTrailersBlock
+        page(NewTrailersBlock.class)
                 .nameTrailerBlock()
                 .hrefTrailerBlock(ConfProperties.getProperty("platform"));
     }
@@ -36,16 +35,14 @@ public class NewTrailerTest {
     @Test
     @Description("Проигрывание трейлера")
     public void checkPlayerTrailerBlock() {
-        NewTrailersBlock newTrailersBlock = new NewTrailersBlock();
-        newTrailersBlock
+        page(NewTrailersBlock.class)
                 .playerTrailer(ConfProperties.getProperty("platform"));
     }
 
     @Test
     @Description("Скролл сниппетов")
     public void checkScroll() {
-        NewTrailersBlock newTrailersBlock = new NewTrailersBlock();
-        newTrailersBlock
+        page(NewTrailersBlock.class)
                 .scrollTrailer(ConfProperties.getProperty("platform"));
     }
 }
