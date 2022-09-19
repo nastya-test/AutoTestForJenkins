@@ -106,7 +106,7 @@ public class FilmTicketsBlock {
     @Step("Плашка с билетами, корректность ссылки, что при наведении мышкой на плашку появляется большая плашка с надписью Билеты")
     public FilmTicketsBlock assertIconFilmRegex() {
         if (!isMobile()) {
-            for (int i = 0; i < 19; i++) {
+            for (int i = 0; i < iconTickets.size(); i++) {
                 bestScroll(iconTickets.get(i));
                 iconTickets.get(i).shouldBe(Condition.visible);
 //                assertHrefTicketsRegex(hrefIconTickets.get(i));
