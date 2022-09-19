@@ -48,28 +48,27 @@ public class NewTrailersBlock {
 
     @Step("Проверка, что название корректно. Regex")
     public NewTrailersBlock assertNameTrailerRegex() {
-        for (SelenideElement element : nameAndHrefTrailer) {
-            bestScroll(element);
-//            sleep(500);
-            assertNameRegex(element);
+        for (int j = 0; j < nameAndHrefTrailer.size(); j++) {
+            bestScroll(nameAndHrefTrailer.get(j));
+            assertNameRegex(nameAndHrefTrailer.get(j));
         }
         return this;
     }
 
     @Step("Проверка, что ссылка корректна. Regex")
     public NewTrailersBlock assertHrefTrailerRegex() {
-        for (SelenideElement element : nameAndHrefTrailer) {
-            bestScroll(element);
-            assertHrefRegex(element);
+        for (int j = 0; j < nameAndHrefTrailer.size(); j++) {
+            bestScroll(nameAndHrefTrailer.get(j));
+            assertHrefRegex(nameAndHrefTrailer.get(j));
         }
         return this;
     }
 
     @Step("Проверка, что год и жанр корректный. Regex")
     public NewTrailersBlock assertYearAndGenreTrailerRegex() {
-        for (SelenideElement element : nameAndHrefTrailer) {
-            bestScroll(element);
-            assertYearAndGenreRegex(element);
+        for (int j = 0; j < nameAndHrefTrailer.size(); j++) {
+            bestScroll(nameAndHrefTrailer.get(j));
+            assertYearAndGenreRegex(yearAndGenreTrailer.get(j));
         }
         return this;
     }
