@@ -1,6 +1,10 @@
 package test;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import page.authorizationPage.LoginPage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
@@ -9,9 +13,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import com.codeborne.selenide.ex.ElementNotFound;
 import config.ConfProperties;
+import util.parallelRunning.Mobile;
+import util.parallelRunning.Web;
+
 import java.time.Duration;
 import java.util.Objects;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 
 public class BaseTest {
 
@@ -81,6 +89,33 @@ public class BaseTest {
         }
         System.out.println("Web" + mobile);
         return mobile;
+    }
+
+    private void configurationParallel(){
+
+        String platform = PlatformSetup.getPlatform();
+        WebDriverManager.chromedriver().setup();
+        switch (platform.toLowerCase()) {
+            case "mobile":
+                setWebDriver(new Mobile().createDriver(new DesiredCapabilities()));
+                break;
+            case "web":
+                setWebDriver(new Web().createDriver(new DesiredCapabilities()));
+        }
+
+        String url = ConfProperties.getProperty("loginPageUrl");
+        open(url);
+    }
+
+    @Parameters({"platform"})
+    @BeforeTest
+    public void baseOpenPageParallel(String platform) {
+        System.out.println("BASE TEST" + platform);
+        PlatformSetup.setPlatform(platform);
+        configuration();
+        clickStayButton();
+        waitMainPage();
+        pageDown(0);
     }
 
 }
