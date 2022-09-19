@@ -1,6 +1,5 @@
 package page.cucumberStepDefinition;
 
-import config.ConfProperties;
 import io.cucumber.java.ru.Дано;
 import test.BaseTest;
 

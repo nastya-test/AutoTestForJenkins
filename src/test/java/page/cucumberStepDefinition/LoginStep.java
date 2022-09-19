@@ -63,7 +63,6 @@ public class LoginStep {
         all.hover();
     }
 
-
     @То("отобразилось сообщение об ошибке")
     public void отобразилось_сообщение_об_ошибке() {
         assertThat(error.getText()).isEqualTo("Такой логин не подойдет");
