@@ -5,6 +5,7 @@ import io.qameta.allure.Description;
 import test.BaseTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import static com.codeborne.selenide.Selenide.page;
 
 public class LoginTest {
     @BeforeMethod
@@ -13,9 +14,8 @@ public class LoginTest {
     }
 
     @Test
-    @Description("Тест входа в систему")
+    @Description("Успешный вход в систему")
     public void checkLogin(){
-        LoginPage loginPage = new LoginPage();
-        loginPage.loginInToTheAccount();
+        page(LoginPage.class).loginInToTheAccount();
     }
 }

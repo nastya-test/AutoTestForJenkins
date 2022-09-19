@@ -1,6 +1,7 @@
 package page.cucumberStepDefinition;
 
 import com.codeborne.selenide.SelenideElement;
+import data.UserGenerator;
 import data.model.User;
 import io.cucumber.java.ru.Дано;
 import io.cucumber.java.ru.И;
@@ -41,7 +42,7 @@ public class LoginStep {
     @Дано("вводит существующий логин")
     public void вводит_существующий_логин() {
         loginField.click();
-        loginField.setValue(User.validUserLogin());
+        loginField.setValue(UserGenerator.validUserLogin());
     }
 
     @Дано("нажимает продолжить")
@@ -52,13 +53,13 @@ public class LoginStep {
     @Дано("вводит пароль")
     public void вводит_пароль() {
         passwordField.click();
-        passwordField.setValue(User.validUserPassword());
+        passwordField.setValue(UserGenerator.validUserPassword());
     }
 
     @То("пользователь вошел в аккаунт")
     public void пользователь_вошел_в_аккаунт() {
         avatar.hover();
-        assertThat(textLoginMainPage.getText()).as("Логин не совпал с введенным ранее").isEqualTo(User.validUserLogin());
+        assertThat(textLoginMainPage.getText()).as("Логин не совпал с введенным ранее").isEqualTo(UserGenerator.validUserLogin());
         all.hover();
     }
 

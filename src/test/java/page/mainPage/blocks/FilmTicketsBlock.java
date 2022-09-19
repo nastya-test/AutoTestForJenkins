@@ -1,15 +1,14 @@
 package page.mainPage.blocks;
 
-import data.regexPattern;
-import page.mainPage.steps.CommonSteps;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import java.util.regex.Pattern;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static data.Constants.linkTicketsBlock;
 import static org.assertj.core.api.Assertions.*;
+import static page.mainPage.steps.CommonSteps.*;
 
 public class FilmTicketsBlock {
 
@@ -49,7 +48,7 @@ public class FilmTicketsBlock {
     @Step("Проверка, что название корректно. Regex")
     public FilmTicketsBlock assertNameFilmTicketsRegex() {
         for (SelenideElement nameFilmTicket : nameFilmTickets) {
-            CommonSteps.assertNameRegex(nameFilmTicket);
+            assertNameRegex(nameFilmTicket);
         }
         return this;
     }
@@ -57,7 +56,7 @@ public class FilmTicketsBlock {
     @Step("Проверка, что ссылка корректна. Regex")
     public FilmTicketsBlock assertHrefFilmTicketsRegex() {
         for (SelenideElement hrefFilmTicket : hrefFilmTickets) {
-            CommonSteps.assertHrefRegex(hrefFilmTicket);
+            assertHrefRegex(hrefFilmTicket);
         }
         return this;
     }
@@ -65,7 +64,7 @@ public class FilmTicketsBlock {
     @Step("Проверка, что год и жанр корректный. Regex")
     public FilmTicketsBlock assertYearAndGenreFilmTicketsRegex() {
         for (SelenideElement yearAndGenreFilmTicket : yearAndGenreFilmTickets) {
-            CommonSteps.assertYearAndGenreRegex(yearAndGenreFilmTicket);
+            assertYearAndGenreRegex(yearAndGenreFilmTicket);
         }
         return this;
     }
@@ -73,7 +72,7 @@ public class FilmTicketsBlock {
     @Step("Проверка, что рейтинг корректный. Regex")
     public FilmTicketsBlock assertRatingFilmTicketsRegex() {
         for (SelenideElement ratingFilmTickets : ratingFilmTickets) {
-            CommonSteps.assertRatingRegex(ratingFilmTickets);
+            assertRatingRegex(ratingFilmTickets);
         }
         return this;
     }
@@ -82,7 +81,7 @@ public class FilmTicketsBlock {
     public FilmTicketsBlock scrollTickets(String platform) {
         switch (platform) {
             case "web":
-                CommonSteps.scroll(backArrowTickets, forwardArrowTickets);
+                scroll(backArrowTickets, forwardArrowTickets);
                 break;
 
             case "mobile":
@@ -94,13 +93,12 @@ public class FilmTicketsBlock {
 
     @Step("Название блока")
     public FilmTicketsBlock nameTicketsBlock() {
-        CommonSteps.nameBlock(headerFilmTicketsBlock, "Билеты в кино");
+        nameBlock(headerFilmTicketsBlock, "Билеты в кино");
         return this;
     }
 
     @Step ("«Билеты в кино» ведет на страницу «/afisha/new/city/»")
     public FilmTicketsBlock hrefTicketsBlock() {
-        String linkTicketsBlock = "https://www.kinopoisk.ru/afisha/new/city";
         headerFilmTicketsBlock.shouldBe(Condition.attribute("href", linkTicketsBlock));
         return this;
     }
@@ -111,8 +109,7 @@ public class FilmTicketsBlock {
             case "web":
                 for (int i = 0; i < hrefFilmTickets.size(); i++) {
                     smallIconTickets.get(i).shouldBe(Condition.visible);
-                    Boolean regLink = Pattern.matches(regexPattern.regexLabelTickets(), hrefIconTickets.get(i).getAttribute("href"));
-                    assertThat(regLink).as("Неверно указана ссылка на билеты").isTrue();
+                    assertHrefTicketsRegex(hrefIconTickets.get(i));
                     smallIconTickets.get(i).hover();
                     textIconTickets.get(i).shouldBe(Condition.visible);
                     assertThat(textIconTickets.get(i).getText()).as("Название на плашке не Билеты").isEqualTo("Билеты");

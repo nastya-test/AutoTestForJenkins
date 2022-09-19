@@ -1,18 +1,17 @@
 package page.mainPage.blocks;
 
-import data.colourPattern;
-import data.regexPattern;
-import page.mainPage.steps.CommonSteps;
-
 import java.util.List;
-import java.util.regex.Pattern;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import static com.codeborne.selenide.Selenide.*;
+import static data.Constants.iconComment;
+import static data.colourPattern.orangeColour;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.openqa.selenium.By.tagName;
+import static page.mainPage.steps.CommonSteps.assertCommentRegex;
+import static page.mainPage.steps.CommonSteps.nameBlock;
 
 public class PopularBlock {
 
@@ -58,24 +57,23 @@ public class PopularBlock {
     //Ссылка с текста первой новости mobile
     SelenideElement scrollButton = $("[class *='featuredCaptions']");
 
+    //String iconComment="url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18'%3E%3Cpath fill-rule='evenodd' d='M2.25 13.393V3.75h13.5v9.643h-4.821L6.107 17.25v-3.857H2.25z' opacity='.1'/%3E%3C/svg%3E\")";
+
     @Step("Mobile. Переход на вкладку популярное")
     public PopularBlock mobileButton() {
-        buttonPopularMobile.get(1).scrollIntoView("{behavior: \"instant\", block: \"center\"}");
-        buttonPopularMobile.get(1).shouldBe(Condition.visible);
-        buttonPopularMobile.get(1).click();
+        buttonPopularMobile.get(1).scrollIntoView("{behavior: \"instant\", block: \"center\"}").shouldBe(Condition.visible).click();
         return this;
     }
 
     @Step("Назвавние блока")
     public PopularBlock headerTextPopularBlock(String platform) {
-
         switch (platform) {
             case "web":
-                CommonSteps.nameBlock(headerPopularBlock, "Популярное");
+                nameBlock(headerPopularBlock, "Популярное");
                 break;
 
             case "mobile":
-                CommonSteps.nameBlock(buttonPopularMobile.get(1), "Популярное");
+                nameBlock(buttonPopularMobile.get(1), "Популярное");
                 break;
         }
         return this;
@@ -102,8 +100,7 @@ public class PopularBlock {
         switch (platform) {
             case "web":
                 LinkTextNewsFirstPopular.hover();
-                String colourExpected1 = LinkTextNewsFirstPopular.getCssValue("color");
-                assertThat(colourExpected1).as("При наведении на текст цвет не стал оранжевым").isEqualTo(colourPattern.orangeColour());
+                assertThat(LinkTextNewsFirstPopular.getCssValue("color")).as("При наведении на текст цвет не стал оранжевым").isEqualTo(orangeColour());
                 break;
 
             case "mobile":
@@ -147,7 +144,7 @@ public class PopularBlock {
         switch (platform) {
             case "web":
                 for (SelenideElement element : newsNumberPopular) {
-                    assertThat(element.getCssValue("color")).isEqualTo(colourPattern.orangeColour());
+                    assertThat(element.getCssValue("color")).isEqualTo(orangeColour());
                 }
                 break;
             case "mobile":
@@ -160,9 +157,7 @@ public class PopularBlock {
     @Step("Корректное количество комментариев у новости")
     public PopularBlock commentNewsRegexPopular() {
         for (int i = 0; i < 10; i++) {
-            Boolean regComment = Pattern.matches(regexPattern.commentNewsPopular(), numberOfCommentsPopular.get(i).getText());
-            assertThat(regComment).as("Отображается неверное количество комментариев").isTrue();
-            System.out.println(numberOfCommentsPopular.get(i).getText());
+            assertCommentRegex(numberOfCommentsPopular.get(i));
         }
         return this;
     }
@@ -170,7 +165,7 @@ public class PopularBlock {
     @Step("Иконка комментирования")
     public PopularBlock iconCommentNewsPopular() {
         for (SelenideElement element : iconOfCommentsPopular) {
-            element.shouldHave(Condition.pseudo(":before", "background-image", "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18'%3E%3Cpath fill-rule='evenodd' d='M2.25 13.393V3.75h13.5v9.643h-4.821L6.107 17.25v-3.857H2.25z' opacity='.1'/%3E%3C/svg%3E\")"));
+            element.shouldHave(Condition.pseudo(":before", "background-image", iconComment));
         }
         return this;
     }

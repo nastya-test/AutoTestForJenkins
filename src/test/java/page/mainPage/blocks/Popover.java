@@ -59,7 +59,6 @@ public class Popover {
     }
     @Step("При наведении появился поповер")
     public Popover displayPopover(int i) {
-
         for (int j=i; j < i+1; j++) {
                 nameFilmCarouselPopovers.get(i).hover();
                 popover.shouldBe(Condition.visible);

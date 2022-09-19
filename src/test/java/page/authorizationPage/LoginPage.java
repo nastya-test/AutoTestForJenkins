@@ -1,10 +1,10 @@
 package page.authorizationPage;
 
-import data.model.User;
+import data.UserGenerator;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-
 import static com.codeborne.selenide.Selenide.$;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LoginPage {
 
@@ -28,18 +28,43 @@ public class LoginPage {
 
     SelenideElement all  =  $(".styles_root__RPFB8");
 
+    @Step ("Клик по входу в аккаунт")
+    public LoginPage loginButtonClick() {
+        loginButton.click();
+        return this;
+    }
+
+    @Step ("Ввод логина")
+    public LoginPage fillLoginField() {
+        loginField.click();
+        loginField.setValue(UserGenerator.validUserLogin());
+        return this;
+    }
+
+    @Step ("Ввод пароля")
+    public LoginPage fillPasswordField() {
+        passwordField.click();
+        passwordField.setValue(UserGenerator.validUserPassword());
+        return this;
+    }
+
+    @Step ("Клик по продолжить")
+    public LoginPage signInButtonClick() {
+        signInButton.click();
+        return this;
+    }
+
+    @Step ("Проверить, что вверху страницы отобразился введенный ранее логин")
+    public LoginPage assertSuccessAuthorization() {
+        avatar.hover();
+        assertThat(textLoginMainPage.getText()).as("Логин не совпал с введенным ранее").isEqualTo(UserGenerator.validUserLogin());
+        all.hover();
+        return this;
+    }
+
     @Step ("Вход в существующий аккаунт")
     public LoginPage loginInToTheAccount(){
-        loginButton.click();
-        loginField.click();
-        loginField.setValue(User.validUserLogin());
-        signInButton.click();
-        passwordField.click();
-        passwordField.setValue(User.validUserPassword());
-        signInButton.click();
-//        avatar.hover();
-//        assertThat(textLoginMainPage.getText()).as("Логин не совпал с введенным ранее").isEqualTo(user.validUserLogin());
-//        all.hover();
+        loginButtonClick().fillLoginField().signInButtonClick().fillPasswordField().signInButtonClick().assertSuccessAuthorization();
         return this;
     }
 }

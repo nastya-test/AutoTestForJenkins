@@ -5,14 +5,12 @@ import com.codeborne.selenide.SelenideElement;
 import data.regexPattern;
 import io.qameta.allure.Step;
 import data.model.Film;
-import page.mainPage.steps.CommonSteps;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
-
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-
+import static page.mainPage.steps.CommonSteps.bestScroll;
 
 public class FilmForDbBlock {
 
@@ -38,7 +36,7 @@ public class FilmForDbBlock {
     public List<Film> assertManyFilm() {
         ArrayList<Film> listOfFilm = new ArrayList();
         for (int j = 0; j < nameAndHrefTrailer.size(); j++) {
-            nameAndHrefTrailer.get(j).scrollIntoView("{behavior: \"instant\", block: \"center\", inline: \"end\"}");
+            bestScroll(nameAndHrefTrailer.get(j));
 
             if (!Pattern.matches(regexPattern.regexYearAndGenre(), yearAndGenreTrailer.get(j).getText())) {
                 listOfFilm.add(getFilm(nameAndHrefTrailer.get(j), yearAndGenreTrailer.get(j), nameAndHrefTrailer.get(j)));
@@ -56,27 +54,24 @@ public class FilmForDbBlock {
 
     @Step("Кликнули на баннер")
     public FilmForDbBlock bannerClick() {
-        banner.scrollIntoView("{behavior: \"instant\", block: \"center\", inline: \"end\"}");
+        bestScroll(banner);
         banner.click();
         return this;
     }
 
     @Step("Получили название фильма")
     public String getName(SelenideElement nameElement) {
-        String name = nameElement.getText();
-        return name;
+        return nameElement.getText();
     }
 
     @Step("Получили год фильма")
     public String getYearAndGenre(SelenideElement yearElement) {
-        String yearAndGenre = yearElement.getText();
-        return yearAndGenre;
+        return yearElement.getText();
     }
 
     @Step("Получили ссылку фильма")
     public String getHref(SelenideElement hrefElement) {
-        String href = hrefElement.getAttribute("href");
-        return href;
+        return hrefElement.getAttribute("href");
     }
 
     @Step("Получить фильм")

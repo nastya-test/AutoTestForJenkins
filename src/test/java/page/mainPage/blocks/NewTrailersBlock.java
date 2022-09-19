@@ -1,6 +1,5 @@
 package page.mainPage.blocks;
 
-import page.mainPage.steps.CommonSteps;
 import data.colourPattern;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -9,7 +8,10 @@ import io.qameta.allure.Step;
 import java.time.Duration;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static data.Constants.linkTrailerBlock;
 import static org.assertj.core.api.Assertions.*;
+import static page.mainPage.steps.CommonSteps.*;
+import static page.mainPage.steps.CommonSteps.bestScroll;
 
 public class NewTrailersBlock {
 
@@ -46,9 +48,9 @@ public class NewTrailersBlock {
     @Step("Проверка, что название корректно. Regex")
     public NewTrailersBlock assertNameTrailerRegex() {
         for (int j = 0; j < nameAndHrefTrailer.size(); j++) {
-                nameAndHrefTrailer.get(j).scrollIntoView("{behavior: \"instant\", block: \"center\", inline: \"end\"}");
-                sleep(500);
-            CommonSteps.assertNameRegex(nameAndHrefTrailer.get(j));
+            bestScroll(nameAndHrefTrailer.get(j));
+            sleep(500);
+            assertNameRegex(nameAndHrefTrailer.get(j));
         }
         return this;
     }
@@ -56,8 +58,8 @@ public class NewTrailersBlock {
     @Step("Проверка, что ссылка корректна. Regex")
     public NewTrailersBlock assertHrefTrailerRegex() {
         for (int j = 0; j < nameAndHrefTrailer.size(); j++) {
-                nameAndHrefTrailer.get(j).scrollIntoView("{behavior: \"instant\", block: \"center\", inline: \"end\"}");
-            CommonSteps.assertHrefRegex(nameAndHrefTrailer.get(j));
+            bestScroll(nameAndHrefTrailer.get(j));
+            assertHrefRegex(nameAndHrefTrailer.get(j));
         }
         return this;
     }
@@ -65,8 +67,8 @@ public class NewTrailersBlock {
     @Step("Проверка, что год и жанр корректный. Regex")
     public NewTrailersBlock assertYearAndGenreTrailerRegex() {
         for (int j = 0; j < nameAndHrefTrailer.size(); j++) {
-                nameAndHrefTrailer.get(j).scrollIntoView("{behavior: \"instant\", block: \"center\", inline: \"end\"}");
-            CommonSteps.assertYearAndGenreRegex(yearAndGenreTrailer.get(j));
+            bestScroll(nameAndHrefTrailer.get(j));
+            assertYearAndGenreRegex(yearAndGenreTrailer.get(j));
         }
         return this;
     }
@@ -75,7 +77,7 @@ public class NewTrailersBlock {
     public NewTrailersBlock scrollTrailer(String platform) {
         switch (platform) {
             case "web":
-                CommonSteps.scroll(backArrowTrailer, forwardArrowTrailer);
+                scroll(backArrowTrailer, forwardArrowTrailer);
                 break;
 
             case "mobile":
@@ -87,7 +89,7 @@ public class NewTrailersBlock {
 
     @Step("Название блока")
     public NewTrailersBlock nameTrailerBlock() {
-        CommonSteps.nameBlock(headerTrailerBlock, "Новые трейлеры");
+        nameBlock(headerTrailerBlock, "Новые трейлеры");
         return this;
     }
 
@@ -95,8 +97,7 @@ public class NewTrailersBlock {
     public NewTrailersBlock hrefTrailerBlock(String platform) {
         switch (platform) {
             case "web":
-                String linkRecommendBlock = "https://www.kinopoisk.ru/video/";
-                headerTrailerBlock.shouldBe(Condition.attribute("href", linkRecommendBlock));
+                headerTrailerBlock.shouldBe(Condition.attribute("href", linkTrailerBlock));
                 break;
 
             case "mobile":
@@ -110,7 +111,7 @@ public class NewTrailersBlock {
     public NewTrailersBlock playerTrailer(String platform) {
 
         for (int j = 0; j < nameAndHrefTrailer.size(); j++) {
-            nameAndHrefTrailer.get(j).scrollIntoView("{behavior: \"instant\", block: \"center\", inline: \"end\"}");
+            bestScroll(nameAndHrefTrailer.get(j));
 
             videoPlaybackTrailer.get(j).click();
             sleep(500);
@@ -133,8 +134,7 @@ public class NewTrailersBlock {
     public NewTrailersBlock colourPlayerTrailer() {
 
         for (int j = 0; j < nameAndHrefTrailer.size(); j++) {
-            nameAndHrefTrailer.get(j).scrollIntoView("{behavior: \"instant\", block: \"center\", inline: \"end\"}");
-
+            bestScroll(nameAndHrefTrailer.get(j));
             String colour = videoPlaybackTrailer.get(j).getCssValue("background-color");
             assertThat(colour).as("Цвет кнопки проигрывания трейлера не оранжевый").isEqualTo(colourPattern.orangeColour());
 

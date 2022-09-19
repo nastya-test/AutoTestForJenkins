@@ -1,6 +1,5 @@
 package page.mainPage.blocks;
 
-import page.mainPage.steps.CommonSteps;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -9,6 +8,8 @@ import java.time.Duration;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static data.Constants.linkRecommendationsBlock;
+import static page.mainPage.steps.CommonSteps.*;
 
 public class RecommendationsBlock {
 
@@ -39,7 +40,7 @@ public class RecommendationsBlock {
     @Step("Проверка, что название корректно. Regex")
     public RecommendationsBlock assertNameRecommendRegex() {
         for (int i = 19; i < nameRecommend.size(); i++) {
-            CommonSteps.assertNameRegex(nameRecommend.get(i));
+            assertNameRegex(nameRecommend.get(i));
         }
         return this;
     }
@@ -47,7 +48,7 @@ public class RecommendationsBlock {
     @Step("Проверка, что ссылка корректна. Regex")
     public RecommendationsBlock assertHrefRecommendRegex() {
         for (int i = 19; i < hrefRecommend.size(); i++) {
-            CommonSteps.assertHrefRegex(hrefRecommend.get(i));
+            assertHrefRegex(hrefRecommend.get(i));
         }
         return this;
     }
@@ -55,7 +56,7 @@ public class RecommendationsBlock {
     @Step("Проверка, что год и жанр корректный. Regex")
     public RecommendationsBlock assertYearAndGenreRecommendRegex() {
         for (int i = 19; i < yearAndGenreRecommend.size(); i++) {
-            CommonSteps.assertYearAndGenreRegex(yearAndGenreRecommend.get(i));
+            assertYearAndGenreRegex(yearAndGenreRecommend.get(i));
         }
         return this;
     }
@@ -63,7 +64,7 @@ public class RecommendationsBlock {
     @Step("Проверка, что рейтинг корректный. Regex")
     public RecommendationsBlock assertRatingRecommendRegex() {
         for (int i = 19; i < ratingRecommend.size(); i++) {
-            CommonSteps.assertRatingRegex(ratingRecommend.get(i));
+            assertRatingRegex(ratingRecommend.get(i));
         }
         return this;
     }
@@ -72,7 +73,7 @@ public class RecommendationsBlock {
     public RecommendationsBlock scrollRecommend(String platform) {
         switch (platform) {
             case "web":
-                CommonSteps.scroll(backArrowRecommend, forwardArrowRecommend);
+                scroll(backArrowRecommend, forwardArrowRecommend);
                 break;
 
             case "mobile":
@@ -84,13 +85,12 @@ public class RecommendationsBlock {
 
     @Step("Название блока")
     public RecommendationsBlock nameRecommendationsBlock() {
-        CommonSteps.nameBlock(headerRecommendationsBlock, "Рекомендации");
+        nameBlock(headerRecommendationsBlock, "Рекомендации");
         return this;
     }
 
     @Step ("«Билеты в кино» ведет на страницу «/afisha/new/city/»")
     public RecommendationsBlock hrefRecommendationsBlock() {
-        String linkRecommendationsBlock = "https://www.kinopoisk.ru/lists/movies/recommendation/?from_block=main_page";
         headerRecommendationsBlock.shouldBe(Condition.attribute("href", linkRecommendationsBlock));
         return this;
     }
