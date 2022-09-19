@@ -47,6 +47,6 @@ public class RecommendationsTest {
     @Description("Скролл")
     public void checkScroll() {
         page(RecommendationsBlock.class)
-                .scrollRecommend(ConfProperties.getProperty("platform"));
+                .scrollRecommend();
     }
 }

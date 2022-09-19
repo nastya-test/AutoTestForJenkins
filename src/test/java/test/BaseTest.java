@@ -74,11 +74,17 @@ public class BaseTest {
         }
     }
 
-    private boolean isMobile(){
-        boolean mobile=false;
-        if (ConfProperties.getProperty("platform")=="mobile"){
+    public static boolean isMobile(){
+        boolean mobile;
+        if (Objects.equals(ConfProperties.getProperty("platform"), "mobile")){
             mobile=true;
+            System.out.println("mobile");
         }
+        else {
+            mobile=false;
+            System.out.println("web");
+        }
+        System.out.println(mobile);
         return mobile;
     }
 

@@ -29,20 +29,20 @@ public class NewTrailerTest {
     public void checkHeaderNewTrailerBlock() {
         page(NewTrailersBlock.class)
                 .nameTrailerBlock()
-                .hrefTrailerBlock(ConfProperties.getProperty("platform"));
+                .hrefTrailerBlock();
     }
 
     @Test
     @Description("Проигрывание трейлера")
     public void checkPlayerTrailerBlock() {
         page(NewTrailersBlock.class)
-                .playerTrailer(ConfProperties.getProperty("platform"));
+                .playerTrailer();
     }
 
     @Test
     @Description("Скролл сниппетов")
     public void checkScroll() {
         page(NewTrailersBlock.class)
-                .scrollTrailer(ConfProperties.getProperty("platform"));
+                .scrollTrailer();
     }
 }

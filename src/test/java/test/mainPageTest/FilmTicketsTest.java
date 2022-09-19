@@ -13,7 +13,7 @@ public class FilmTicketsTest {
 
     @BeforeMethod
     public void openPage() {
-       BaseTest.baseOpenPage(ConfProperties.getProperty("platform"),0);
+        BaseTest.baseOpenPage(ConfProperties.getProperty("platform"), 0);
     }
 
     @Test
@@ -39,15 +39,15 @@ public class FilmTicketsTest {
     @Description("Плашка с билетами")
     public void checkLabelTickets() {
         page(FilmTicketsBlock.class)
-                .assertIconFilmRegex(ConfProperties.getProperty("platform"));
+                .assertIconFilmRegex();
     }
 
     @Test
     @Description("Скролл сниппетов")
     public void checkScrollTickets() {
         page(FilmTicketsBlock.class)
-                .scrollTickets(ConfProperties.getProperty("platform"));
-        }
+                .scrollTickets();
+    }
 
 
 }

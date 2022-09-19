@@ -12,6 +12,7 @@ import static data.Constants.linkTrailerBlock;
 import static org.assertj.core.api.Assertions.*;
 import static page.mainPage.steps.CommonSteps.*;
 import static page.mainPage.steps.CommonSteps.bestScroll;
+import static test.BaseTest.isMobile;
 
 public class NewTrailersBlock {
 
@@ -47,42 +48,38 @@ public class NewTrailersBlock {
 
     @Step("Проверка, что название корректно. Regex")
     public NewTrailersBlock assertNameTrailerRegex() {
-        for (int j = 0; j < nameAndHrefTrailer.size(); j++) {
-            bestScroll(nameAndHrefTrailer.get(j));
+        for (SelenideElement element : nameAndHrefTrailer) {
+            bestScroll(element);
             sleep(500);
-            assertNameRegex(nameAndHrefTrailer.get(j));
+            assertNameRegex(element);
         }
         return this;
     }
 
     @Step("Проверка, что ссылка корректна. Regex")
     public NewTrailersBlock assertHrefTrailerRegex() {
-        for (int j = 0; j < nameAndHrefTrailer.size(); j++) {
-            bestScroll(nameAndHrefTrailer.get(j));
-            assertHrefRegex(nameAndHrefTrailer.get(j));
+        for (SelenideElement element : nameAndHrefTrailer) {
+            bestScroll(element);
+            assertHrefRegex(element);
         }
         return this;
     }
 
     @Step("Проверка, что год и жанр корректный. Regex")
     public NewTrailersBlock assertYearAndGenreTrailerRegex() {
-        for (int j = 0; j < nameAndHrefTrailer.size(); j++) {
-            bestScroll(nameAndHrefTrailer.get(j));
-            assertYearAndGenreRegex(yearAndGenreTrailer.get(j));
+        for (SelenideElement element : nameAndHrefTrailer) {
+            bestScroll(element);
+            assertYearAndGenreRegex(element);
         }
         return this;
     }
 
     @Step("Стрелки прокрутки. Стрелка назад отсутствует, после нажатия стрелки вперед, стрелка назад появляется")
-    public NewTrailersBlock scrollTrailer(String platform) {
-        switch (platform) {
-            case "web":
-                scroll(backArrowTrailer, forwardArrowTrailer);
-                break;
-
-            case "mobile":
-                System.out.println("Step scrollTrailer ignored for mobile");
-                break;
+    public NewTrailersBlock scrollTrailer() {
+        if (!isMobile()) {
+            scroll(backArrowTrailer, forwardArrowTrailer);
+        } else {
+            System.out.println("Step scrollTrailer ignored for mobile");
         }
         return this;
     }
@@ -94,54 +91,43 @@ public class NewTrailersBlock {
     }
 
     @Step("Заголовок блока ведетна страницу https://www.kinopoisk.ru/video/")
-    public NewTrailersBlock hrefTrailerBlock(String platform) {
-        switch (platform) {
-            case "web":
-                headerTrailerBlock.shouldBe(Condition.attribute("href", linkTrailerBlock));
-                break;
-
-            case "mobile":
-                System.out.println("Step hrefTrailerBlock ignored for mobile");
-                break;
+    public NewTrailersBlock hrefTrailerBlock() {
+        if (!isMobile()) {
+            headerTrailerBlock.shouldBe(Condition.attribute("href", linkTrailerBlock));
+        } else {
+            System.out.println("Step hrefTrailerBlock ignored for mobile");
         }
         return this;
     }
 
     @Step("Плеер, по нажатию открывается плеер")
-    public NewTrailersBlock playerTrailer(String platform) {
-
+    public NewTrailersBlock playerTrailer() {
         for (int j = 0; j < nameAndHrefTrailer.size(); j++) {
             bestScroll(nameAndHrefTrailer.get(j));
-
             videoPlaybackTrailer.get(j).click();
             sleep(500);
 
-            switch (platform) {
-                case "web":
-                    playerTrailer.shouldBe(Condition.visible);
-                    trailersCloser.click();
-                    break;
-
-                case "mobile":
-                    playerTrailerMobile.shouldBe(Condition.visible);
-                    trailersCloserMobile.click();
-                    break;
+            if (!isMobile()) {
+                playerTrailer.shouldBe(Condition.visible);
+                trailersCloser.click();
+            } else {
+                playerTrailerMobile.shouldBe(Condition.visible);
+                trailersCloserMobile.click();
             }
         }
         return this;
+
     }
+
     @Step("Плеер. Цвет кнопки оранжевый")
     public NewTrailersBlock colourPlayerTrailer() {
-
         for (int j = 0; j < nameAndHrefTrailer.size(); j++) {
             bestScroll(nameAndHrefTrailer.get(j));
             String colour = videoPlaybackTrailer.get(j).getCssValue("background-color");
             assertThat(colour).as("Цвет кнопки проигрывания трейлера не оранжевый").isEqualTo(colourPattern.orangeColour());
-
         }
         return this;
     }
-
 }
 
 

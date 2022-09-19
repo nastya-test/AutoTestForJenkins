@@ -10,8 +10,8 @@ import static data.Constants.iconComment;
 import static data.colourPattern.orangeColour;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.openqa.selenium.By.tagName;
-import static page.mainPage.steps.CommonSteps.assertCommentRegex;
-import static page.mainPage.steps.CommonSteps.nameBlock;
+import static page.mainPage.steps.CommonSteps.*;
+import static test.BaseTest.isMobile;
 
 public class PopularBlock {
 
@@ -59,6 +59,8 @@ public class PopularBlock {
 
     //String iconComment="url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18'%3E%3Cpath fill-rule='evenodd' d='M2.25 13.393V3.75h13.5v9.643h-4.821L6.107 17.25v-3.857H2.25z' opacity='.1'/%3E%3C/svg%3E\")";
 
+    SelenideElement element;
+
     @Step("Mobile. Переход на вкладку популярное")
     public PopularBlock mobileButton() {
         buttonPopularMobile.get(1).scrollIntoView("{behavior: \"instant\", block: \"center\"}").shouldBe(Condition.visible).click();
@@ -66,90 +68,72 @@ public class PopularBlock {
     }
 
     @Step("Назвавние блока")
-    public PopularBlock headerTextPopularBlock(String platform) {
-        switch (platform) {
-            case "web":
-                nameBlock(headerPopularBlock, "Популярное");
-                break;
-
-            case "mobile":
-                nameBlock(buttonPopularMobile.get(1), "Популярное");
-                break;
+    public PopularBlock headerTextPopularBlock() {
+        if (!isMobile()) {
+            element = headerPopularBlock;
+        } else {
+            element = buttonPopularMobile.get(1);
         }
+        nameBlock(element, "Популярное");
         return this;
     }
 
     //Проверки для первой новости
     @Step("У первой новости есть изоображение")
-    public PopularBlock imgPopular(String platform) {
-        switch (platform) {
-            case "web":
-                pictureNewsFirstPopular.shouldHave(Condition.image);
-                break;
-
-            case "mobile":
-                pictureNewsFirstPopularMobile.shouldHave(Condition.image);
-                break;
+    public PopularBlock imgPopular() {
+        if (!isMobile()) {
+            element = pictureNewsFirstPopular;
+        } else {
+            element = pictureNewsFirstPopularMobile;
         }
-
+        element.shouldHave(Condition.image);
         return this;
     }
 
     @Step("При наведении текст становится оранжевым")
-    public PopularBlock colourHoverNewsPopular(String platform) {
-        switch (platform) {
-            case "web":
-                LinkTextNewsFirstPopular.hover();
-                assertThat(LinkTextNewsFirstPopular.getCssValue("color")).as("При наведении на текст цвет не стал оранжевым").isEqualTo(orangeColour());
-                break;
-
-            case "mobile":
-                System.out.println("Step colourHoverNewsPopular ignored for mobile");
-                break;
+    public PopularBlock colourHoverNewsPopular() {
+        if (!isMobile()) {
+            LinkTextNewsFirstPopular.hover();
+            assertThat(LinkTextNewsFirstPopular.getCssValue("color")).as("При наведении на текст цвет не стал оранжевым").isEqualTo(orangeColour());
         }
-
+        else{
+            System.out.println("Step colourHoverNewsPopular ignored for mobile");
+        }
         return this;
     }
 
     @Step("Ссылка новости совпадет с ссылкой картинки")
-    public PopularBlock linkNewsPopular(String platform) {
-        switch (platform) {
-            case "web":
-                assertThat(LinkTextNewsFirstPopular.getAttribute("href")).as("Ссылка новости не совпала с цветом картинки").isEqualTo(LinkPictureNewsFirstPopular.getAttribute("href"));
-                break;
-            case "mobile":
-                assertThat(LinkTextNewsFirstPopularMobile.getAttribute("href")).as("Ссылка новости не совпала с цветом картинки").isEqualTo(LinkPictureNewsFirstPopularMobile.getAttribute("href"));
-                break;
+    public PopularBlock linkNewsPopular() {
+        if (!isMobile()) {
+            assertThat(LinkTextNewsFirstPopular.getAttribute("href")).as("Ссылка новости не совпала с цветом картинки").isEqualTo(LinkPictureNewsFirstPopular.getAttribute("href"));
         }
-
+        else{
+            assertThat(LinkTextNewsFirstPopularMobile.getAttribute("href")).as("Ссылка новости не совпала с цветом картинки").isEqualTo(LinkPictureNewsFirstPopularMobile.getAttribute("href"));
+        }
         return this;
     }
 
     @Step("Текст первой новости жирный")
-    public PopularBlock boldNewsPopular(String platform) {
-        switch (platform) {
-            case "web":
-                assertThat(LinkTextNewsFirstPopular.getCssValue("font-weight")).as("Текст первой новости не жирный").isEqualTo("500");
-                break;
-            case "mobile":
-                assertThat(LinkTextNewsFirstPopularMobile.getCssValue("font-weight")).as("Текст первой новости не жирный").isEqualTo("500");
-                break;
+    public PopularBlock boldNewsPopular() {
+        if (!isMobile()) {
+            element = LinkTextNewsFirstPopular;
         }
+        else{
+            element = LinkTextNewsFirstPopularMobile;
+        }
+        assertThat(element.getCssValue("font-weight")).as("Текст первой новости не жирный").isEqualTo("500");
         return this;
     }
 
     //Проверки для всех новостей
     @Step("Порядковый номер у новости оранжевого цвета")
-    public PopularBlock colourNewsNumberPopular(String platform) {
-        switch (platform) {
-            case "web":
-                for (SelenideElement element : newsNumberPopular) {
-                    assertThat(element.getCssValue("color")).isEqualTo(orangeColour());
-                }
-                break;
-            case "mobile":
-                System.out.println("Step colourNewsNumberPopular ignored for mobile");
-                break;
+    public PopularBlock colourNewsNumberPopular() {
+        if (!isMobile()) {
+            for (SelenideElement element : newsNumberPopular) {
+                assertThat(element.getCssValue("color")).isEqualTo(orangeColour());
+            }
+        } else {
+            System.out.println("Step colourNewsNumberPopular ignored for mobile");
         }
         return this;
     }
@@ -171,20 +155,14 @@ public class PopularBlock {
     }
 
     @Step("Подсчёт количества новостей")
-    public PopularBlock countNewsPopular(String platform) {
-
-        switch (platform) {
-            case "web":
-                List<SelenideElement> list1 = newsBlockPopular;
-                assertThat(list1).hasSize(10);
-                break;
-
-            case "mobile":
-                List<SelenideElement> list2 = newsBlockPopularMobile;
-                assertThat(list2).hasSize(10);
-                break;
+    public PopularBlock countNewsPopular() {
+        List<SelenideElement> list;
+        if (!isMobile()) {
+            list = newsBlockPopular;
+        } else {
+            list = newsBlockPopularMobile;
         }
-
+        assertThat(list).hasSize(10);
         return this;
     }
 

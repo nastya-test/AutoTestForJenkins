@@ -26,25 +26,25 @@ public class PopularTest {
     @Description("У первой новости: есть изоображение, текст новости жирный, при наведении текст оранжевый, ссылка картинки совпадает с ссылкой текста новости")
     public void checkFirstNews() {
         page(PopularBlock.class)
-                .imgPopular(ConfProperties.getProperty("platform"))
-                .boldNewsPopular(ConfProperties.getProperty("platform"))
-                .colourHoverNewsPopular(ConfProperties.getProperty("platform"))
-                .linkNewsPopular(ConfProperties.getProperty("platform"));
+                .imgPopular()
+                .boldNewsPopular()
+                .colourHoverNewsPopular()
+                .linkNewsPopular();
     }
 
     @Test
     @Description("Название блока Популярное, в блоке 10 новостей")
     public void checkPopularBlock() {
         page(PopularBlock.class)
-                .headerTextPopularBlock(ConfProperties.getProperty("platform"))
-                .countNewsPopular(ConfProperties.getProperty("platform"));
+                .headerTextPopularBlock()
+                .countNewsPopular();
     }
 
     @Test
     @Description("У новостей оранжевый цвет, есть иконка комментирования, корректное количесвто комментариев")
     public void checkNewsPopular() {
         page(PopularBlock.class)
-                .colourNewsNumberPopular(ConfProperties.getProperty("platform"))
+                .colourNewsNumberPopular()
                 .commentNewsRegexPopular()
                 .iconCommentNewsPopular();
     }

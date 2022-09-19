@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static data.Constants.linkRecommendationsBlock;
 import static page.mainPage.steps.CommonSteps.*;
+import static test.BaseTest.isMobile;
 
 public class RecommendationsBlock {
 
@@ -70,15 +71,11 @@ public class RecommendationsBlock {
     }
 
     @Step("Стрелки прокрутки. Стрелка назад отсутствует, после нажатия стрелки вперед, стрелка назад появляется")
-    public RecommendationsBlock scrollRecommend(String platform) {
-        switch (platform) {
-            case "web":
-                scroll(backArrowRecommend, forwardArrowRecommend);
-                break;
-
-            case "mobile":
-                System.out.println("Step scrollTickets ignored for mobile");
-                break;
+    public RecommendationsBlock scrollRecommend() {
+        if (!isMobile()) {
+            scroll(backArrowRecommend, forwardArrowRecommend);
+        } else {
+            System.out.println("Step scrollRecommend ignored for mobile");
         }
         return this;
     }
