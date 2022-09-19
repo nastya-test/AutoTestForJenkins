@@ -3,7 +3,7 @@ package data;
 public class regexPattern {
 
     public static String regexName(){
-        return "[А-ЯЁA-Z0-9][A-ZA-ЯЁa-zа-яё0-9,!?№:\\.\\-\\—\\s\\(\\)]*";
+        return "[А-ЯЁA-Z0-9][A-ZA-ЯЁa-zа-яё0-9,!?№$:\\.\\-\\—\\s\\(\\)]*";
     }
 
     public static String regexRating(){

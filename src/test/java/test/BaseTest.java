@@ -75,13 +75,11 @@ public class BaseTest {
         boolean mobile;
         if (Objects.equals(ConfProperties.getProperty("platform"), "mobile")){
             mobile=true;
-            System.out.println("mobile");
         }
         else {
             mobile=false;
-            System.out.println("web");
         }
-        System.out.println(mobile);
+        System.out.println("Web" + mobile);
         return mobile;
     }
 

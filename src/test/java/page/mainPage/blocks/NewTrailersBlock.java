@@ -50,7 +50,7 @@ public class NewTrailersBlock {
     public NewTrailersBlock assertNameTrailerRegex() {
         for (SelenideElement element : nameAndHrefTrailer) {
             bestScroll(element);
-            sleep(500);
+//            sleep(500);
             assertNameRegex(element);
         }
         return this;

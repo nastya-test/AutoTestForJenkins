@@ -24,9 +24,14 @@ public class CommonSteps {
         assertThat(regLink).as("Ссылка элемента не соответствует регулярному выражению").isTrue();
     }
 
-    @Step("Подскролл к элеиенту")
+    @Step("Подскролл к элементу")
     public static void bestScroll(SelenideElement element) {
         element.scrollIntoView("{behavior: \"instant\", block: \"center\", inline: \"end\"}");
+    }
+
+    @Step("Подскролл к элементу")
+    public static void testScroll(SelenideElement element) {
+        element.scrollIntoView("{behavior: \"instant\", block: \"center\", inline: \"center\"}");
     }
 
     @Step("Вывод в консоль названия элемента")
@@ -68,6 +73,7 @@ public class CommonSteps {
     @Step("Стрелки прокрутки. Стрелка назад отсутствует, после нажатия стрелки вперед, стрелка назад появляется")
     public static void scroll(SelenideElement backArrow, SelenideElement forwardArrow) {
         backArrow.shouldBe(Condition.hidden);
+        bestScroll(forwardArrow);
         forwardArrow.click();
         backArrow.shouldBe(Condition.visible);
     }
