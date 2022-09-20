@@ -7,11 +7,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import static com.codeborne.selenide.Selenide.page;
 
-public class LoginTest {
-    @BeforeMethod
-    public void openPage() {
-        BaseTest.baseOpenPage();
-    }
+public class LoginTest extends BaseTest{
+//    @BeforeMethod
+//    public void openPage() {
+//        BaseTest.baseOpenPage();
+//    }
 
     @Test
     @Description("Успешный вход в систему")

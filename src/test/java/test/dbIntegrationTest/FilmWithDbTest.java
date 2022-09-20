@@ -10,14 +10,14 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class FilmWithDbTest {
+public class FilmWithDbTest extends BaseTest{
 
     private DbInteraction dbInteraction = new DbInteraction();
 
-    @BeforeMethod
-    public void openPage() {
-        BaseTest.baseOpenPage();
-    }
+//    @BeforeMethod
+//    public void openPage() {
+//        BaseTest.baseOpenPage();
+//    }
 
     @Test
     @Description("Добавление в DB фильмов из блока Новые трейлеры, у которых жанр и год не соответсвуют регулярному выраженю")

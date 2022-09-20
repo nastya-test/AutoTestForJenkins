@@ -158,6 +158,7 @@ public class FilmDao implements Dao{
         return assertAffectedRows();
     }
 
+    //Закомментировать для примера, взаимодействие с default
     @Override
     public boolean deleteFilmByName(String name) {
         String SQL = "DELETE FROM film WHERE name = ?";

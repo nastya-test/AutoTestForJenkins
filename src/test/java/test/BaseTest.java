@@ -22,7 +22,7 @@ public class BaseTest {
     private static final Integer pageDown = 8;
 
     @BeforeMethod
-    public static void baseOpenPage() {
+    protected static void baseOpenPage() {
         configuration();
         clickStayButton();
         waitMainPage();
