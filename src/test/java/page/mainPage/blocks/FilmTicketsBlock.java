@@ -121,7 +121,7 @@ public class FilmTicketsBlock {
     public FilmTicketsBlock assertIconFilmRegex() {
         if (!isMobile()) {
             for (int i = 0; i < iconTickets.size(); i++) {
-                bestScroll(iconTickets.get(i));
+                best2Scroll(iconTickets.get(i));
                 iconTickets.get(i).shouldBe(Condition.visible);
 //                assertHrefTicketsRegex(hrefIconTickets.get(i));
 //                smallIconTickets.get(i).hover();

@@ -1,6 +1,5 @@
 package test.mainPageTest;
 
-import page.mainPage.blocks.NewTrailersBlock;
 import page.mainPage.blocks.PopularBlock;
 import io.qameta.allure.Description;
 import test.BaseTest;

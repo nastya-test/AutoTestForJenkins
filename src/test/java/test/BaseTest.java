@@ -26,7 +26,6 @@ public class BaseTest {
         configuration();
         clickStayButton();
         waitMainPage();
-        pageDown(pageDown);
     }
 
     public static void authorized(){

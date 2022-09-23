@@ -61,7 +61,7 @@ public class PopularBlock {
     SelenideElement scrollButton = $("[class *='featuredCaptions']");
 
     //Весь блок Популярное
-    SelenideElement popularBlock = $(byId("new-trailers-block"));
+    SelenideElement popularBlock = $(byId("media-preview-block"));
 
     @Step
     public PopularBlock scrollToPopularBlock() {

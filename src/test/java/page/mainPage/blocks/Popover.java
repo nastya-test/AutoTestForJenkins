@@ -49,8 +49,11 @@ public class Popover {
     //Весь блок Билеты в кино
     SelenideElement filmTicketsBlock = $(byId("today-in-cinema-block"));
 
+    //Заголовок блока "Билеты в кино"
+    SelenideElement headerFilmTicketsBlock =  $("[class *='film-page-section-title']>[href *='afisha/new']");
+
     @Step
-    public FilmTicketsBlock scrollToFilmTicketsBlock() {
+    public Popover scrollToFilmTicketsBlock() {
         bestScroll(filmTicketsBlock);
         headerFilmTicketsBlock.shouldBe(Condition.visible, Duration.ofSeconds(10));
         return this;
