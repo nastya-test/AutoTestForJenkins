@@ -5,6 +5,8 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import java.time.Duration;
+
+import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -33,10 +35,20 @@ public class RecommendationsBlock {
     SelenideElement  backArrowRecommend =  $("[id ='recommendations-block'] + div > [class *='blockClassName'] > [class *='carousel'] >[class *='carouselButtonLeft']");
 
     //Заголовок блока
-    SelenideElement headerRecommendationsBlock =  $(byText("Рекомендации")).shouldBe(Condition.visible, Duration.ofMinutes(1));
+    SelenideElement headerRecommendationsBlock =  $(byText("Рекомендации"));
 
     //Постер
     ElementsCollection posterRecommend =  $$("[class *='posterLink']>[class *='poster']");
+
+    //Весь блок Рекомендации
+    SelenideElement recommendationsBlock = $(byId("recommendations-block"));
+
+    @Step
+    public RecommendationsBlock scrollToRecommendationsBlock() {
+        bestScroll(recommendationsBlock);
+        headerRecommendationsBlock.shouldBe(Condition.visible,Duration.ofSeconds(10));
+        return this;
+    }
 
     @Step("Проверка, что название корректно. Regex")
     public RecommendationsBlock assertNameRecommendRegex() {

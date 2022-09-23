@@ -1,5 +1,7 @@
 package test.mainPageTest;
 
+import org.testng.annotations.BeforeMethod;
+import page.mainPage.blocks.NewTrailersBlock;
 import page.mainPage.blocks.RecommendationsBlock;
 import io.qameta.allure.Description;
 import test.BaseTest;
@@ -13,6 +15,11 @@ public class RecommendationsTest extends BaseTest {
     public void beforeAuthorized(){
         baseOpenPage();
         authorized();
+    }
+
+    @BeforeMethod
+    public void scrolling(){
+        page(RecommendationsBlock.class).scrollToRecommendationsBlock();
     }
 
     @Test

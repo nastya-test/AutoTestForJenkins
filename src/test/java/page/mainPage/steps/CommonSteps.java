@@ -29,11 +29,6 @@ public class CommonSteps {
         element.scrollIntoView("{behavior: \"instant\", block: \"center\", inline: \"end\"}");
     }
 
-    @Step("Подскролл к элементу")
-    public static void testScroll(SelenideElement element) {
-        element.scrollIntoView("{behavior: \"instant\", block: \"center\", inline: \"center\"}");
-    }
-
     @Step("Вывод в консоль названия элемента")
     public static void print(SelenideElement element) {
         System.out.println(element.getText());

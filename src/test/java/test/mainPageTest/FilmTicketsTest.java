@@ -1,12 +1,19 @@
 package test.mainPageTest;
 
+import org.testng.annotations.BeforeMethod;
 import page.mainPage.blocks.FilmTicketsBlock;
 import io.qameta.allure.Description;
+import page.mainPage.blocks.NewTrailersBlock;
 import test.BaseTest;
 import org.testng.annotations.Test;
 import static com.codeborne.selenide.Selenide.page;
 
 public class FilmTicketsTest extends BaseTest {
+
+    @BeforeMethod
+    public void scrolling(){
+        page(FilmTicketsBlock.class).scrollToFilmTicketsBlock();
+    }
 
     @Test
     @Description("Regex. Название, год и жанр, ссылка, рейтинг. + у сниппета есть постер")

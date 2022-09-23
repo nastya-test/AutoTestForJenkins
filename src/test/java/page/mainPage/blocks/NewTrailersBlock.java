@@ -6,6 +6,8 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import java.time.Duration;
+
+import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static data.Constants.linkTrailerBlock;
@@ -44,7 +46,17 @@ public class NewTrailersBlock {
     SelenideElement trailersCloserMobile = $("[class *='closeButton']");
 
     //Заголовок блока
-    SelenideElement headerTrailerBlock = $(byText("Новые трейлеры")).shouldBe(Condition.visible, Duration.ofMinutes(1));
+    SelenideElement headerTrailerBlock = $(byText("Новые трейлеры"));
+
+    //Весь блок трейлеры
+    SelenideElement trailersBlock = $(byId("new-trailers-block"));
+
+    @Step
+    public NewTrailersBlock scrollToTrailer() {
+        bestScroll(trailersBlock);
+        headerTrailerBlock.shouldBe(Condition.visible,Duration.ofSeconds(10));
+        return this;
+    }
 
     @Step("Проверка, что название корректно. Regex")
     public NewTrailersBlock assertNameTrailerRegex() {

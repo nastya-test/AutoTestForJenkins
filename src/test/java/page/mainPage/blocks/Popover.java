@@ -5,10 +5,15 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+
+import java.time.Duration;
 import java.util.List;
 import java.util.regex.Pattern;
+
+import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static page.mainPage.steps.CommonSteps.bestScroll;
 
 public class Popover {
 
@@ -40,6 +45,16 @@ public class Popover {
 
     //Весь поповер
     SelenideElement popover = $("[class *='popoverVisible']");
+
+    //Весь блок Билеты в кино
+    SelenideElement filmTicketsBlock = $(byId("today-in-cinema-block"));
+
+    @Step
+    public FilmTicketsBlock scrollToFilmTicketsBlock() {
+        bestScroll(filmTicketsBlock);
+        headerFilmTicketsBlock.shouldBe(Condition.visible, Duration.ofSeconds(10));
+        return this;
+    }
 
     @Step("При наведении появился поповер")
     public Popover common() {

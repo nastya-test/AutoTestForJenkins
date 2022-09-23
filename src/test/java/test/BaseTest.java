@@ -19,7 +19,7 @@ public class BaseTest {
     private static final SelenideElement iframe = $(By.xpath("/html/body/div[3]/div[3]/div/div/iframe"));
     private static final SelenideElement elementMainPage = $(".styles_link__KtvyW");
     private static final String platform = ConfProperties.getProperty("platform");
-    private static final Integer pageDown = 8;
+    private static final Integer pageDown = 0;
 
     @BeforeMethod
     protected static void baseOpenPage() {

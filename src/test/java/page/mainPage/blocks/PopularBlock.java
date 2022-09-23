@@ -1,10 +1,13 @@
 package page.mainPage.blocks;
 
+import java.time.Duration;
 import java.util.List;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+
+import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.*;
 import static data.Constants.iconComment;
 import static data.colourPattern.orangeColour;
@@ -57,7 +60,15 @@ public class PopularBlock {
     //Ссылка с текста первой новости mobile
     SelenideElement scrollButton = $("[class *='featuredCaptions']");
 
-    //String iconComment="url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18'%3E%3Cpath fill-rule='evenodd' d='M2.25 13.393V3.75h13.5v9.643h-4.821L6.107 17.25v-3.857H2.25z' opacity='.1'/%3E%3C/svg%3E\")";
+    //Весь блок Популярное
+    SelenideElement popularBlock = $(byId("new-trailers-block"));
+
+    @Step
+    public PopularBlock scrollToPopularBlock() {
+        bestScroll(popularBlock);
+        headerPopularBlock.shouldBe(Condition.visible, Duration.ofSeconds(10));
+        return this;
+    }
 
     SelenideElement element;
 

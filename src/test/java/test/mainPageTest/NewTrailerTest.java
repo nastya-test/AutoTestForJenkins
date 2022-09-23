@@ -1,5 +1,6 @@
 package test.mainPageTest;
 
+import org.testng.annotations.BeforeMethod;
 import page.mainPage.blocks.NewTrailersBlock;
 import io.qameta.allure.Description;
 import test.BaseTest;
@@ -7,6 +8,12 @@ import org.testng.annotations.Test;
 import static com.codeborne.selenide.Selenide.page;
 
 public class NewTrailerTest extends BaseTest {
+
+    @BeforeMethod
+    public void scrolling(){
+        page(NewTrailersBlock.class).scrollToTrailer();
+    }
+
 
     @Test
     @Description("Regex. Название, год и жанр, ссылка")

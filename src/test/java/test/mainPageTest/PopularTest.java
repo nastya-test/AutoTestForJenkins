@@ -1,5 +1,6 @@
 package test.mainPageTest;
 
+import page.mainPage.blocks.NewTrailersBlock;
 import page.mainPage.blocks.PopularBlock;
 import io.qameta.allure.Description;
 import test.BaseTest;
@@ -17,6 +18,7 @@ public class PopularTest extends BaseTest{
             sleep(500);
             page(PopularBlock.class).mobileButton();
         }
+        page(PopularBlock.class).scrollToPopularBlock();
     }
 
     @Test

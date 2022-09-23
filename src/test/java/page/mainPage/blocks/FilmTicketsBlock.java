@@ -4,6 +4,10 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+
+import java.time.Duration;
+
+import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static data.Constants.linkTicketsBlock;
@@ -47,6 +51,16 @@ public class FilmTicketsBlock {
 
     //Постер изоображение
     ElementsCollection posterImgTickets =  $$("[class *='posterLink']>[class *='poster']");
+
+    //Весь блок Билеты в кино
+    SelenideElement filmTicketsBlock = $(byId("today-in-cinema-block"));
+
+    @Step
+    public FilmTicketsBlock scrollToFilmTicketsBlock() {
+        bestScroll(filmTicketsBlock);
+        headerFilmTicketsBlock.shouldBe(Condition.visible, Duration.ofSeconds(10));
+        return this;
+    }
 
     @Step("Проверка, что название корректно. Regex")
     public FilmTicketsBlock assertNameFilmTicketsRegex() {
