@@ -1,7 +1,6 @@
 package test.mainPageTest;
 
 import org.testng.annotations.BeforeMethod;
-import page.mainPage.blocks.FilmTicketsBlock;
 import page.mainPage.blocks.Popover;
 import io.qameta.allure.Description;
 import test.BaseTest;

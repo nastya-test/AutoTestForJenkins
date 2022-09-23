@@ -1,7 +1,6 @@
 package test.mainPageTest;
 
 import org.testng.annotations.BeforeMethod;
-import page.mainPage.blocks.NewTrailersBlock;
 import page.mainPage.blocks.RecommendationsBlock;
 import io.qameta.allure.Description;
 import test.BaseTest;

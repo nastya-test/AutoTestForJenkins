@@ -14,7 +14,6 @@ public class NewTrailerTest extends BaseTest {
         page(NewTrailersBlock.class).scrollToTrailer();
     }
 
-
     @Test
     @Description("Regex. Название, год и жанр, ссылка")
     public void checkRegexNewTrailer(){
