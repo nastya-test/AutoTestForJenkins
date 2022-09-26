@@ -2,11 +2,12 @@ package page.cucumberStepDefinition;
 
 import com.codeborne.selenide.SelenideElement;
 import data.UserGenerator;
-import data.model.User;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.ru.Дано;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.То;
-import org.openqa.selenium.By;
+import java.util.List;
+import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -63,14 +64,71 @@ public class LoginStep {
         all.hover();
     }
 
-    @То("отобразилось сообщение об ошибке")
-    public void отобразилось_сообщение_об_ошибке() {
+    @И("вводит в поле логин {string}")
+    public void вводит_в_поле_логин(String arg0) {
+        loginField.click();
+        loginField.setValue(arg0);
+    }
+
+    @То("отобразилось сообщение об ошибке Такой логин не подойдет")
+    public void отобразилось_сообщение_об_ошибке_такой_логин_не_подойдет() {
         assertThat(error.getText()).isEqualTo("Такой логин не подойдет");
     }
 
-    @И("вводит в поле логин {string}")
-    public void вводитВПолеЛогин(String arg0) {
-        loginField.click();
-        loginField.setValue(arg0);
+    @И("вводит пароль {string}")
+    public void вводит_пароль(String password) {
+        passwordField.click();
+        passwordField.setValue(password);
+    }
+
+    @То("отобразилось сообщение об ошибке Неверный пароль")
+    public void отобразилось_сообщение_об_ошибке_неверный_пароль() {
+        assertThat(error.getText()).isEqualTo("Неверный пароль");
+    }
+
+
+    @Дано("передача данных, перечисленных через запятую, в ArrayList (.*)")
+    public void передачаДанныхПеречисленныхЧерезЗапятуюВArrayList(List<String> arg) {
+        System.out.println(arg);
+    }
+
+//    @И("передача данных, перечисленных через разделитель, в ArrayList, аннотация Delimiter (.*)")
+//    public void передачаДанныхПеречисленныхЧерезРазделительВArrayListАннотацияDelimiter(@Delimiter(" и ") List<String> arg) {
+//    }
+
+    @И("передача данных, записанных в виде таблицы с одной колонкой")
+    public void передачаДанныхЗаписанныхВВидеТаблицыСОднойКолонкой(List<String> arg) {
+        System.out.println(arg);
+    }
+
+    @И("передача данных, записанных в виде таблицы с двумя колонками")
+    public void передачаДанныхЗаписанныхВВидеТаблицыСДвумяКолонками(Map<String, Boolean> arg) {
+        System.out.println(arg);
+    }
+
+    @И("передача данных, используя DataTable")
+    public void передачаДанныхИспользуяDataTable(DataTable arg) {
+        List<Map<String, String>> table = arg.asMaps(String.class, String.class);
+        System.out.println(table.get(0).get("Название"));
+        System.out.println(table.get(1).get("Название"));
+        System.out.println(table.get(2).get("Название"));
+    }
+
+    @И("передача данных, используя Class")
+    public void передачаДанныхИспользуяClass() {
+    }
+
+    @И("вводит в поле логин Тест Регулярки ([A-Za-z0-9-]+)")
+    public void вводитВПолеЛогинТестРегулярки() {
+
+    }
+
+    @И("передача многострочных аргументов")
+    public void передачаМногострочныхАргументов() {
+        
+    }
+
+    @И("передача Data")
+    public void передачаData() {
     }
 }
