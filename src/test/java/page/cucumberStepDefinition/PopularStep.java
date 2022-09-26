@@ -9,14 +9,24 @@ import io.cucumber.java.ru.То;
 import page.mainPage.steps.CommonSteps;
 import java.util.List;
 import java.util.regex.Pattern;
+
+import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static data.Constants.iconComment;
+import static data.colourPattern.orangeColour;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.openqa.selenium.By.tagName;
+import static page.mainPage.steps.CommonSteps.assertCommentRegex;
+import static page.mainPage.steps.CommonSteps.nameBlock;
+import static test.BaseTest.isMobile;
 
 public class PopularStep {
     //Заголовок блока "Популярное"
     SelenideElement headerPopularBlock = $("[class *='styles_popularPostsColumn']>[class *='title']");
+
+    //Кнопка популярное mobile
+    ElementsCollection buttonPopularMobile = $$("[id *='media-preview-block']+ div > div > div > [type='button']");
 
     //Порядковый номер у всех новостей
     ElementsCollection newsNumberPopular = $$("[href *='media']>[class *='index']");
@@ -30,69 +40,122 @@ public class PopularStep {
     //Картинка первой новости
     SelenideElement pictureNewsFirstPopular = $("[class *='styles_image__iaFZw']");
 
+    //Картинка первой новости mobile
+    SelenideElement pictureNewsFirstPopularMobile = $("[class *='featuredImage']");
+
     //Ссылка c картинки первой новости
     SelenideElement LinkPictureNewsFirstPopular = $("[class *='styles_image__iaFZw']").parent();
+
+    //Ссылка c картинки первой новости mobile
+    SelenideElement LinkPictureNewsFirstPopularMobile = $("[class *='featuredImage']").parent();
 
     //Ссылка с текста первой новости
     SelenideElement LinkTextNewsFirstPopular = $("[class *='titleLinkFeatured']");
 
+    //Ссылка с текста первой новости mobile
+    SelenideElement LinkTextNewsFirstPopularMobile = $("[class *='featuredTitleLink']");
+
     //Блок с новостями, нужен для подсчёта количества новостей
     ElementsCollection newsBlockPopular = $("[class *='popularPostsColumn']>[class *='list']").findAll(tagName("li"));
 
+    //Блок с новостями, нужен для подсчёта количества новостей mobile
+    ElementsCollection newsBlockPopularMobile = $("[id *='media-preview-block'] + div > div").findAll(tagName("article"));
+
+    //Ссылка с текста первой новости mobile
+    SelenideElement scrollButton = $("[class *='featuredCaptions']");
+
+    //Весь блок Популярное
+    SelenideElement popularBlock = $(byId("media-preview-block"));
+
+    SelenideElement element;
+
+
     @То("проверяет, что у первой новости есть изоображение")
     public void проверяет_что_у_первой_новости_есть_изоображение() {
-        pictureNewsFirstPopular.scrollIntoView("{behavior: \"instant\", block: \"center\", inline: \"end\"}").shouldHave(Condition.image);
+        if (!isMobile()) {
+            element = pictureNewsFirstPopular;
+        } else {
+            element = pictureNewsFirstPopularMobile;
+        }
+        element.shouldHave(Condition.image);
     }
 
     @То("проверяет, название блока Популярное")
     public void проверяет_название_блока_Популярное() {
-        CommonSteps.nameBlock(headerPopularBlock, "Популярное");
+        if (!isMobile()) {
+            element = headerPopularBlock;
+        } else {
+            element = buttonPopularMobile.get(1);
+        }
+        nameBlock(element, "Популярное");
     }
 
     @То("проверяет, что номер новости оранжевого цвета")
     public void проверяет_что_номер_новости_оранжевого_цвета() {
-        for (SelenideElement element : newsNumberPopular) {
-            assertThat(element.getCssValue("color")).isEqualTo(colourPattern.orangeColour());
+        if (!isMobile()) {
+            for (SelenideElement element : newsNumberPopular) {
+                assertThat(element.getCssValue("color")).isEqualTo(orangeColour());
+            }
+        } else {
+            System.out.println("Step colourNewsNumberPopular ignored for mobile");
         }
     }
 
     @То("проверяет, что текст новости жирный")
     public void проверяет_что_текст_новости_жирный() {
-        assertThat(LinkTextNewsFirstPopular.getCssValue("font-weight")).as("Текст первой новости не жирный").isEqualTo("500");
+        if (!isMobile()) {
+            element = LinkTextNewsFirstPopular;
+        }
+        else{
+            element = LinkTextNewsFirstPopularMobile;
+        }
+        assertThat(element.getCssValue("font-weight")).as("Текст первой новости не жирный").isEqualTo("500");
     }
 
     @То("проверяет, что в блоке {int} новостей")
     public void проверяет_что_в_блоке_новостей(Integer int1) {
-        List<SelenideElement> list1 = newsBlockPopular;
-        assertThat(list1).hasSize(int1);
+        List<SelenideElement> list;
+        if (!isMobile()) {
+            list = newsBlockPopular;
+        } else {
+            list = newsBlockPopularMobile;
+        }
+        assertThat(list).hasSize(10);
     }
 
     @То("проверяет, что у новости есть иконка комментирования")
     public void проверяет_что_у_новости_есть_иконка_комментирования() {
         for (SelenideElement element : iconOfCommentsPopular) {
-            element.shouldHave(Condition.pseudo(":before", "background-image", "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18'%3E%3Cpath fill-rule='evenodd' d='M2.25 13.393V3.75h13.5v9.643h-4.821L6.107 17.25v-3.857H2.25z' opacity='.1'/%3E%3C/svg%3E\")"));
+            element.shouldHave(Condition.pseudo(":before", "background-image", iconComment));
         }
     }
 
     @То("проверяет, что при наведении текст оранжевый")
     public void проверяет_что_при_наведении_текст_оранжевый() {
-        LinkTextNewsFirstPopular.hover();
-        String colourExpected1 = LinkTextNewsFirstPopular.getCssValue("color");
-        assertThat(colourExpected1).as("При наведении на текст цвет не стал оранжевым").isEqualTo(colourPattern.orangeColour());
+        if (!isMobile()) {
+            LinkTextNewsFirstPopular.hover();
+            assertThat(LinkTextNewsFirstPopular.getCssValue("color")).as("При наведении на текст цвет не стал оранжевым").isEqualTo(orangeColour());
+        }
+        else{
+            System.out.println("Step colourHoverNewsPopular ignored for mobile");
+        }
     }
 
     @То("проверяет, что у новости корректное количество комментариев")
     public void проверяет_что_у_новости_корректное_количество_комментариев() {
         for (int i = 0; i < 10; i++) {
-            Boolean regComment = Pattern.matches(regexPattern.commentNewsPopular(), numberOfCommentsPopular.get(i).getText());
-            assertThat(regComment).as("Отображается неверное количество комментариев").isTrue();
-            System.out.println(numberOfCommentsPopular.get(i).getText());
+            assertCommentRegex(numberOfCommentsPopular.get(i));
         }
     }
 
     @То("проверяет, что ссылка картинки совпадает с ссылкой текста новости")
     public void проверяет_что_ссылка_картинки_совпадает_с_ссылкой_текста_новости() {
-        assertThat(LinkTextNewsFirstPopular.getAttribute("href")).as("Ссылка новости не совпала с цветом картинки").isEqualTo(LinkPictureNewsFirstPopular.getAttribute("href"));
+        if (!isMobile()) {
+            assertThat(LinkTextNewsFirstPopular.getAttribute("href")).as("Ссылка новости не совпала с цветом картинки").isEqualTo(LinkPictureNewsFirstPopular.getAttribute("href"));
+        }
+        else{
+            assertThat(LinkTextNewsFirstPopularMobile.getAttribute("href")).as("Ссылка новости не совпала с цветом картинки").isEqualTo(LinkPictureNewsFirstPopularMobile.getAttribute("href"));
+        }
     }
 
 

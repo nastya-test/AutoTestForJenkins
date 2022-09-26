@@ -62,14 +62,14 @@ public class PopularBlock {
     //Весь блок Популярное
     SelenideElement popularBlock = $(byId("media-preview-block"));
 
+    SelenideElement element;
+
     @Step
     public PopularBlock scrollToPopularBlock() {
         bestScroll(popularBlock);
         headerPopularBlock.shouldBe(Condition.visible, Duration.ofSeconds(10));
         return this;
     }
-
-    SelenideElement element;
 
     @Step("Mobile. Переход на вкладку популярное")
     public PopularBlock mobileButton() {

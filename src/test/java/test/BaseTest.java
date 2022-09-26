@@ -20,7 +20,7 @@ public class BaseTest {
     private static final String platform = ConfProperties.getProperty("platform");
 
     @BeforeMethod
-    protected static void baseOpenPage() {
+    public static void baseOpenPage() {
         configuration();
         clickStayButton();
         waitMainPage();
