@@ -32,10 +32,10 @@ public class FilmTicketsStep {
     ElementsCollection ratingFilmTickets =  $$("[class *='ratingPosterNameplate__G2BsG']");
 
     //Кнопка вперед
-    SelenideElement  forwardArrowTickets =  $("[class *='iconRightDir']");
+    SelenideElement  forwardArrowTickets =  $("[id ='today-in-cinema-block'] + div > section > div > [class *='carousel'] >[class *='iconRightDir']");
 
     //Кнопка назад
-    SelenideElement  backArrowTickets =  $("[class *='iconLeftDir']");
+    SelenideElement  backArrowTickets =  $("[id ='today-in-cinema-block'] + div > section > div > [class *='carousel'] > [class *='iconLeftDir']");
 
     ElementsCollection iconTickets = $$("[class *='styles_nameplate__Ei1aO']");
 

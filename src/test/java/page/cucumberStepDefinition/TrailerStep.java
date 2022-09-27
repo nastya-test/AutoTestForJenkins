@@ -6,9 +6,12 @@ import com.codeborne.selenide.SelenideElement;
 import io.cucumber.java.ru.То;
 import page.mainPage.steps.CommonSteps;
 import java.time.Duration;
+
+import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
+import static page.mainPage.steps.CommonSteps.bestScroll;
 
 public class TrailerStep {
     //Название и ссылка трейлера
@@ -27,13 +30,16 @@ public class TrailerStep {
     SelenideElement trailersCloser = $("[class *='discovery-trailers-closer']");
 
     //Заголовок блока
-    SelenideElement headerTrailerBlock = $(byText("Новые трейлеры")).shouldBe(Condition.visible, Duration.ofMinutes(1));
+    SelenideElement headerTrailerBlock = $(byText("Новые трейлеры"));
 
     //Стрелка назад
     SelenideElement backArrowTrailer = $("[id ='new-trailers-block'] + div > div > [class *='carousel'] > [class *='carouselButtonLeft']");
 
     //Стрелка вперед
     SelenideElement forwardArrowTrailer = $("[id ='new-trailers-block'] + div > div > [class *='carousel'] > [class *='carouselButtonRight']");
+
+    //Весь блок трейлеры
+    SelenideElement trailersBlock = $(byId("new-trailers-block"));
 
     @То("проверяет, название блока Новые трейлеры")
     public void проверяет_название_блока_билеты_в_кино() {
@@ -88,5 +94,7 @@ public class TrailerStep {
 
     @То("скролит к блоку Новые трейлеры")
     public void скролит_к_блоку_новые_трейлеры() {
+        bestScroll(trailersBlock);
+        headerTrailerBlock.shouldBe(Condition.visible,Duration.ofSeconds(5));
     }
 }

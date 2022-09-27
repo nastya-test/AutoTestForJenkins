@@ -15,6 +15,7 @@ import static com.codeborne.selenide.Selenide.$$;
 import static data.Constants.linkRecommendationsBlock;
 import static data.Constants.linkTicketsBlock;
 import static page.mainPage.steps.CommonSteps.*;
+import static test.BaseTest.authorized;
 import static test.BaseTest.isMobile;
 
 public class RecommendationStep {
@@ -113,5 +114,10 @@ public class RecommendationStep {
         bestScroll(recommendationsBlock);
         headerRecommendationsBlock.shouldBe(Condition.visible, Duration.ofSeconds(10));
         return this;
+    }
+
+    @И("авторизуется")
+    public void авторизуется() {
+        authorized();
     }
 }

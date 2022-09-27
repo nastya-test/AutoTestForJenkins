@@ -4,7 +4,7 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
-        tags = "@success", //Символ ~ исключает тест из списка запускаемых тестов
+        //tags = "@success", //Символ ~ исключает тест из списка запускаемых тестов
         features = {"src/test/java/features/LoginTestCase.feature"}, //где хранятся .features
         glue = {"page.cucumberStepDefinition"}, //где хранятся steps и hooks
         plugin = {},

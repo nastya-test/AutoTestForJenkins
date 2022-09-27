@@ -5,8 +5,11 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import data.colourPattern;
 import data.regexPattern;
+import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.То;
 import page.mainPage.steps.CommonSteps;
+
+import java.time.Duration;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -17,8 +20,7 @@ import static data.Constants.iconComment;
 import static data.colourPattern.orangeColour;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.openqa.selenium.By.tagName;
-import static page.mainPage.steps.CommonSteps.assertCommentRegex;
-import static page.mainPage.steps.CommonSteps.nameBlock;
+import static page.mainPage.steps.CommonSteps.*;
 import static test.BaseTest.isMobile;
 
 public class PopularStep {
@@ -159,4 +161,9 @@ public class PopularStep {
     }
 
 
+    @И("скролит к блоку Популярное")
+    public void скролит_к_блоку_популярное() {
+        bestScroll(popularBlock);
+        headerPopularBlock.shouldBe(Condition.visible, Duration.ofSeconds(10));
+    }
 }
