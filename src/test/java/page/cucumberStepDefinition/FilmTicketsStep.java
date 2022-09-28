@@ -9,7 +9,7 @@ import java.time.Duration;
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-import static data.Constants.linkTicketsBlock;
+import static data.constants.linkTicketsBlock;
 import static org.assertj.core.api.Assertions.assertThat;
 import static page.mainPage.steps.CommonSteps.*;
 import static test.BaseTest.isMobile;

@@ -5,7 +5,6 @@ import db.services.DbInteraction;
 import io.qameta.allure.Description;
 import data.model.Film;
 import test.BaseTest;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -13,11 +12,6 @@ import java.util.List;
 public class FilmWithDbTest extends BaseTest{
 
     private DbInteraction dbInteraction = new DbInteraction();
-
-//    @BeforeMethod
-//    public void openPage() {
-//        BaseTest.baseOpenPage();
-//    }
 
     @Test
     @Description("Добавление в DB фильмов из блока Новые трейлеры, у которых жанр и год не соответсвуют регулярному выраженю")
@@ -33,6 +27,13 @@ public class FilmWithDbTest extends BaseTest{
         FilmForDbBlock filmForDbBlock = new FilmForDbBlock();
         Film addFilmToDb = filmForDbBlock.assertFilm();
         dbInteraction.InsertFilm(addFilmToDb);
+    }
+
+    @Test
+    @Description("Сравнение фильмов в бд и на сайте")
+    public void checkCompareFilm(){
+        FilmForDbBlock filmForDbBlock = new FilmForDbBlock();
+        filmForDbBlock.compareNameOfFilms();
     }
 
 }

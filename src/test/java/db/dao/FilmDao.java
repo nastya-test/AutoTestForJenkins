@@ -40,6 +40,18 @@ public class FilmDao implements Dao{
         return null;
     }
 
+    private List<String> displayNameOfFilm(ResultSet rs) throws SQLException {
+        List<String> list = new ArrayList();
+        while (rs.next()) {
+            list.add(rs.getString("name"));
+           // System.out.println(list);
+//            System.out.println(rs.getString("name") + "\t"
+//                    + rs.getString("link") + "\t"
+//                    + rs.getString("yearandgenre"));
+        }
+        return list;
+    }
+
     @Override
     public boolean insertFilm(Film film) {
         String SQL = "INSERT INTO film(name, link, yearandgenre) VALUES(?, ?, ?)";
@@ -123,6 +135,23 @@ public class FilmDao implements Dao{
     }
 
     @Override
+    public List<String> getNameOfFilm() {
+        String SQL = "SELECT name FROM film";
+
+        try (
+                Connection con = jdbcConnection.connect();
+                Statement stmt = con.createStatement();
+
+                ResultSet rs = stmt.executeQuery(SQL)) {
+            return displayNameOfFilm(rs);
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return null;
+    }
+
+    @Override
     public Film findFilmByName(String name) {
         String SQL = "SELECT name,link,yearandgenre FROM film WHERE name = ?";
 
@@ -158,7 +187,6 @@ public class FilmDao implements Dao{
         return assertAffectedRows();
     }
 
-    //Закомментировать для примера, взаимодействие с default
     @Override
     public boolean deleteFilmByName(String name) {
         String SQL = "DELETE FROM film WHERE name = ?";

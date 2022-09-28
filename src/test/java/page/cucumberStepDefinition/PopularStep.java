@@ -3,20 +3,16 @@ package page.cucumberStepDefinition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import data.colourPattern;
-import data.regexPattern;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.То;
-import page.mainPage.steps.CommonSteps;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-import static data.Constants.iconComment;
+import static data.constants.iconComment;
 import static data.colourPattern.orangeColour;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.openqa.selenium.By.tagName;

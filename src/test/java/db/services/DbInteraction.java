@@ -36,4 +36,6 @@ public class DbInteraction {
     public void deleteFilmByName(String name) {
         dao.deleteFilmByName(name);
     }
+
+    public List<String> getNameOfFilm() {return dao.getNameOfFilm();}
 }
