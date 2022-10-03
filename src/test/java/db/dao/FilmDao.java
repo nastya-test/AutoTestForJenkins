@@ -13,7 +13,9 @@ public class FilmDao implements Dao{
     int count = 0;
     boolean success = false;
 
-    private boolean assertAffectedRows(){
+    /*Проверка внесения изменений*/
+    private boolean assertAffectedRows(PreparedStatement pstmt) throws SQLException {
+        affectedRows = pstmt.executeUpdate();
         if (affectedRows>0){
             success=true;
             System.out.println("Успешно выполнено");
@@ -21,6 +23,12 @@ public class FilmDao implements Dao{
         return success;
     }
 
+    /*Вывод сообщения при исключении*/
+    private void getSqlExceptionMessage(SQLException ex)  {
+        System.out.println(ex.getMessage());
+    }
+
+    /*Конвертация строки таблицы в модель Film*/
     private Film convertFilm(ResultSet rs) throws SQLException {
         Film film = new Film();
         film.setName(rs.getString("name"));
@@ -29,27 +37,29 @@ public class FilmDao implements Dao{
         return film;
     }
 
+    /*Пробег по всем строкам таблицы и конвертация их в набор моделей Film*/
     private Film displayFilm(ResultSet rs) throws SQLException {
         while (rs.next()) {
             System.out.println(convertFilm(rs));
             return convertFilm(rs);
-//            System.out.println(rs.getString("name") + "\t"
-//                    + rs.getString("link") + "\t"
-//                    + rs.getString("yearandgenre"));
         }
         return null;
     }
 
+    /*Пробег по всем строкам таблицы и вывод в список всех названий фильмов в список*/
     private List<String> displayNameOfFilm(ResultSet rs) throws SQLException {
         List<String> list = new ArrayList();
         while (rs.next()) {
             list.add(rs.getString("name"));
-           // System.out.println(list);
-//            System.out.println(rs.getString("name") + "\t"
-//                    + rs.getString("link") + "\t"
-//                    + rs.getString("yearandgenre"));
         }
         return list;
+    }
+
+    /*Запись фильма в бд*/
+    private void setFilmDb(PreparedStatement pstmt, Film film) throws SQLException {
+        pstmt.setString(1, film.getName());
+        pstmt.setString(2, film.getLink());
+        pstmt.setString(3, film.getYearAndGenre());
     }
 
     @Override
@@ -60,15 +70,13 @@ public class FilmDao implements Dao{
                 Connection con = jdbcConnection.connect();
                 PreparedStatement pstmt = con.prepareStatement(SQL)) {
 
-            pstmt.setString(1, film.getName());
-            pstmt.setString(2, film.getLink());
-            pstmt.setString(3, film.getYearAndGenre());
-            affectedRows = pstmt.executeUpdate();
+            setFilmDb(pstmt,film);
+            return assertAffectedRows(pstmt);
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            getSqlExceptionMessage(ex);
+            return false;
         }
-        return assertAffectedRows();
     }
 
     @Override
@@ -80,22 +88,22 @@ public class FilmDao implements Dao{
                 PreparedStatement pstmt = con.prepareStatement(SQL)) {
 
             for (Film film : list) {
-                pstmt.setString(1, film.getName());
-                pstmt.setString(2, film.getLink());
-                pstmt.setString(3, film.getYearAndGenre());
+                setFilmDb(pstmt,film);
                 pstmt.addBatch();
+
                 count++;
                 // execute every 100 rows or less
-                if (count % 100 == 0 || count == list.size()) {
+                if (count % 100 == 0 || count == list.size()-1) {
                     pstmt.executeBatch();
                 }
             }
-            affectedRows = pstmt.executeUpdate();
+            return assertAffectedRows(pstmt);
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            getSqlExceptionMessage(ex);
+            return false;
         }
-        return assertAffectedRows();
+
     }
 
     @Override
@@ -111,7 +119,7 @@ public class FilmDao implements Dao{
             count = rs.getInt(1);
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            getSqlExceptionMessage(ex);
         }
         System.out.println(count);
         return count;
@@ -124,12 +132,12 @@ public class FilmDao implements Dao{
         try (
                 Connection con = jdbcConnection.connect();
                 Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery(SQL)) {
 
-            ResultSet rs = stmt.executeQuery(SQL)) {
             return displayFilm(rs);
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            getSqlExceptionMessage(ex);
         }
         return null;
     }
@@ -141,12 +149,12 @@ public class FilmDao implements Dao{
         try (
                 Connection con = jdbcConnection.connect();
                 Statement stmt = con.createStatement();
-
                 ResultSet rs = stmt.executeQuery(SQL)) {
+
             return displayNameOfFilm(rs);
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            getSqlExceptionMessage(ex);
         }
         return null;
     }
@@ -164,7 +172,7 @@ public class FilmDao implements Dao{
             return displayFilm(rs);
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            getSqlExceptionMessage(ex);
         }
         return null;
     }
@@ -179,12 +187,12 @@ public class FilmDao implements Dao{
 
             pstmt.setString(1, link);
             pstmt.setString(2, name);
-            affectedRows = pstmt.executeUpdate();
+            return assertAffectedRows(pstmt);
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            getSqlExceptionMessage(ex);
         }
-        return assertAffectedRows();
+        return false;
     }
 
     @Override
@@ -196,15 +204,46 @@ public class FilmDao implements Dao{
                 PreparedStatement pstmt = con.prepareStatement(SQL)) {
 
             pstmt.setString(1, name);
-            affectedRows = pstmt.executeUpdate();
+            return assertAffectedRows(pstmt);
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            getSqlExceptionMessage(ex);
         }
-        return assertAffectedRows();
+        return false;
     }
 
-/*
+    public static final String SqlDb = "INSERT INTO dbname(name) VALUES(?)";
+    public static final String SqlSite = "INSERT INTO sitename(name) VALUES(?)";
+    public static final String SqlCommon = "INSERT INTO commonname(name) VALUES(?)";
+
+    @Override
+    public boolean insertManyNameOfFilm(List<String> list, String SQL) {
+
+        try (
+                Connection con = jdbcConnection.connect();
+                PreparedStatement pstmt = con.prepareStatement(SQL)) {
+            int counts = 0;
+
+            for (String name : list) {
+                pstmt.setString(1, name);
+                pstmt.addBatch();
+
+                counts++;
+                // execute every 100 rows or less
+                if (counts % 100 == 0 || counts == list.size()-1) {
+                    pstmt.executeBatch();
+                }
+            }
+            return assertAffectedRows(pstmt);
+
+        } catch (SQLException ex) {
+            getSqlExceptionMessage(ex);
+            return false;
+        }
+
+    }
+
+/**
 // Отладка методов взаимодействия с бд
     public static void main(String[] args) {
         FilmDao postgreSqlDao = new FilmDao();

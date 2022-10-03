@@ -38,4 +38,6 @@ public class DbInteraction {
     }
 
     public List<String> getNameOfFilm() {return dao.getNameOfFilm();}
+
+    public boolean insertManyNameOfFilm(List<String> list, String SQL){return dao.insertManyNameOfFilm(list, SQL);}
 }

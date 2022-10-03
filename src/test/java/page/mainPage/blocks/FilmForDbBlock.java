@@ -4,16 +4,15 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import data.regexPattern;
+import db.dao.FilmDao;
 import db.services.DbInteraction;
 import io.qameta.allure.Step;
 import data.model.Film;
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
@@ -22,7 +21,7 @@ import static page.mainPage.steps.CommonSteps.bestScroll;
 
 public class FilmForDbBlock {
 
-    //Название фильма
+    //Баннер с фильмом
     SelenideElement banner =  $("[class *='styles_content']>a>[class *='styles_logo']");
 
     //Название фильма
@@ -31,7 +30,7 @@ public class FilmForDbBlock {
     //Год и ссылка фильма
     SelenideElement hrefAndYear =  $("[class *='styles_years']");
 
-    //Название и ссылка трейлера
+    //Сниппет
     ElementsCollection trailerBlock = $$("[class *='film-trailer']");
 
     //Название и ссылка трейлера
@@ -51,27 +50,6 @@ public class FilmForDbBlock {
         bestScroll(trailersBlock);
         headerTrailerBlock.shouldBe(Condition.visible, Duration.ofSeconds(10));
         return this;
-    }
-
-    @Step("Добавление нескольких фильмов в список, у которых год и жанр некорректный")
-    public List<Film> assertManyFilm() {
-        scrollToTrailer();
-        ArrayList<Film> listOfFilm = new ArrayList();
-        for (int j = 0; j < nameAndHrefTrailer.size(); j++) {
-            bestScroll(nameAndHrefTrailer.get(j));
-
-            if (!Pattern.matches(regexPattern.regexYearAndGenre(), yearAndGenreTrailer.get(j).getText())) {
-                listOfFilm.add(getFilm(nameAndHrefTrailer.get(j), yearAndGenreTrailer.get(j), nameAndHrefTrailer.get(j)));
-            }
-        }
-        System.out.println(listOfFilm);
-        return listOfFilm;
-    }
-
-    @Step("Добавление фильма с баннера в бд")
-    public Film assertFilm() {
-        bannerClick();
-        return getFilm(nameFilm, hrefAndYear, hrefAndYear);
     }
 
     @Step("Кликнули на баннер")
@@ -96,13 +74,34 @@ public class FilmForDbBlock {
         return hrefElement.getAttribute("href");
     }
 
-    @Step("Получить фильм")
+    @Step("Получить фильм в формате модели")
     public Film getFilm(SelenideElement nameElement, SelenideElement yearElement, SelenideElement hrefElement) {
         Film film = new Film();
         film.setName(getName(nameElement));
         film.setYearAndGenre(getYearAndGenre(yearElement));
         film.setLink(getHref(hrefElement));
         return film;
+    }
+
+    @Step("Добавление фильма с баннера в бд")
+    public Film assertFilm() {
+        bannerClick();
+        return getFilm(nameFilm, hrefAndYear, hrefAndYear);
+    }
+
+    @Step("Добавление нескольких фильмов в список, у которых год и жанр некорректный")
+    public List<Film> assertManyFilm() {
+        scrollToTrailer();
+        ArrayList<Film> listOfFilm = new ArrayList();
+        for (int j = 0; j < nameAndHrefTrailer.size(); j++) {
+            bestScroll(nameAndHrefTrailer.get(j));
+
+            if (!Pattern.matches(regexPattern.regexYearAndGenre(), yearAndGenreTrailer.get(j).getText())) {
+                listOfFilm.add(getFilm(nameAndHrefTrailer.get(j), yearAndGenreTrailer.get(j), nameAndHrefTrailer.get(j)));
+            }
+        }
+        System.out.println(listOfFilm);
+        return listOfFilm;
     }
 
     @Step("Получаем все названия фильмов из блока Новые трейлеры с сайта")
@@ -127,7 +126,7 @@ public class FilmForDbBlock {
         return nameOfFilmFromDB;
     }
 
-    @Step("Сравниваем фильмы из бд с фильмами с сайта")
+    @Step("Сравниваем фильмы из бд с фильмами с сайта. Выводим в консоль и вносим в бд")
     public void compareNameOfFilms() {
         List<String> DbList = getNameFilmsFromDB();
         List<String> SiteList = getNameFilmsFromSite();
@@ -145,11 +144,13 @@ public class FilmForDbBlock {
                 .filter(aObject -> !DbList.contains(aObject))
                 .collect(Collectors.toList());
 
-        System.out.println("Фильмы, которые есть и в бд, и на сайте: " + result1);
+        System.out.println("Фильмы, которые есть и в бд, и на сайте: " + result1 );
+        dbInteraction.insertManyNameOfFilm(result1, FilmDao.SqlCommon);
         System.out.println("Фильмы, которые есть в бд, но нет на сайте: " + result2);
+        dbInteraction.insertManyNameOfFilm(result2, FilmDao.SqlDb);
         System.out.println("Фильмы, которые есть на сайте, но нет в бд: " + result3);
+        dbInteraction.insertManyNameOfFilm(result3,FilmDao.SqlSite);
     }
-
 
 
 }

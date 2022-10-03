@@ -6,9 +6,10 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.ru.Дано;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.То;
+import org.checkerframework.checker.formatter.qual.Format;
+
 import java.util.List;
 import java.util.Map;
-
 import static com.codeborne.selenide.Selenide.$;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -85,50 +86,29 @@ public class LoginStep {
     public void отобразилось_сообщение_об_ошибке_неверный_пароль() {
         assertThat(error.getText()).isEqualTo("Неверный пароль");
     }
-
-
-    @Дано("передача данных, перечисленных через запятую, в ArrayList (.*)")
-    public void передачаДанныхПеречисленныхЧерезЗапятуюВArrayList(List<String> arg) {
-        System.out.println(arg);
-    }
-
-//    @И("передача данных, перечисленных через разделитель, в ArrayList, аннотация Delimiter (.*)")
-//    public void передачаДанныхПеречисленныхЧерезРазделительВArrayListАннотацияDelimiter(@Delimiter(" и ") List<String> arg) {
-//    }
+    
 
     @И("передача данных, записанных в виде таблицы с одной колонкой")
     public void передачаДанныхЗаписанныхВВидеТаблицыСОднойКолонкой(List<String> arg) {
         System.out.println(arg);
     }
-
-    @И("передача данных, записанных в виде таблицы с двумя колонками")
-    public void передачаДанныхЗаписанныхВВидеТаблицыСДвумяКолонками(Map<String, Boolean> arg) {
-        System.out.println(arg);
-    }
+    
 
     @И("передача данных, используя DataTable")
     public void передачаДанныхИспользуяDataTable(DataTable arg) {
         List<Map<String, String>> table = arg.asMaps(String.class, String.class);
+        List<List<String>> table2 = arg.asLists(String.class);
         System.out.println(table.get(0).get("Название"));
+        System.out.println(table2.get(0).get(0));
+        System.out.println(table.get(0).get("Тип"));
+        System.out.println(table.get(0).get("Значение"));
         System.out.println(table.get(1).get("Название"));
         System.out.println(table.get(2).get("Название"));
     }
 
-    @И("передача данных, используя Class")
-    public void передачаДанныхИспользуяClass() {
-    }
-
-    @И("вводит в поле логин Тест Регулярки ([A-Za-z0-9-]+)")
-    public void вводитВПолеЛогинТестРегулярки() {
-
-    }
-
-    @И("передача многострочных аргументов")
-    public void передачаМногострочныхАргументов() {
-        
-    }
-
-    @И("передача Data")
-    public void передачаData() {
+    @И("^вводит в поле логин Тест Регулярки (\\w+)$")
+    public void вводитВПолеЛогинТестРегулярки(String login) {
+        loginField.click();
+        loginField.setValue(login);
     }
 }

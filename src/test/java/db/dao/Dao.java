@@ -12,8 +12,6 @@ public interface Dao {
     Film findFilmByName(String name);
     boolean updateFilm(String name, String link);
     List<String> getNameOfFilm();
-
-    default boolean deleteFilmByName(String name) {
-        return false;
-    }
+    boolean deleteFilmByName(String name);
+    boolean insertManyNameOfFilm(List<String> list, String SQL);
 }
