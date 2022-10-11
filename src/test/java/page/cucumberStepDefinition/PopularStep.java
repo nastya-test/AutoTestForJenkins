@@ -5,6 +5,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.То;
+import pageobjects.NameOfElement;
 
 import java.time.Duration;
 import java.util.List;
@@ -140,7 +141,9 @@ public class PopularStep {
     }
 
     @То("проверяет, что у новости корректное количество комментариев")
-    public void проверяет_что_у_новости_корректное_количество_комментариев() {
+    public void проверяет_что_у_новости_корректное_количество_комментариев(String name)
+    {
+//        SelenideElement elemenet = getElByName(name);
         for (int i = 0; i < 10; i++) {
             assertCommentRegex(numberOfCommentsPopular.get(i));
         }
