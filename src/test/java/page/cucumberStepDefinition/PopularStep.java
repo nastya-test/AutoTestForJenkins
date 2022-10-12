@@ -5,7 +5,6 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.То;
-import pageobjects.NameOfElement;
 
 import java.time.Duration;
 import java.util.List;

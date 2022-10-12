@@ -1,4 +1,4 @@
-package pageobjects;
+package cucumber.pageobjects;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;

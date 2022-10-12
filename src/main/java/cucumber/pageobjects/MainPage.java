@@ -1,4 +1,4 @@
-package pageobjects;
+package cucumber.pageobjects;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -8,7 +8,8 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static org.openqa.selenium.By.tagName;
 
-public class PopularPage {
+@NameOfPage("Заголовок блока Популярное")
+public class MainPage extends AbstractPage{
     //Заголовок блока "Популярное"
     @NameOfElement("Заголовок блока Популярное")
     SelenideElement headerPopularBlock = $("[class *='styles_popularPostsColumn']>[class *='title']");
@@ -22,11 +23,11 @@ public class PopularPage {
     ElementsCollection newsNumberPopular = $$("[href *='media']>[class *='index']");
 
     //Иконка комментариев
-    @NameOfElement("Иконка комментариев")
+    @NameOfElement("Иконка комментариев у новостей")
     ElementsCollection iconOfCommentsPopular = $$("[href *='comments'][class *='styles_root']");
 
     //Количество комментариев, все 10 комментариев
-    @NameOfElement("Количество комментариев")
+    @NameOfElement("Количество комментариев у новости")
     ElementsCollection numberOfCommentsPopular = $$("[href *='comments'][class *='styles_root']");
 
     //Картинка первой новости
@@ -46,8 +47,8 @@ public class PopularPage {
     SelenideElement LinkPictureNewsFirstPopularMobile = $("[class *='featuredImage']").parent();
 
     //Ссылка с текста первой новости
-    @NameOfElement("Ссылка с текста первой новости")
-    SelenideElement LinkTextNewsFirstPopular = $("[class *='titleLinkFeatured']");
+    @NameOfElement("Текст первой новости")
+    SelenideElement TextNewsFirstPopular = $("[class *='titleLinkFeatured']");
 
     //Ссылка с текста первой новости mobile
     @NameOfElement("Ссылка с текста первой новости mobile в мобильной версии")
