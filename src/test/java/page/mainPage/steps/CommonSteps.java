@@ -39,7 +39,6 @@ public class CommonSteps {
         System.out.println(element.getText());
     }
 
-
     @Step("Проверка, что название корректно. Regex")
     public static void assertNameRegex(SelenideElement element) {
         assertTextRegex(element, regexPattern.regexName());

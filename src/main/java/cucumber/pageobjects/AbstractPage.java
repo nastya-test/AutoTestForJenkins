@@ -6,6 +6,8 @@ import com.codeborne.selenide.SelenideElement;
 
 import java.lang.reflect.Field;
 
+import static com.codeborne.selenide.Selenide.page;
+
 public class AbstractPage {
     public SelenideElement get(String cucumberElementName)
     {
@@ -55,5 +57,17 @@ public class AbstractPage {
         }
         Selenide.screenshot("No_elements");
         throw new IllegalArgumentException("ERROR: there is no such element with name " + cucumberElementName + " at page " + this.getClass().getName());
+    }
+
+    public NameOfPage getPage(String cucumberPageName)
+    {
+        Class<?> clazz = this.getClass();
+        NameOfPage nameOfPageAnnotation = clazz.getAnnotation(NameOfPage.class);
+        if (nameOfPageAnnotation.value().equals(cucumberPageName))
+        {
+            return page(NameOfPage.class);
+        }
+        throw new IllegalArgumentException("ERROR to get Page");
+
     }
 }
