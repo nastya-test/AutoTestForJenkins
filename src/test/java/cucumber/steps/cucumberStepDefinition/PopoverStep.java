@@ -1,4 +1,4 @@
-package page.cucumberStepDefinition;
+package cucumber.steps.cucumberStepDefinition;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -6,7 +6,6 @@ import com.codeborne.selenide.SelenideElement;
 import data.regexPattern;
 import io.cucumber.java.ru.То;
 import io.qameta.allure.Step;
-import page.mainPage.blocks.Popover;
 
 import java.time.Duration;
 import java.util.List;
@@ -14,7 +13,6 @@ import java.util.regex.Pattern;
 
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.$;
 import static org.assertj.core.api.Assertions.assertThat;
 import static page.mainPage.steps.CommonSteps.bestScroll;
 

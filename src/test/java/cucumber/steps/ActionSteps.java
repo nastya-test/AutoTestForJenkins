@@ -1,24 +1,23 @@
 package cucumber.steps;
 
+import com.codeborne.selenide.Condition;
 import cucumber.pageobjects.MainPage;
-import io.cucumber.java.ru.Если;
 import io.cucumber.java.ru.И;
-import io.cucumber.java.ru.То;
+import java.time.Duration;
 import static com.codeborne.selenide.Selenide.page;
 import static cucumber.steps.AbstractSteps.bestScroll;
-import static cucumber.steps.AbstractSteps.textOfElement;
 
-
-public class MainPageSteps {
+public class ActionSteps {
     MainPage mainPage = page(MainPage.class);
 
     @И("скролит к элементу {string}")
     public void скролитКЭлементу(String element) {
+        mainPage.get(element).shouldBe(Condition.visible, Duration.ofSeconds(10));
         bestScroll(mainPage.get(element));
     }
 
-
-    @Если("наводит на элемент {string}")
-    public void наводитНаЭлемент(String arg0) {
+    @И("наводит на элемент {string}")
+    public void наводитНаЭлемент(String element) {
+        mainPage.get(element).hover();
     }
 }

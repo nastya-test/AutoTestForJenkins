@@ -1,4 +1,4 @@
-package page.cucumberStepDefinition;
+package cucumber.steps.cucumberStepDefinition;
 
 import com.codeborne.selenide.SelenideElement;
 import data.UserGenerator;
@@ -6,10 +6,10 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.ru.Дано;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.То;
-import org.checkerframework.checker.formatter.qual.Format;
 
 import java.util.List;
 import java.util.Map;
+
 import static com.codeborne.selenide.Selenide.$;
 import static org.assertj.core.api.Assertions.assertThat;
 

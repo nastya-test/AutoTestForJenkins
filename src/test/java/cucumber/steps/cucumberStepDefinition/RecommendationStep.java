@@ -1,4 +1,4 @@
-package page.cucumberStepDefinition;
+package cucumber.steps.cucumberStepDefinition;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;

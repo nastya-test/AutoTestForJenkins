@@ -1,4 +1,4 @@
-package page.cucumberStepDefinition;
+package cucumber.steps.cucumberStepDefinition;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Scenario;
