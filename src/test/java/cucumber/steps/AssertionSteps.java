@@ -2,19 +2,19 @@ package cucumber.steps;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import cucumber.pageobjects.MainPage;
-import io.cucumber.java.ru.И;
+import cucumber.pageobjects.AbstractPage;
 import io.cucumber.java.ru.То;
-import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.Selenide.sleep;
 import static cucumber.map.ColourMap.colourMap;
 import static cucumber.map.LinkMap.linkMap;
+import static cucumber.map.PageMap.activePageMap;
 import static cucumber.map.RegexMap.regexMap;
 import static cucumber.steps.AbstractSteps.*;
 import static page.mainPage.steps.CommonSteps.bestScroll;
 
 public class AssertionSteps {
-    MainPage mainPage = page(MainPage.class);
+    AbstractPage mainPage = activePageMap.get(true);
+//    MainPage mainPage = page(MainPage.class);
 
     //Проверки отображения элемента
     @То("проверяет, что элемент {string} отображается")
@@ -95,8 +95,8 @@ public class AssertionSteps {
     }
 
 
-    @То("проверяет, что для всех элементов {string} при нажатии на элемент {string} отображается элемент {string} и закрывается при нажатии на элемент {string}")
-    public void проверяетЧтоДляВсехЭлементовПриНажатииНаЭлементОтображаетсяЭлементИЗакрываетсяПриНажатииНаЭлемент(String element1, String element2, String element3, String element4) {
+    @То("проверяет, что для всех элементов в {string} при нажатии на элемент {string} отображается элемент {string} и закрывается при нажатии на элемент {string}")
+    public void проверяетЧтоДляВсехЭлементовВПриНажатииНаЭлементОтображаетсяЭлементИЗакрываетсяПриНажатииНаЭлемент(String element1, String element2, String element3, String element4) {
         for (int j = 0; j < mainPage.getCollection(element1).size(); j++) {
             bestScroll(mainPage.getCollection(element1).get(j));
             mainPage.getCollection(element1).get(j).click();
