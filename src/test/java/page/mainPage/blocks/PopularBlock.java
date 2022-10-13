@@ -9,8 +9,8 @@ import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.*;
-import static data.constants.iconComment;
-import static data.colourPattern.orangeColour;
+import static data.pattern.linkPattern.iconComment;
+import static data.pattern.colourPattern.orangeColour;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.openqa.selenium.By.tagName;
 import static page.mainPage.steps.CommonSteps.*;

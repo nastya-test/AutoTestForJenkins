@@ -2,13 +2,14 @@ package cucumber.steps;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import cucumber.converter.ColourConverter;
-import cucumber.converter.ConstantsConverter;
-import cucumber.converter.RegexConverter;
 import cucumber.pageobjects.MainPage;
+import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.То;
 import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.Selenide.sleep;
+import static cucumber.map.ColourMap.colourMap;
+import static cucumber.map.LinkMap.linkMap;
+import static cucumber.map.RegexMap.regexMap;
 import static cucumber.steps.AbstractSteps.*;
 import static page.mainPage.steps.CommonSteps.bestScroll;
 
@@ -28,16 +29,21 @@ public class AssertionSteps {
         }
     }
 
+    @То("проверяет, что элемент {string} скрыт")
+    public void проверяетЧтоЭлементСкрыт(String element) {
+        assertHidden( mainPage.get(element));
+    }
+
     //Проверки с цветами
     @То("проверяет, что элемент {string} имеет {string} цвет")
     public void проверяетЧтоЭлементИмеетЦвет(String element, String colour) {
-        assertColour(mainPage.get(element), ColourConverter.getColourByName(colour));
+        assertColour(mainPage.get(element), colourMap.get(colour));
     }
 
     @То("проверяет, что элементы {string} имеют {string} цвет")
     public void проверяетЧтоЭлементыИмеютЦвет(String elements, String colour) {
         for (SelenideElement element : mainPage.getCollection(elements)) {
-            assertColour(element, ColourConverter.getColourByName(colour));
+            assertColour(element, colourMap.get(colour));
         }
     }
 
@@ -45,21 +51,21 @@ public class AssertionSteps {
     @То("проверяет, что текст элементов {string} соответствует регулярному выражению {string}")
     public void проверяетЧтоТекстЭлементовСоответствуетРегулярномуВыражению(String elements, String regex){
         for (SelenideElement element : mainPage.getCollection(elements)) {
-            assertTextRegex(element, RegexConverter.getRegexByName(regex));
+            assertTextRegex(element, regexMap.get(regex));
         }
     }
 
     @То("проверяет, что ссылка элементов {string} соответствует регулярному выражению {string}")
     public void проверяетЧтоСсылкаЭлементаСоответствуетРегулярномуВыражению(String elements, String regex) {
         for (SelenideElement element : mainPage.getCollection(elements)) {
-            assertLinkRegex(element, RegexConverter.getRegexByName(regex));
+            assertLinkRegex(element, regexMap.get(regex));
         }
     }
 
     //Проверки с ссылками
     @То("проверяет, что ссылка элемента {string} совпадает с ссылкой {string}")
     public void проверяетЧтоСсылкаЭлементаСовпадаетССсылкой(String element, String href) {
-        assertLinkOfElementText(mainPage.get(element), ConstantsConverter.getConstantsByName(href));
+        assertLinkOfElementText(mainPage.get(element), linkMap.get(href));
     }
 
     @То("проверяет, что ссылка элемента {string} совпадает с ссылкой элемента {string}")
@@ -88,9 +94,6 @@ public class AssertionSteps {
         assertIsImage(mainPage.get(element));
     }
 
-    @То("проверяет, что у элемента {string} стрелка назад отсутствует, после нажатия стрелки вперед, стрелка назад появляется")
-    public void проверяетЧтоУЭлементаСтрелкаНазадОтсутствуетПослеНажатияСтрелкиВпередСтрелкаНазадПоявляется(String element) {
-    }
 
     @То("проверяет, что для всех элементов {string} при нажатии на элемент {string} отображается элемент {string} и закрывается при нажатии на элемент {string}")
     public void проверяетЧтоДляВсехЭлементовПриНажатииНаЭлементОтображаетсяЭлементИЗакрываетсяПриНажатииНаЭлемент(String element1, String element2, String element3, String element4) {
@@ -102,4 +105,5 @@ public class AssertionSteps {
             mainPage.get(element3).click();
         }
     }
+
 }

@@ -1,9 +1,9 @@
-package cucumber.steps.cucumberStepDefinition;
+package cucumber.steps;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import data.regexPattern;
+import data.pattern.regexPattern;
 import io.cucumber.java.ru.То;
 import io.qameta.allure.Step;
 

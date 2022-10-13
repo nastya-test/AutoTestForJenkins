@@ -20,4 +20,15 @@ public class ActionSteps {
     public void наводитНаЭлемент(String element) {
         mainPage.get(element).hover();
     }
+
+    @И("нажимает на элемент {string}")
+    public void нажимаетНаЭлемент(String element) {
+        mainPage.get(element).click();
+    }
+
+    @И("вводит в поле {string} значение {string}")
+    public void вводитВПолеЗначение(String element, String text) {
+        mainPage.get(element).click();
+        mainPage.get(element).sendKeys(text);
+    }
 }

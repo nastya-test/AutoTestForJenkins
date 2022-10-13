@@ -8,7 +8,6 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static org.openqa.selenium.By.tagName;
 
-@NameOfPage("Заголовок блока Популярное")
 public class MainPage extends AbstractPage{
 
 /**Блок популярное*/

@@ -1,4 +1,4 @@
-package test.dbIntegrationTest;
+package test.mockitoTest;
 
 import data.model.Film;
 import db.dao.FilmDao;

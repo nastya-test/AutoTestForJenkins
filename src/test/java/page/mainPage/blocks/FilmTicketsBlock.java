@@ -8,7 +8,7 @@ import java.time.Duration;
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-import static data.constants.linkTicketsBlock;
+import static data.pattern.linkPattern.linkTicketsBlock;
 import static org.assertj.core.api.Assertions.*;
 import static page.mainPage.steps.CommonSteps.*;
 import static test.BaseTest.isMobile;

@@ -1,6 +1,6 @@
 package page.mainPage.blocks;
 
-import data.colourPattern;
+import data.pattern.colourPattern;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -9,7 +9,7 @@ import java.time.Duration;
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static data.constants.linkTrailerBlock;
+import static data.pattern.linkPattern.linkTrailerBlock;
 import static org.assertj.core.api.Assertions.*;
 import static page.mainPage.steps.CommonSteps.*;
 import static page.mainPage.steps.CommonSteps.bestScroll;

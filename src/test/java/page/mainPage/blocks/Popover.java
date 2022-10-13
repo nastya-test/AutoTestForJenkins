@@ -1,6 +1,6 @@
 package page.mainPage.blocks;
 
-import data.regexPattern;
+import data.pattern.regexPattern;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;

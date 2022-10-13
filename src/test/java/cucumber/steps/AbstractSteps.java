@@ -4,9 +4,9 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import java.util.List;
 import java.util.regex.Pattern;
 import static org.assertj.core.api.Assertions.assertThat;
+import static page.mainPage.steps.CommonSteps.bestScroll;
 
 public class AbstractSteps {
 
@@ -63,10 +63,9 @@ public class AbstractSteps {
         assertThat(element.getCssValue("color")).isEqualTo(colour);
     }
 
-    @Step("Количество элементов в списке")
+    @Step("Количество элементов в ElementsCollection")
     public static void assertCountElementCollection(ElementsCollection elements, int count) {
-        List<SelenideElement> list = elements;
-        assertThat(list).hasSize(count);
+        assertThat(elements.size()).isEqualTo(count);
     }
 
     @Step("Есть изображение")
@@ -77,6 +76,11 @@ public class AbstractSteps {
     @Step("Значение font-weight")
     public static void assertFontWeight(SelenideElement element, String value) {
         assertThat(element.getCssValue("font-weight")).isEqualTo(value);
+    }
+
+    @Step("Стрелки прокуртки карусели")
+    public static void assertHidden(SelenideElement element) {
+        element.shouldBe(Condition.hidden);
     }
 
 

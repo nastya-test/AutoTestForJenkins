@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-import static data.constants.linkRecommendationsBlock;
+import static data.pattern.linkPattern.linkRecommendationsBlock;
 import static page.mainPage.steps.CommonSteps.*;
 import static test.BaseTest.isMobile;
 

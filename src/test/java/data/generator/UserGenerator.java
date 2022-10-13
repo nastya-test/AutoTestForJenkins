@@ -1,4 +1,4 @@
-package data;
+package data.generator;
 
 import data.model.User;
 

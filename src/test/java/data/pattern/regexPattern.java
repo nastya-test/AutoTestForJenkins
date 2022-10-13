@@ -1,4 +1,4 @@
-package data;
+package data.pattern;
 
 public class regexPattern {
 

@@ -1,6 +1,6 @@
 package page.mainPage.steps;
 
-import data.regexPattern;
+import data.pattern.regexPattern;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;

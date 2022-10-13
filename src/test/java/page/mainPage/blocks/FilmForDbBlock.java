@@ -3,7 +3,7 @@ package page.mainPage.blocks;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import data.regexPattern;
+import data.pattern.regexPattern;
 import db.dao.FilmDao;
 import db.services.DbInteraction;
 import io.qameta.allure.Step;
