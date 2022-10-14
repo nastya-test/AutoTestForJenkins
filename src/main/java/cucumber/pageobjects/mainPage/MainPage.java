@@ -4,5 +4,4 @@ import cucumber.pageobjects.AbstractPage;
 
 public class MainPage extends AbstractPage {
 
-
 }

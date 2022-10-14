@@ -6,7 +6,6 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import java.util.regex.Pattern;
 import static org.assertj.core.api.Assertions.assertThat;
-import static page.mainPage.steps.CommonSteps.bestScroll;
 
 public class AbstractSteps {
 

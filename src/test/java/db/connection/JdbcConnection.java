@@ -27,7 +27,8 @@ public class JdbcConnection {
         }
         return conn;
     }
-/*
+
+/**
 //    Проверка соединения с базой
     public static void main (String[]args){
         JdbcConnection app = new JdbcConnection();

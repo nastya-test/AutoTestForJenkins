@@ -45,7 +45,7 @@ public class FilmForDbBlock {
     //Весь блок трейлеры
     SelenideElement trailersBlock = $(byId("new-trailers-block"));
 
-    @Step("Подскролл к блоку")
+    @Step("Подскролл к блоку Новые трейлеры")
     public FilmForDbBlock scrollToTrailer() {
         bestScroll(trailersBlock);
         headerTrailerBlock.shouldBe(Condition.visible, Duration.ofSeconds(10));

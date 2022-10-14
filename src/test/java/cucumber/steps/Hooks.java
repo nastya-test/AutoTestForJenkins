@@ -4,7 +4,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.Scenario;
 
 public class Hooks {
-    @After
+    @After("@success")
     public void getScenarioInfo(Scenario scenario) {
         System.out.println(scenario.getId());
         System.out.println(scenario.getName());
@@ -12,6 +12,5 @@ public class Hooks {
         System.out.println(scenario.isFailed());
         System.out.println(scenario.getSourceTagNames());
     }
-
 
 }
