@@ -3,6 +3,7 @@ package cucumber.steps;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import cucumber.pageobjects.AbstractPage;
+import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.То;
 import static com.codeborne.selenide.Selenide.sleep;
 import static cucumber.map.ColourMap.colourMap;
@@ -90,8 +91,10 @@ public class AssertionSteps {
     }
 
     @То("проверяет, что элементы {string} содержат изоображение")
-    public void проверяетЧтоЭлементСодержатИзоображение(String element) {
-        assertIsImage(mainPage.get(element));
+    public void проверяетЧтоЭлементСодержатИзоображение(String elements) {
+        for (SelenideElement element : mainPage.getCollection(elements)) {
+            assertIsImage(element);
+        }
     }
 
 
@@ -99,11 +102,17 @@ public class AssertionSteps {
     public void проверяетЧтоДляВсехЭлементовВПриНажатииНаЭлементОтображаетсяЭлементИЗакрываетсяПриНажатииНаЭлемент(String element1, String element2, String element3, String element4) {
         for (int j = 0; j < mainPage.getCollection(element1).size(); j++) {
             bestScroll(mainPage.getCollection(element1).get(j));
-            mainPage.getCollection(element1).get(j).click();
+            mainPage.getCollection(element2).get(j).click();
             sleep(500);
             mainPage.get(element3).shouldBe(Condition.visible);
-            mainPage.get(element3).click();
+            mainPage.get(element4).click();
         }
     }
 
+    @И("проверяет, что текст элементв {string} соответствует тексту {string}")
+    public void проверяетЧтоТекстЭлементвСоответствуетТексту(String elements, String text) {
+        for (SelenideElement element : mainPage.getCollection(elements)) {
+            assertTextOfElement((element), text);
+        }
+    }
 }

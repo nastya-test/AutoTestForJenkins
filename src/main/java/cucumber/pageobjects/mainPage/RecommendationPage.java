@@ -12,30 +12,30 @@ import static com.codeborne.selenide.Selenide.$$;
 public class RecommendationPage extends AbstractPage {
 
     @NameOfElement("Название фильма в карусели")
-    ElementsCollection nameRecommend =  $$("[class *='captions']>[class *='title']> span > span");
+    public ElementsCollection nameRecommend =  $$("[class *='captions']>[class *='title']> span > span");
 
     @NameOfElement("Жанр и год фильма")
-    ElementsCollection yearAndGenreRecommend =  $$("[class *='captions']>[class *='title']+[class *='subtitle']>span");
+    public ElementsCollection yearAndGenreRecommend =  $$("[class *='captions']>[class *='title']+[class *='subtitle']>span");
 
     @NameOfElement("Ссылка на фильм")
-    ElementsCollection hrefRecommend =  $$("[class *='styles_captions__9Azea']");
+    public ElementsCollection hrefRecommend =  $$("[class *='styles_captions__9Azea']");
 
     @NameOfElement("Рейтинг фильма")
-    ElementsCollection ratingRecommend =  $$("[class *='styles_ratingPosterNameplate__hj_X7']");
+    public ElementsCollection ratingRecommend =  $$("[class *='styles_ratingPosterNameplate__hj_X7']");
 
     @NameOfElement("Стрелка вперед")
-    SelenideElement forwardArrowRecommend =  $("[id ='recommendations-block'] + div > [class *='blockClassName'] > [class *='carousel'] > [class *='carouselButtonRight']");
+    public SelenideElement forwardArrowRecommend =  $("[id ='recommendations-block'] + div > [class *='blockClassName'] > [class *='carousel'] > [class *='carouselButtonRight']");
 
     @NameOfElement("Стрелка назад")
-    SelenideElement  backArrowRecommend =  $("[id ='recommendations-block'] + div > [class *='blockClassName'] > [class *='carousel'] >[class *='carouselButtonLeft']");
+    public SelenideElement  backArrowRecommend =  $("[id ='recommendations-block'] + div > [class *='blockClassName'] > [class *='carousel'] >[class *='carouselButtonLeft']");
 
     @NameOfElement("Заголовок блока Рекомендации")
-    SelenideElement headerRecommendationsBlock =  $(byText("Рекомендации"));
+    public SelenideElement headerRecommendationsBlock =  $(byText("Рекомендации"));
 
     @NameOfElement("Постер у сниппета фильма")
-    ElementsCollection posterRecommend =  $$("[class *='posterLink']>[class *='poster']");
+    public ElementsCollection posterRecommend =  $$("[class *='posterLink']>[class *='poster']");
 
     @NameOfElement("Рекомендации")
-    SelenideElement recommendationsBlock = $(byId("recommendations-block"));
+    public SelenideElement recommendationsBlock = $(byId("recommendations-block"));
 
 }

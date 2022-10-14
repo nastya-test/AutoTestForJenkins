@@ -12,14 +12,32 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
 
-        <aspectj.version>1.8.10</aspectj.version>
-
-        <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
-        <allure-testng.version>2.18.1</allure-testng.version>
-
         <project.java.version>1.8</project.java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!--        Версии dependencies-->
+        <codeborne.selenide.version>6.8.1</codeborne.selenide.version>
+        <codeborne.selenide-core.version>6.8.1</codeborne.selenide-core.version>
+        <codeborne.selenide-testng.version>6.8.1</codeborne.selenide-testng.version>
+
+        <testng.testng.version>7.6.1</testng.testng.version>
+
+        <allure.allure-testng.version>2.19.0</allure.allure-testng.version>
+
+        <assertj.assertj-core.version>3.23.1</assertj.assertj-core.version>
+
+        <mockito.mockito-core.version>4.8.0</mockito.mockito-core.version>
+
+        <postgresql.postgresql.version>42.5.0</postgresql.postgresql.version>
+
+        <cucumber.cucumber-java.version>7.8.1</cucumber.cucumber-java.version>
+        <cucumber.cucumber-jvm.version>7.8.1</cucumber.cucumber-jvm.version>
+        <cucumber.cucumber-testng.version>7.8.1</cucumber.cucumber-testng.version>
+
+        <!--        Версии plugins-->
+        <aspectj.version>1.8.10</aspectj.version>
+        <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
 
     </properties>
 
@@ -28,86 +46,59 @@
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
-            <version>6.6.4</version>
-            <scope>test</scope>
+            <version>${codeborne.selenide.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.9.8</version>
-            <scope>test</scope>
+            <version>${testng.testng.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide-testng</artifactId>
-            <version>6.6.3</version>
+            <version>${codeborne.selenide-testng.version}</version>
         </dependency>
 
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
-            <version>2.18.1</version>
-            <scope>test</scope>
+            <version>${allure.allure-testng.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.23.1</version>
-            <scope>test</scope>
+            <version>${assertj.assertj-core.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>4.8.0</version>
-            <scope>test</scope>
+            <version>${mockito.mockito-core.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.3.3</version>
+            <version>${postgresql.postgresql.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>7.7.0</version>
+            <version>${cucumber.cucumber-java.version}</version>
         </dependency>
-
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/io.cucumber/cucumber-picocontainer &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>io.cucumber</groupId>-->
-<!--            <artifactId>cucumber-picocontainer</artifactId>-->
-<!--            <version>6.9.1</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
-
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.picocontainer/picocontainer &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.picocontainer</groupId>-->
-<!--            <artifactId>picocontainer</artifactId>-->
-<!--            <version>2.15</version>-->
-<!--        </dependency>-->
-
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/io.cucumber/cucumber-core &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>io.cucumber</groupId>-->
-<!--            <artifactId>cucumber-core</artifactId>-->
-<!--            <version>6.9.1</version>-->
-<!--        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-jvm -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-jvm</artifactId>
-            <version>6.8.1</version>
+            <version>${cucumber.cucumber-jvm.version}</version>
             <type>pom</type>
         </dependency>
 
@@ -115,19 +106,13 @@
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-testng</artifactId>
-            <version>7.7.0</version>
+            <version>${cucumber.cucumber-testng.version}</version>
         </dependency>
+
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide-core</artifactId>
-            <version>6.6.4</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.codeborne</groupId>
-            <artifactId>selenide</artifactId>
-            <version>6.6.4</version>
-            <scope>compile</scope>
+            <version>${codeborne.selenide-core.version}</version>
         </dependency>
 
     </dependencies>
@@ -158,15 +143,7 @@
                         <version>1.8.10</version>
                     </dependency>
 
-<!--                    &lt;!&ndash; https://mvnrepository.com/artifact/org.postgresql/postgresql &ndash;&gt;-->
-<!--                    <dependency>-->
-<!--                        <groupId>org.postgresql</groupId>-->
-<!--                        <artifactId>postgresql</artifactId>-->
-<!--                        <version>42.3.3</version>-->
-<!--                    </dependency>-->
-
                 </dependencies>
-
             </plugin>
 
             <plugin>
@@ -183,7 +160,6 @@
                     </allureDownloadUrl>
                 </configuration>
             </plugin>
-
 
         </plugins>
     </build>

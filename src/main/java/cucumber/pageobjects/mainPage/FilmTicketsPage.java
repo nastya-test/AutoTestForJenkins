@@ -11,32 +11,32 @@ import static com.codeborne.selenide.Selenide.$$;
 public class FilmTicketsPage extends AbstractPage {
 
     @NameOfElement("Заголовок блока Билеты в кино")
-    SelenideElement headerFilmTicketsBlock =  $("[class *='film-page-section-title']>[href *='afisha/new']");
+    public SelenideElement headerFilmTicketsBlock =  $("[class *='film-page-section-title']>[href *='afisha/new']");
 
     @NameOfElement("Название фильма в карусели")
-    ElementsCollection nameFilmTickets =  $$("[class *='captions']>[class *='title']> span > span");
+    public ElementsCollection nameFilmTickets =  $$("[class *='captions']>[class *='title']> span > span");
 
     @NameOfElement("Жанр и год фильма")
-    ElementsCollection yearAndGenreFilmTickets =  $$("[class *='captions']>[class *='subtitle']>span");
+    public ElementsCollection yearAndGenreFilmTickets =  $$("[class *='captions']>[class *='subtitle']>span");
 
     @NameOfElement("Ссылка на фильм")
-    ElementsCollection hrefFilmTickets =  $$("[class *='styles_captions__9Azea']");
+    public ElementsCollection hrefFilmTickets =  $$("[class *='styles_captions__9Azea']");
 
     @NameOfElement("Рейтинг фильма")
-    ElementsCollection ratingFilmTickets =  $$("[class *='ratingPosterNameplate__G2BsG']");
+    public ElementsCollection ratingFilmTickets =  $$("[class *='ratingPosterNameplate__G2BsG']");
 
     @NameOfElement("Стрелка вперед")
-    SelenideElement  forwardArrowTickets =  $("[id ='today-in-cinema-block'] + div > section > div > [class *='carousel'] >[class *='iconRightDir']");
+    public SelenideElement  forwardArrowTickets =  $("[id ='today-in-cinema-block'] + div > section > div > [class *='carousel'] >[class *='iconRightDir']");
 
     @NameOfElement("Стрелка назад")
-    SelenideElement  backArrowTickets =  $("[id ='today-in-cinema-block'] + div > section > div > [class *='carousel'] > [class *='iconLeftDir']");
+    public SelenideElement  backArrowTickets =  $("[id ='today-in-cinema-block'] + div > section > div > [class *='carousel'] > [class *='iconLeftDir']");
 
     @NameOfElement("Плашка Билеты в кино")
-    ElementsCollection  textIconTickets =  $$("[class *='labelPlaceholder']+[class *='labelVisible']");
+    public ElementsCollection  textIconTickets =  $$("[class *='labelPlaceholder']+[class *='labelVisible']");
 
     @NameOfElement("Постер у сниппета фильма")
-    ElementsCollection posterImgTickets =  $$("[class *='posterLink']>[class *='poster']");
+    public ElementsCollection posterImgTickets =  $$("[class *='posterLink']>[class *='poster']");
 
     @NameOfElement("Билеты в кино")
-    SelenideElement filmTicketsBlock = $(byId("today-in-cinema-block"));
+    public SelenideElement filmTicketsBlock = $(byId("today-in-cinema-block"));
 }

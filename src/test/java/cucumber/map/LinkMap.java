@@ -9,8 +9,8 @@ public class LinkMap {
         {
             put("Изоображение для иконки комментирования", linkPattern.iconComment);
             put("Ссылка на /video", linkPattern.linkTrailerBlock);
-            put("Ссылка /lists/movies/recommendation", linkPattern.linkTrailerBlock);
-            put("Ссылка /afisha/new/city", linkPattern.linkTrailerBlock);
+            put("Ссылка /lists/movies/recommendation", linkPattern.linkRecommendationsBlock);
+            put("Ссылка /afisha/new/city", linkPattern.linkTicketsBlock);
         }
     };
 

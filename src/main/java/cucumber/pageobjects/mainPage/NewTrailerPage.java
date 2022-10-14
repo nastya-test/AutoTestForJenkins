@@ -11,30 +11,30 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class NewTrailerPage extends AbstractPage {
     @NameOfElement("Название трейлера")
-    ElementsCollection nameAndHrefTrailer = $$("[class *='title__vd']");
+    public ElementsCollection nameAndHrefTrailer = $$("[class *='title__vd']");
 
     @NameOfElement("Жанр и год трейлера")
-    ElementsCollection yearAndGenreTrailer = $$("[class *='title__vd']+[class *='date']");
+    public ElementsCollection yearAndGenreTrailer = $$("[class *='title__vd']+[class *='date']");
 
     @NameOfElement("Стрелка назад")
-    SelenideElement backArrowTrailer = $("[id ='new-trailers-block'] + div > div > [class *='carousel'] > [class *='carouselButtonLeft']");
+    public SelenideElement backArrowTrailer = $("[id ='new-trailers-block'] + div > div > [class *='carousel'] > [class *='carouselButtonLeft']");
 
     @NameOfElement("Стрелка вперед")
-    SelenideElement forwardArrowTrailer = $("[id ='new-trailers-block'] + div > div > [class *='carousel'] > [class *='carouselButtonRight']");
+    public SelenideElement forwardArrowTrailer = $("[id ='new-trailers-block'] + div > div > [class *='carousel'] > [class *='carouselButtonRight']");
 
     @NameOfElement("Оранжевая кнопка проигрывания видео")
-    ElementsCollection videoPlaybackTrailer = $$("[class *='newTrailer']");
+    public ElementsCollection videoPlaybackTrailer = $$("[class *='newTrailer']");
 
     @NameOfElement("Плеер с трейлером")
-    SelenideElement playerTrailer = $("[class *='discovery-trailers-wrapper']");
+    public SelenideElement playerTrailer = $("[class *='discovery-trailers-wrapper']");
 
     @NameOfElement("Закрытие плеера с трейлером")
-    SelenideElement trailersCloser = $("[class *='discovery-trailers-closer']");
+    public SelenideElement trailersCloser = $("[class *='discovery-trailers-closer']");
 
     @NameOfElement("Заголовок блока Новые трейлеры")
-    SelenideElement headerTrailerBlock = $(byText("Новые трейлеры"));
+    public SelenideElement headerTrailerBlock = $(byText("Новые трейлеры"));
 
     @NameOfElement("Новые трейлеры")
-    SelenideElement trailersBlock = $(byId("new-trailers-block"));
+    public SelenideElement trailersBlock = $(byId("new-trailers-block"));
 
 }

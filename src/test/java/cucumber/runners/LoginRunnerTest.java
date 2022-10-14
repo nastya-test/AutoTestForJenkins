@@ -6,7 +6,7 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
         //tags = "@success", //Символ ~ исключает тест из списка запускаемых тестов
         features = {"src/test/java/cucumber/features/LoginPageTestCase.feature"}, //где хранятся .features
-        glue = {"src/test/java/cucumber/steps"}, //где хранятся steps и hooks
+        glue = {"cucumber.steps"}, //где хранятся steps и hooks
         plugin = {},
         snippets = CucumberOptions.SnippetType.CAMELCASE) //snippets – указывает в каком формате фреймворк будет предлагать шаблон для нереализованных шагов. Доступны значения: SnippetType.CAMELCASE, SnippetType.UNDERSCORE.
         //name – фильтрует запускаемые тесты по названиям удовлетворяющим регулярному выражению.

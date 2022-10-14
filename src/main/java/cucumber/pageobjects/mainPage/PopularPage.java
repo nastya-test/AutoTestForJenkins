@@ -12,29 +12,29 @@ import static org.openqa.selenium.By.tagName;
 public class PopularPage extends AbstractPage {
 
     @NameOfElement("Заголовок блока Популярное")
-    SelenideElement headerPopularBlock = $("[class *='styles_popularPostsColumn']>[class *='title']");
+    public SelenideElement headerPopularBlock = $("[class *='styles_popularPostsColumn']>[class *='title']");
 
     @NameOfElement("Порядковый номер у новости")
-    ElementsCollection newsNumberPopular = $$("[href *='media']>[class *='index']");
+    public ElementsCollection newsNumberPopular = $$("[href *='media']>[class *='index']");
 
     @NameOfElement("Иконка комментариев у новости")
-    ElementsCollection iconOfCommentsPopular = $$("[href *='comments'][class *='styles_root']");
+    public ElementsCollection iconOfCommentsPopular = $$("[href *='comments'][class *='styles_root']");
 
     @NameOfElement("Количество комментариев у новости")
-    ElementsCollection numberOfCommentsPopular = $$("[href *='comments'][class *='styles_root']");
+    public ElementsCollection numberOfCommentsPopular = $$("[href *='comments'][class *='styles_root']");
 
     @NameOfElement("Картинка первой новости")
-    SelenideElement pictureNewsFirstPopular = $("[class *='styles_image__iaFZw']");
+    public SelenideElement pictureNewsFirstPopular = $("[class *='styles_image__iaFZw']");
 
     @NameOfElement("Ссылка c картинки первой новости")
-    SelenideElement LinkPictureNewsFirstPopular = $("[class *='styles_image__iaFZw']").parent();
+    public SelenideElement LinkPictureNewsFirstPopular = $("[class *='styles_image__iaFZw']").parent();
 
     @NameOfElement("Текст первой новости")
-    SelenideElement TextNewsFirstPopular = $("[class *='titleLinkFeatured']");
+    public SelenideElement TextNewsFirstPopular = $("[class *='titleLinkFeatured']");
 
     @NameOfElement("Блок с новостями")
-    ElementsCollection newsBlockPopular = $("[class *='popularPostsColumn']>[class *='list']").findAll(tagName("li"));
+    public ElementsCollection newsBlockPopular = $("[class *='popularPostsColumn']>[class *='list']").findAll(tagName("li"));
 
     @NameOfElement("Блок Популярное")
-    SelenideElement popularBlock = $(byId("media-preview-block"));
+    public SelenideElement popularBlock = $(byId("media-preview-block"));
 }

@@ -22,7 +22,7 @@ public class AbstractSteps {
 
     @Step("Соответствие ссылки элемента ожидаемомой ссылке")
     public static void assertLinkOfElementText(SelenideElement element, String text) {
-        assertThat(element.getText()).as("Неверно указана ссылка эелемента").isEqualTo(text);
+        assertThat(element.getAttribute("href")).as("Неверно указана ссылка эелемента").isEqualTo(text);
         print(element);
     }
 
