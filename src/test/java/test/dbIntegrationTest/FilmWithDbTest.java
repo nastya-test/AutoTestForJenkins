@@ -1,6 +1,6 @@
 package test.dbIntegrationTest;
 
-import page.mainPage.blocks.FilmForDbBlock;
+import page.pageForDb.FilmForDbBlock;
 import db.services.DbInteraction;
 import io.qameta.allure.Description;
 import data.model.Film;

@@ -1,7 +1,7 @@
 package cucumber.steps;
 
 import com.codeborne.selenide.Condition;
-import cucumber.pageobjects.MainPage;
+import cucumber.pageobjects.mainPage.MainPage;
 import io.cucumber.java.ru.И;
 import java.time.Duration;
 import static com.codeborne.selenide.Selenide.page;

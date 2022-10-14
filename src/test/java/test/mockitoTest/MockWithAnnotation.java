@@ -1,22 +1,5 @@
 package test.mockitoTest;
 
-import data.model.Film;
-import db.dao.FilmDao;
-import db.services.DbInteraction;
-import io.qameta.allure.Description;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-import page.mainPage.blocks.FilmForDbBlock;
-import test.BaseTest;
-
-import static org.assertj.core.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyString;
-
 public class MockWithAnnotation {
    /*
    //Первый способ. First way to do mocking, by @Mock annotation

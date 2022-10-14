@@ -4,6 +4,7 @@ import io.cucumber.java.ru.Дано;
 import io.cucumber.java.ru.И;
 import test.BaseTest;
 import static cucumber.map.PageMap.*;
+import static test.BaseTest.authorized;
 
 public class BaseSteps {
     @Дано("открывает главную страницу")
@@ -16,4 +17,8 @@ public class BaseSteps {
         setPopularPages(savePageMap.get(page));
     }
 
+    @И("авторизуется")
+    public void авторизуется() {
+        authorized();
+    }
 }

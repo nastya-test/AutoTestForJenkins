@@ -1,6 +1,10 @@
 package cucumber.map;
 
 import cucumber.pageobjects.*;
+import cucumber.pageobjects.mainPage.FilmTicketsPage;
+import cucumber.pageobjects.mainPage.MainPage;
+import cucumber.pageobjects.mainPage.PopularPage;
+
 import java.util.HashMap;
 import java.util.Map;
 import static com.codeborne.selenide.Selenide.page;

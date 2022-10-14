@@ -1,13 +1,9 @@
 package cucumber.steps;
 
-import cucumber.pageobjects.MainPage;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.ru.И;
-
 import java.util.List;
 import java.util.Map;
-
-import static com.codeborne.selenide.Selenide.page;
 
 public class ExampleSteps {
 
@@ -15,7 +11,6 @@ public class ExampleSteps {
     public void передачаДанныхЗаписанныхВВидеТаблицыСОднойКолонкой(List<String> arg) {
         System.out.println(arg);
     }
-
 
     @И("передача данных, используя DataTable")
     public void передачаДанныхИспользуяDataTable(DataTable arg) {

@@ -1,4 +1,4 @@
-package page.mainPage.blocks;
+package page.pageForDb;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
