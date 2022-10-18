@@ -146,6 +146,7 @@
                 </dependencies>
             </plugin>
 
+
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
@@ -158,6 +159,14 @@
                     <reportVersion>2.8.0</reportVersion>
                     <allureDownloadUrl>https://github.com/allure-framework/allure2/releases/download/%s/allure-%s.zip
                     </allureDownloadUrl>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>9</source>
+                    <target>9</target>
                 </configuration>
             </plugin>
 

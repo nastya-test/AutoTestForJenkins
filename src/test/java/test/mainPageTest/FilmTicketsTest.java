@@ -1,6 +1,7 @@
 package test.mainPageTest;
 
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import page.mainPage.blocks.FilmTicketsBlock;
 import io.qameta.allure.Description;
 import test.BaseTest;
@@ -14,6 +15,7 @@ public class FilmTicketsTest extends BaseTest {
         page(FilmTicketsBlock.class).scrollToFilmTicketsBlock();
     }
 
+    @Parameters({"platform"})
     @Test
     @Description("Regex. Название, год и жанр, ссылка, рейтинг. + у сниппета есть постер")
     public void checkRegexFilmTickets() {
