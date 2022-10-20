@@ -47,7 +47,7 @@ public class BaseTest {
 
     @Step
     private static void waitMainPage(){
-        elementMainPage.shouldBe(Condition.visible, Duration.ofMinutes(1));
+        elementMainPage.shouldBe(Condition.visible, Duration.ofSeconds(3));
     }
 
 
