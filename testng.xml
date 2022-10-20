@@ -4,11 +4,6 @@
     <test verbose="2" preserve-order="true" name="tests for web">
         <parameter name="platforms" value="web"></parameter>
         <classes>
-            <class name="test.loginPageTest.LoginTest">
-                <methods>
-                    <include name="checkLogin"/>
-                </methods>
-            </class>
 
             <class name="test.mainPageTest.FilmTicketsTest">
                 <methods>
@@ -47,6 +42,13 @@
                     <include name="checkScroll"/>
                 </methods>
             </class>
+
+            <class name="test.loginPageTest.LoginTest">
+                <methods>
+                    <include name="checkLogin"/>
+                </methods>
+            </class>
+
         </classes>
     </test>
 
