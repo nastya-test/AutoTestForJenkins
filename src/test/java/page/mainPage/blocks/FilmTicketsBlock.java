@@ -38,15 +38,6 @@ public class FilmTicketsBlock {
 
     ElementsCollection iconTickets = $$("[class *='styles_nameplate__Ei1aO']");
 
-    //Ссылка билеты в кино у сниппета в карусели
-    ElementsCollection  hrefIconTickets =  $$("[class *='styles_nameplate__Ei1aO']");
-
-    //Текст "Билеты" в кино у сниппета в карусели
-    ElementsCollection  textIconTickets =  $$("[class *='labelPlaceholder']+[class *='labelVisible']");
-
-    //Маленькая иконка
-    ElementsCollection  smallIconTickets =  $$("[class *='styles_icon__S5pZJ']");
-
     //Постер изоображение
     ElementsCollection posterImgTickets =  $$("[class *='posterLink']>[class *='poster']");
 
@@ -121,9 +112,6 @@ public class FilmTicketsBlock {
             for (int i = 0; i < iconTickets.size(); i++) {
                 best2Scroll(iconTickets.get(i));
                 iconTickets.get(i).shouldBe(Condition.visible);
-//                assertHrefTicketsRegex(hrefIconTickets.get(i));
-//                smallIconTickets.get(i).hover();
-//                textIconTickets.get(i).shouldBe(Condition.visible);
                 assertThat(iconTickets.get(i).getText()).as("Название на плашке не Билеты").isEqualTo("Билеты");
             }
         } else {

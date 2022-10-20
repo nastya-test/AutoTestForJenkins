@@ -5,7 +5,11 @@ import java.util.List;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import com.codeborne.selenide.testng.ScreenShooter;
 import io.qameta.allure.Step;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.testng.annotations.BeforeMethod;
 
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.*;
@@ -65,10 +69,19 @@ public class PopularBlock {
 
     SelenideElement element;
 
+    @BeforeMethod
+    static void setupAllureReports() {
+        System.out.println("Сработал скрин");
+        ScreenShooter.captureSuccessfulTests = true;
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
+                .screenshots(true)
+                .savePageSource(true)
+        );
+    }
+
     @Step
     public PopularBlock scrollToPopularBlock() {
         bestScroll(popularBlock);
-        headerPopularBlock.shouldBe(Condition.visible, Duration.ofSeconds(10));
         return this;
     }
 

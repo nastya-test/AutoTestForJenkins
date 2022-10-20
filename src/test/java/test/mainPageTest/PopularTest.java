@@ -1,5 +1,7 @@
 package test.mainPageTest;
 
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import page.mainPage.blocks.PopularBlock;
 import io.qameta.allure.Description;
 import test.BaseTest;
@@ -13,11 +15,11 @@ public class PopularTest extends BaseTest{
     @BeforeMethod
     public void openPage() {
         //BaseTest.baseOpenPage();
+        page(PopularBlock.class).scrollToPopularBlock();
         if (isMobile()) {
             sleep(500);
             page(PopularBlock.class).mobileButton();
         }
-        page(PopularBlock.class).scrollToPopularBlock();
     }
 
     @Test

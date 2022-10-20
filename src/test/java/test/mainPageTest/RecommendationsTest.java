@@ -1,6 +1,9 @@
 package test.mainPageTest;
 
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.testng.annotations.BeforeMethod;
+import page.authorizationPage.LoginPage;
 import page.mainPage.blocks.RecommendationsBlock;
 import io.qameta.allure.Description;
 import test.BaseTest;
@@ -9,12 +12,6 @@ import org.testng.annotations.Test;
 import static com.codeborne.selenide.Selenide.page;
 
 public class RecommendationsTest extends BaseTest {
-
-    @BeforeClass
-    public void beforeAuthorized(){
-       // baseOpenPage();
-        authorized();
-    }
 
     @BeforeMethod
     public void scrolling(){

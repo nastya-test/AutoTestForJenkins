@@ -1,5 +1,7 @@
 package test.mainPageTest;
 
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import page.mainPage.blocks.FilmTicketsBlock;

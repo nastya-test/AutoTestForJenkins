@@ -1,7 +1,15 @@
 package test;
 
+import com.codeborne.selenide.Screenshots;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import com.codeborne.selenide.testng.ScreenShooter;
+import com.google.common.io.Files;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Step;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import page.authorizationPage.LoginPage;
@@ -15,40 +23,31 @@ import config.ConfProperties;
 import util.parallelRunning.Mobile;
 import util.parallelRunning.PlatformSetup;
 import util.parallelRunning.Web;
+
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.Objects;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
+import io.qameta.allure.selenide.AllureSelenide;
 
 public class BaseTest {
 
     private static final SelenideElement stayButton = $("#stay-button");
-    private static final SelenideElement iframe = $(By.xpath("/html/body/div[3]/div[3]/div/div/iframe"));
+    private static final SelenideElement iframe = $(By.xpath("/html/body/div[3]/div/div[3]/div/div/iframe"));
     private static final SelenideElement elementMainPage = $(".styles_link__KtvyW");
-    private static final String platform = ConfProperties.getProperty("platform");
-//    private static final Integer pageDown = 8;
 
-//    @BeforeMethod
-    public static void baseOpenPage() {
-        configuration();
-        clickStayButton();
-        waitMainPage();
-//        pageDown(pageDown);
-    }
-
-    public static void authorized(){
-        LoginPage loginPage = new LoginPage();
-        loginPage.loginInToTheAccount();
-        waitMainPage();
-        clickStayButton();
-    }
-
-    private static void clickStayButton(){
-        if (Objects.equals(platform, "mobile")) {
+    @Step
+    private static void clickStayButton(String platforms){
+        if (Objects.equals(platforms, "mobile")) {
             System.out.println("Должен быть клик");
             try {
+                sleep(5000);
                 switchTo().frame(iframe);
+                System.out.println("Находимся в айфрейме");
                 stayButton.click();
+                System.out.println("Кликнули на остаться");
             }
             catch (ElementNotFound exception){
                 System.out.println("Нажатие кнопки Остаться не потребовалось");
@@ -56,31 +55,18 @@ public class BaseTest {
         }
     }
 
+    @Step
     private static void waitMainPage(){
         elementMainPage.shouldBe(Condition.visible, Duration.ofMinutes(1));
     }
 
-    private static void configuration(){
-        if (Objects.equals(platform, "mobile")) {
-            System.setProperty("chromeoptions.mobileEmulation", "deviceName=Nexus 5");
-        }
-        Configuration.browserSize= "1024x768";
-        String url = ConfProperties.getProperty("loginPageUrl");
-        open(url);
-    }
 
-//    private static void pageDown(Integer pageDown){
-//        if(pageDown >0){
-//            for (int j = 0; j < pageDown; j++) {
-//                elementMainPage.sendKeys(Keys.PAGE_DOWN);
-//            }
-//        }
-//    }
-
+    @Step
     public static boolean isMobile(){
-        return Objects.equals(platform, "mobile");
+        return Objects.equals(PlatformSetup.getPlatform(), "mobile");
     }
 
+    @Step
     private void configurationParallel(){
         String platform = PlatformSetup.getPlatform();
         WebDriverManager.chromedriver().setup();
@@ -102,9 +88,19 @@ public class BaseTest {
         System.out.println("BASE TEST" + platforms);
         PlatformSetup.setPlatform(platforms);
         configurationParallel();
-        clickStayButton();
+        clickStayButton(platforms);
         waitMainPage();
-//        pageDown(8);
     }
+
+    @BeforeMethod
+    static void setupAllureReports() {
+        System.out.println("Сработал скрин");
+        ScreenShooter.captureSuccessfulTests = true;
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
+                .screenshots(true)
+                .savePageSource(true)
+        );
+    }
+
 
 }

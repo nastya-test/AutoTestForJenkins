@@ -4,25 +4,6 @@
     <test verbose="2" preserve-order="true" name="tests for web">
         <parameter name="platforms" value="web"></parameter>
         <classes>
-            <class name="test.dbIntegrationTest.FilmWithDbTest">
-                <methods>
-                    <include name="checkDbInsertManyFilm"/>
-                    <include name="checkDbInsertFilm"/>
-                </methods>
-            </class>
-<!--            <class name="test.dbIntegrationTest.MockWithAnnotation">-->
-<!--                <methods>-->
-<!--                    <include name="testPeopleDAO"/>-->
-<!--                    <include name="testPeopleDAO"/>-->
-<!--                    <include name="testPeopleDAO"/>-->
-<!--                    <include name="testPeopleDAO"/>-->
-<!--                    <include name="testPeopleDAO"/>-->
-<!--                    <include name="testPeopleDAO"/>-->
-<!--                    <include name="testPeopleDAO"/>-->
-<!--                    <include name="checkDbInsertFilm"/>-->
-<!--                </methods>-->
-<!--            </class>-->
-
             <class name="test.loginPageTest.LoginTest">
                 <methods>
                     <include name="checkLogin"/>
@@ -40,10 +21,10 @@
 
             <class name="test.mainPageTest.NewTrailerTest">
                 <methods>
+                    <include name="checkScroll"/>
                     <include name="checkRegexNewTrailer"/>
                     <include name="checkHeaderNewTrailerBlock"/>
                     <include name="checkPlayerTrailerBlock"/>
-                    <include name="checkScroll"/>
                 </methods>
             </class>
 
@@ -73,35 +54,11 @@
     <test verbose="2" preserve-order="true" name="tests for mobile">
         <parameter name="platforms" value="mobile"></parameter>
         <classes>
-<!--                        <class name="test.dbIntegrationTest.FilmWithDbTest">-->
-<!--                            <methods>-->
-<!--                                <include name="checkDbInsertManyFilm"/>-->
-<!--                                <include name="checkDbInsertFilm"/>-->
-<!--                            </methods>-->
-<!--                        </class>-->
-<!--                        <class name="test.dbIntegrationTest.MockWithAnnotation">-->
-<!--                            <methods>-->
-<!--                                <include name="testPeopleDAO"/>-->
-<!--                                <include name="testPeopleDAO"/>-->
-<!--                                <include name="testPeopleDAO"/>-->
-<!--                                <include name="testPeopleDAO"/>-->
-<!--                                <include name="testPeopleDAO"/>-->
-<!--                                <include name="testPeopleDAO"/>-->
-<!--                                <include name="testPeopleDAO"/>-->
-<!--                                <include name="checkDbInsertFilm"/>-->
-<!--                            </methods>-->
-<!--                        </class>-->
-<!--            <class name="test.loginPageTest.LoginTest">-->
-<!--                <methods>-->
-<!--                    <include name="checkLogin"/>-->
-<!--                </methods>-->
-<!--            </class>-->
             <class name="test.mainPageTest.FilmTicketsTest">
                 <methods>
                     <include name="checkRegexFilmTickets"/>
                     <include name="checkHeaderFilmTicketsBlock"/>
                     <include name="checkLabelTickets"/>
-                    <include name="checkScrollTickets"/>
                 </methods>
             </class>
             <class name="test.mainPageTest.NewTrailerTest">
@@ -109,12 +66,6 @@
                     <include name="checkRegexNewTrailer"/>
                     <include name="checkHeaderNewTrailerBlock"/>
                     <include name="checkPlayerTrailerBlock"/>
-                    <include name="checkScroll"/>
-                </methods>
-            </class>
-            <class name="test.mainPageTest.PopoverTest">
-                <methods>
-                    <include name="checkPopover"/>
                 </methods>
             </class>
             <class name="test.mainPageTest.PopularTest">
@@ -128,7 +79,6 @@
                 <methods>
                     <include name="checkRegexRecommend"/>
                     <include name="checkHeaderRecommendBlock"/>
-                    <include name="checkScroll"/>
                 </methods>
             </class>
         </classes>
