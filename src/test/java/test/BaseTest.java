@@ -1,31 +1,21 @@
 package test;
 
-import com.codeborne.selenide.Screenshots;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.codeborne.selenide.testng.ScreenShooter;
-import com.google.common.io.Files;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
-import page.authorizationPage.LoginPage;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import com.codeborne.selenide.ex.ElementNotFound;
 import config.ConfProperties;
 import util.parallelRunning.Mobile;
 import util.parallelRunning.PlatformSetup;
 import util.parallelRunning.Web;
-
-import java.io.File;
-import java.io.IOException;
 import java.time.Duration;
 import java.util.Objects;
 import static com.codeborne.selenide.Selenide.*;
