@@ -7,10 +7,10 @@
 
             <class name="test.mainPageTest.FilmTicketsTest">
                 <methods>
+                    <include name="checkScrollTickets"/>
                     <include name="checkRegexFilmTickets"/>
                     <include name="checkHeaderFilmTicketsBlock"/>
                     <include name="checkLabelTickets"/>
-                    <include name="checkScrollTickets"/>
                 </methods>
             </class>
 

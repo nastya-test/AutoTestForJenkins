@@ -1,5 +1,6 @@
 package test.loginPageTest;
 
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import page.authorizationPage.LoginPage;
 import io.qameta.allure.Description;
@@ -15,7 +16,7 @@ public class LoginTest extends BaseTest{
         page(LoginPage.class).loginInToTheAccount();
     }
 
-    @AfterTest
+    @AfterMethod
     @Description("Выход из аккаунта")
     public void afterExit(){
         page(LoginPage.class).exitAccount();
