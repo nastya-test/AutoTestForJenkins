@@ -19,7 +19,7 @@ public class RecommendationsTest extends BaseTest {
 
     @AfterTest
     @Description("Выход из аккаунта")
-    public void afterExit(){
+    public void afterExits(){
         page(LoginPage.class).exitAccount();
     }
 
