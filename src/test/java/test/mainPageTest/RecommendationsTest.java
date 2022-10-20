@@ -12,12 +12,12 @@ import static com.codeborne.selenide.Selenide.page;
 
 public class RecommendationsTest extends BaseTest {
 
-    @AfterMethod
+    @BeforeMethod
     public void scrolling(){
         page(RecommendationsBlock.class).scrollToRecommendationsBlock();
     }
 
-    @AfterTest
+    @AfterMethod
     @Description("Выход из аккаунта")
     public void afterExit(){
         page(LoginPage.class).exitAccount();
