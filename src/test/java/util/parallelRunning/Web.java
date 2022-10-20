@@ -36,7 +36,7 @@ public class Web implements WebDriverProvider {
         RemoteWebDriver driver = null;
         try {
             driver = new RemoteWebDriver(
-                    new URL("http://localhost:4444/wd/hub"),
+                    new URL("http://192.168.89.84:4444/wd/hub"),
                     browser            );
         } catch (MalformedURLException e) {
             e.printStackTrace();
