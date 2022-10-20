@@ -2,20 +2,31 @@ package test.mainPageTest;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.*;
 import page.authorizationPage.LoginPage;
 import page.mainPage.blocks.RecommendationsBlock;
 import io.qameta.allure.Description;
 import test.BaseTest;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+
 import static com.codeborne.selenide.Selenide.page;
 
 public class RecommendationsTest extends BaseTest {
 
-    @BeforeMethod
+    @AfterMethod
     public void scrolling(){
         page(RecommendationsBlock.class).scrollToRecommendationsBlock();
+    }
+
+    @AfterTest
+    @Description("Выход из аккаунта")
+    public void afterExit(){
+        page(LoginPage.class).exitAccount();
+    }
+
+    @BeforeMethod
+    @Description("Вход в аккаунта")
+    public void login(){
+        page(LoginPage.class).loginInToTheAccount();
     }
 
     @Test

@@ -27,6 +27,9 @@ public class LoginPage {
     //Поле с логином
     SelenideElement textLoginMainPage =  $(".styles_primaryTitleDefaultAccount__a0_6V");
 
+    //Поле с логином
+    SelenideElement exit =  $(".styles_menuButton__j9euD");
+
     SelenideElement all  =  $(".styles_root__RPFB8");
 
     @Step ("Клик по входу в аккаунт")
@@ -70,6 +73,13 @@ public class LoginPage {
     @Step ("Вход в существующий аккаунт")
     public LoginPage loginInToTheAccount(){
         loginButtonClick().fillLoginField().signInButtonClick().fillPasswordField().signInButtonClick().assertSuccessAuthorization();
+        return this;
+    }
+
+    @Step ("Выход из аккаунта")
+    public LoginPage exitAccount(){
+        avatar.hover();
+        exit.click();
         return this;
     }
 }

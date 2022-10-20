@@ -83,7 +83,7 @@ public class BaseTest {
     }
 
     @BeforeMethod
-    static void setupAllureReports() {
+    public static void setupAllureReports() {
         System.out.println("Сработал скрин");
         ScreenShooter.captureSuccessfulTests = true;
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
