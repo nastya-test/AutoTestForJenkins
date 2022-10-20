@@ -23,6 +23,7 @@ public class RecommendationsTest extends BaseTest {
         page(LoginPage.class).exitAccount();
     }
 
+
     @BeforeMethod
     @Description("Вход в аккаунта")
     public void login(){
