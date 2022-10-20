@@ -17,15 +17,15 @@ public class RecommendationsTest extends BaseTest {
         page(RecommendationsBlock.class).scrollToRecommendationsBlock();
     }
 
-    @AfterTest
+    @AfterMethod
     @Description("Выход из аккаунта")
     public void afterExits(){
         page(LoginPage.class).exitAccount();
     }
 
-    @BeforeTest
+    @BeforeMethod
     @Description("Вход в аккаунта")
-    public void login(){
+    public void loginRec(){
         page(LoginPage.class).loginInToTheAccount();
     }
 
