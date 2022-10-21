@@ -70,6 +70,7 @@ public class BaseTest {
         }
 
         String url = ConfProperties.getProperty("loginPageUrl");
+        ScreenShooter.captureSuccessfulTests = true;
         open(url);
     }
 
@@ -77,11 +78,10 @@ public class BaseTest {
     @BeforeTest
     public void baseOpenPageParallel(String platforms) {
         System.out.println("BASE TEST" + platforms);
-        ScreenShooter.captureSuccessfulTests = true;
         PlatformSetup.setPlatform(platforms);
         configurationParallel();
         clickStayButton(platforms);
-//        waitMainPage();
+        waitMainPage();
     }
 
     @BeforeMethod

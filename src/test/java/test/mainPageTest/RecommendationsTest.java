@@ -1,7 +1,6 @@
 package test.mainPageTest;
 
 import org.testng.annotations.*;
-import page.authorizationPage.LoginPage;
 import page.mainPage.blocks.RecommendationsBlock;
 import io.qameta.allure.Description;
 import test.BaseTest;
@@ -12,16 +11,6 @@ public class RecommendationsTest extends BaseTest {
     @BeforeMethod
     public void scrolling(){
         page(RecommendationsBlock.class).scrollToRecommendationsBlock();
-    }
-
-    @AfterMethod
-    public void afterLogOut(){
-        page(LoginPage.class).logOutOfAccount();
-    }
-
-    @BeforeMethod
-    public void beforeLogin(){
-        page(LoginPage.class).loginInToTheAccount();
     }
 
     @Test

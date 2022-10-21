@@ -15,9 +15,9 @@ public class LoginTest extends BaseTest{
         page(LoginPage.class).loginInToTheAccount();
     }
 
-    @AfterMethod
-    @Description("Выход из аккаунта")
-    public void afterExit(){
-        page(LoginPage.class).logOutOfAccount();
-    }
+//    @AfterMethod
+//    @Description("Выход из аккаунта")
+//    public void afterExit(){
+//        page(LoginPage.class).logOutOfAccount();
+//    }
 }

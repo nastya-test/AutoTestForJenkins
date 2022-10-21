@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite" parallel="tests" thread-count="2">
-    <test verbose="2" preserve-order="true" name="tests for web">
+<suite name="All Test Suite" parallel="tests" thread-count="3">
+
+    <test verbose="3" preserve-order="true" name="tests for Login">
+    <parameter name="platforms" value="web"/>
+        <classes>
+            <class name="test.loginPageTest.LoginTest">
+                <methods>
+                    <include name="checkLogin"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test verbose="3" preserve-order="true" name="tests for web">
         <parameter name="platforms" value="web"/>
         <classes>
 
@@ -45,17 +57,12 @@
                 </methods>
             </class>
 
-            <class name="test.loginPageTest.LoginTest">
-                <methods>
-                    <include name="checkLogin"/>
-                </methods>
-            </class>
 
         </classes>
     </test>
 
 
-    <test verbose="2" preserve-order="true" name="tests for mobile">
+    <test verbose="3" preserve-order="true" name="tests for mobile">
         <parameter name="platforms" value="mobile"/>
         <classes>
 
