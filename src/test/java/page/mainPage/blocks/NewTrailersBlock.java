@@ -134,7 +134,7 @@ public class NewTrailersBlock {
         for (int j = 0; j < nameAndHrefTrailer.size(); j++) {
             bestScroll(nameAndHrefTrailer.get(j));
             String colour = videoPlaybackTrailer.get(j).getCssValue("background-color");
-            assertThat(colour).as("Цвет кнопки проигрывания трейлера не оранжевый").isEqualTo(colourPattern.orangeColour());
+            assertThat(colour).as("Цвет кнопки проигрывания трейлера не оранжевый").isEqualTo(colourPattern.orangeColourPlayer());
         }
         return this;
     }

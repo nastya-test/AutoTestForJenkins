@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite" parallel="tests" thread-count="2">
     <test verbose="2" preserve-order="true" name="tests for web">
-        <parameter name="platforms" value="web"></parameter>
+        <parameter name="platforms" value="web"/>
         <classes>
 
             <class name="test.mainPageTest.FilmTicketsTest">
@@ -28,6 +28,7 @@
                     <include name="checkPopover"/>
                 </methods>
             </class>
+
             <class name="test.mainPageTest.PopularTest">
                 <methods>
                     <include name="checkFirstNews"/>
@@ -35,6 +36,7 @@
                     <include name="checkNewsPopular"/>
                 </methods>
             </class>
+
             <class name="test.mainPageTest.RecommendationsTest">
                 <methods>
                     <include name="checkRegexRecommend"/>
@@ -54,8 +56,9 @@
 
 
     <test verbose="2" preserve-order="true" name="tests for mobile">
-        <parameter name="platforms" value="mobile"></parameter>
+        <parameter name="platforms" value="mobile"/>
         <classes>
+
             <class name="test.mainPageTest.FilmTicketsTest">
                 <methods>
                     <include name="checkRegexFilmTickets"/>
@@ -63,6 +66,7 @@
                     <include name="checkLabelTickets"/>
                 </methods>
             </class>
+
             <class name="test.mainPageTest.NewTrailerTest">
                 <methods>
                     <include name="checkRegexNewTrailer"/>
@@ -70,6 +74,7 @@
                     <include name="checkPlayerTrailerBlock"/>
                 </methods>
             </class>
+
             <class name="test.mainPageTest.PopularTest">
                 <methods>
                     <include name="checkFirstNews"/>
@@ -77,12 +82,14 @@
                     <include name="checkNewsPopular"/>
                 </methods>
             </class>
+
             <class name="test.mainPageTest.RecommendationsTest">
                 <methods>
                     <include name="checkRegexRecommend"/>
                     <include name="checkHeaderRecommendBlock"/>
                 </methods>
             </class>
+
         </classes>
     </test>
 

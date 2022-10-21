@@ -1,13 +1,10 @@
 package test.mainPageTest;
 
-import com.codeborne.selenide.logevents.SelenideLogger;
-import io.qameta.allure.selenide.AllureSelenide;
 import org.testng.annotations.*;
 import page.authorizationPage.LoginPage;
 import page.mainPage.blocks.RecommendationsBlock;
 import io.qameta.allure.Description;
 import test.BaseTest;
-
 import static com.codeborne.selenide.Selenide.page;
 
 public class RecommendationsTest extends BaseTest {
@@ -18,14 +15,12 @@ public class RecommendationsTest extends BaseTest {
     }
 
     @AfterMethod
-    @Description("Выход из аккаунта")
-    public void afterExits(){
-        page(LoginPage.class).exitAccount();
+    public void afterLogOut(){
+        page(LoginPage.class).logOutOfAccount();
     }
 
     @BeforeMethod
-    @Description("Вход в аккаунта")
-    public void loginRec(){
+    public void beforeLogin(){
         page(LoginPage.class).loginInToTheAccount();
     }
 

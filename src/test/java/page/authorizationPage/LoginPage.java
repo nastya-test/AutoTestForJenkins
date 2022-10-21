@@ -3,6 +3,7 @@ package page.authorizationPage;
 import data.generator.UserGenerator;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static org.assertj.core.api.Assertions.assertThat;
 import static test.BaseTest.isMobile;
@@ -10,7 +11,7 @@ import static test.BaseTest.isMobile;
 public class LoginPage {
 
     //Кнопка "Вход"
-    SelenideElement loginButton =  $(".styles_loginButton__LWZQp");
+    SelenideElement loginButton =  $("[class *='styles_loginButton']");
 
     //Поле логин
     SelenideElement loginField =  $("#passp-field-login");
@@ -22,15 +23,16 @@ public class LoginPage {
     SelenideElement passwordField =  $("#passp-field-passwd");
 
     //Аватар
-    SelenideElement avatar =  $(".styles_root__42Fk8");
+    SelenideElement avatar =  $("[class *='styles_defaultAvatar']");
 
-    //Поле с логином
-    SelenideElement textLoginMainPage =  $(".styles_primaryTitleDefaultAccount__a0_6V");
+    //Логин на главной странице
+    SelenideElement textLoginMainPage =  $("[class *='styles_primaryTitleDefaultAccount']");
 
-    //Поле с логином
-    SelenideElement exit =  $(".styles_menuButton__j9euD");
+    //Кнопка выход
+    SelenideElement exit =  $(byText("Выйти"));
 
-    SelenideElement all  =  $(".styles_root__RPFB8");
+    //Лого кинопоиска
+    SelenideElement all  =  $(".kinopoisk-header-logo__img");
 
     @Step ("Клик по входу в аккаунт")
     public LoginPage loginButtonClick() {
@@ -77,7 +79,7 @@ public class LoginPage {
     }
 
     @Step ("Выход из аккаунта")
-    public LoginPage exitAccount(){
+    public LoginPage  logOutOfAccount(){
         avatar.hover();
         exit.click();
         return this;

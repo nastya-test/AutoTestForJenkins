@@ -1,7 +1,5 @@
 package test.mainPageTest;
 
-import com.codeborne.selenide.logevents.SelenideLogger;
-import io.qameta.allure.selenide.AllureSelenide;
 import org.testng.annotations.BeforeMethod;
 import page.mainPage.blocks.NewTrailersBlock;
 import io.qameta.allure.Description;
@@ -37,6 +35,7 @@ public class NewTrailerTest extends BaseTest {
     @Description("Проигрывание трейлера")
     public void checkPlayerTrailerBlock() {
         page(NewTrailersBlock.class)
+                .colourPlayerTrailer()
                 .playerTrailer();
     }
 

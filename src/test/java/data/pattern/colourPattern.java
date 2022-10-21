@@ -6,4 +6,8 @@ public class colourPattern {
         return "rgba(255, 102, 0, 1)";
     }
 
+    public static String orangeColourPlayer(){
+        return "rgba(255, 85, 0, 1)";
+    }
+
 }

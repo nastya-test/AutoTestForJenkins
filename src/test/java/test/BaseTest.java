@@ -26,18 +26,20 @@ public class BaseTest {
 
     private static final SelenideElement stayButton = $("#stay-button");
     private static final SelenideElement iframe = $(By.xpath("/html/body/div[3]/div/div[3]/div/div/iframe"));
-    private static final SelenideElement elementMainPage = $(".styles_link__KtvyW");
+    private static final SelenideElement elementMainPage = $(".kinopoisk-header-logo__img");
 
     @Step
     private static void clickStayButton(String platforms){
         if (Objects.equals(platforms, "mobile")) {
-            System.out.println("Должен быть клик");
+            System.out.println("Открыта мобильная версия");
             try {
-                sleep(5000);
+                sleep(10000);
                 switchTo().frame(iframe);
                 System.out.println("Находимся в айфрейме");
+                sleep(10000);
                 stayButton.click();
                 System.out.println("Кликнули на остаться");
+                sleep(10000);
             }
             catch (ElementNotFound exception){
                 System.out.println("Нажатие кнопки Остаться не потребовалось");
@@ -47,9 +49,8 @@ public class BaseTest {
 
     @Step
     private static void waitMainPage(){
-        elementMainPage.shouldBe(Condition.visible, Duration.ofSeconds(3));
+        elementMainPage.shouldBe(Condition.visible, Duration.ofSeconds(30));
     }
-
 
     @Step
     public static boolean isMobile(){
@@ -76,16 +77,16 @@ public class BaseTest {
     @BeforeTest
     public void baseOpenPageParallel(String platforms) {
         System.out.println("BASE TEST" + platforms);
+        ScreenShooter.captureSuccessfulTests = true;
         PlatformSetup.setPlatform(platforms);
         configurationParallel();
         clickStayButton(platforms);
-        waitMainPage();
+//        waitMainPage();
     }
 
     @BeforeMethod
     public static void setupAllureReports() {
         System.out.println("Сработал скрин");
-        ScreenShooter.captureSuccessfulTests = true;
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
                 .screenshots(true)
                 .savePageSource(true)

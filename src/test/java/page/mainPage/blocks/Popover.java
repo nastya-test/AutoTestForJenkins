@@ -19,7 +19,7 @@ public class Popover {
     SelenideElement nameFilmPopover = $("[class *='movieTitle']");
 
     //Год фильма в Popover
-    SelenideElement yearFilmPopover = $("[class *='year']");
+    SelenideElement yearFilmPopover = $("[class *='styles_year__N58ar']");
 
     //Актёры в главных ролях
     ElementsCollection rolesFilmPopover = $("[class *='roles']").findAll("[class *='root']");
@@ -61,7 +61,7 @@ public class Popover {
     public Popover common() {
 
             for (int i = 0; i < nameFilmCarouselPopovers.size(); i++) {
-                nameFilmCarouselPopovers.get(i).scrollIntoView("{behavior: \"instant\", block: \"center\", inline: \"end\"}");
+                nameFilmCarouselPopovers.get(i).scrollIntoView("{behavior: \"instant\", block: \"center\", inline: \"center\"}");
                 sleep(1000);
                 displayPopover(i);
                 nameFilmPopover(i);

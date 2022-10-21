@@ -106,11 +106,11 @@ public class FilmTicketsBlock {
         return this;
     }
 
-    @Step("Плашка с билетами, корректность ссылки, что при наведении мышкой на плашку появляется большая плашка с надписью Билеты")
+    @Step("Плашка с билетами")
     public FilmTicketsBlock assertIconFilmRegex() {
         if (!isMobile()) {
             for (int i = 0; i < iconTickets.size(); i++) {
-                best2Scroll(iconTickets.get(i));
+                bestScroll(iconTickets.get(i));
                 iconTickets.get(i).shouldBe(Condition.visible);
                 assertThat(iconTickets.get(i).getText()).as("Название на плашке не Билеты").isEqualTo("Билеты");
             }
