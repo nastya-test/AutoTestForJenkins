@@ -36,10 +36,8 @@ public class BaseTest {
                 sleep(5000);
                 switchTo().frame(iframe);
                 System.out.println("Находимся в айфрейме");
-//                sleep(1000);
                 stayButton.click();
                 System.out.println("Кликнули на остаться");
-//                sleep(1000);
                 switchTo().parentFrame();
             }
             catch (ElementNotFound exception){
