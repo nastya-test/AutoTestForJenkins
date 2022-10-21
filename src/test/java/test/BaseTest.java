@@ -40,6 +40,7 @@ public class BaseTest {
                 stayButton.click();
                 System.out.println("Кликнули на остаться");
                 sleep(10000);
+                switchTo().parentFrame();
             }
             catch (ElementNotFound exception){
                 System.out.println("Нажатие кнопки Остаться не потребовалось");
