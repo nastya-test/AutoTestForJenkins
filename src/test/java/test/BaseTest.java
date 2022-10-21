@@ -29,17 +29,17 @@ public class BaseTest {
     private static final SelenideElement elementMainPage = $(".kinopoisk-header-logo__img");
 
     @Step
-    private static void clickStayButton(String platforms){
+    public static void clickStayButton(String platforms){
         if (Objects.equals(platforms, "mobile")) {
             System.out.println("Открыта мобильная версия");
             try {
-                sleep(10000);
+                sleep(4000);
                 switchTo().frame(iframe);
                 System.out.println("Находимся в айфрейме");
-                sleep(10000);
+//                sleep(1000);
                 stayButton.click();
                 System.out.println("Кликнули на остаться");
-                sleep(10000);
+//                sleep(1000);
                 switchTo().parentFrame();
             }
             catch (ElementNotFound exception){

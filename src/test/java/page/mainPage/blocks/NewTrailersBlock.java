@@ -13,6 +13,7 @@ import static data.pattern.linkPattern.linkTrailerBlock;
 import static org.assertj.core.api.Assertions.*;
 import static page.mainPage.steps.CommonSteps.*;
 import static page.mainPage.steps.CommonSteps.bestScroll;
+import static test.BaseTest.clickStayButton;
 import static test.BaseTest.isMobile;
 
 public class NewTrailersBlock {
@@ -123,6 +124,7 @@ public class NewTrailersBlock {
             } else {
                 playerTrailerMobile.shouldBe(Condition.visible);
                 trailersCloserMobile.click();
+                clickStayButton("mobile");
             }
         }
         return this;

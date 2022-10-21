@@ -31,8 +31,17 @@ public class LoginPage {
     //Кнопка выход
     SelenideElement exit =  $(byText("Выйти"));
 
+    //Кнопка Вход по почте
+    SelenideElement mail =  $("[class *='AuthLoginInputToggle-type']>[class *='Button2']");
+
     //Лого кинопоиска
     SelenideElement all  =  $(".kinopoisk-header-logo__img");
+
+    @Step ("Клик по Почта")
+    public LoginPage clickMail() {
+        mail.click();
+        return this;
+    }
 
     @Step ("Клик по входу в аккаунт")
     public LoginPage loginButtonClick() {
@@ -74,7 +83,7 @@ public class LoginPage {
 
     @Step ("Вход в существующий аккаунт")
     public LoginPage loginInToTheAccount(){
-        loginButtonClick().fillLoginField().signInButtonClick().fillPasswordField().signInButtonClick().assertSuccessAuthorization();
+        loginButtonClick().clickMail().fillLoginField().signInButtonClick().fillPasswordField().signInButtonClick().assertSuccessAuthorization();
         return this;
     }
 

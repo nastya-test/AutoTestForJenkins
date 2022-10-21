@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite" parallel="tests" thread-count="3">
+<suite name="All Test Suite" parallel="tests" thread-count="2">
 
-    <test verbose="3" preserve-order="true" name="tests for Login">
+    <test verbose="2" preserve-order="true" name="tests for login and recommendation web">
     <parameter name="platforms" value="web"/>
         <classes>
             <class name="test.loginPageTest.LoginTest">
@@ -10,10 +10,37 @@
                     <include name="checkLogin"/>
                 </methods>
             </class>
+
+            <class name="test.mainPageTest.RecommendationsTest">
+                <methods>
+                    <include name="checkRegexRecommend"/>
+                    <include name="checkHeaderRecommendBlock"/>
+                    <include name="checkScroll"/>
+                </methods>
+            </class>
         </classes>
     </test>
 
-    <test verbose="3" preserve-order="true" name="tests for web">
+    <test verbose="2" preserve-order="true" name="tests for login and recommendation mobile">
+        <parameter name="platforms" value="mobile"/>
+        <classes>
+            <class name="test.loginPageTest.LoginTest">
+                <methods>
+                    <include name="checkLogin"/>
+                </methods>
+            </class>
+
+            <class name="test.mainPageTest.RecommendationsTest">
+                <methods>
+                    <include name="checkRegexRecommend"/>
+                    <include name="checkHeaderRecommendBlock"/>
+                    <include name="checkScroll"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test verbose="2" preserve-order="true" name="tests for web">
         <parameter name="platforms" value="web"/>
         <classes>
 
@@ -49,20 +76,11 @@
                 </methods>
             </class>
 
-            <class name="test.mainPageTest.RecommendationsTest">
-                <methods>
-                    <include name="checkRegexRecommend"/>
-                    <include name="checkHeaderRecommendBlock"/>
-                    <include name="checkScroll"/>
-                </methods>
-            </class>
-
-
         </classes>
     </test>
 
 
-    <test verbose="3" preserve-order="true" name="tests for mobile">
+    <test verbose="2" preserve-order="true" name="tests for mobile">
         <parameter name="platforms" value="mobile"/>
         <classes>
 
@@ -87,13 +105,6 @@
                     <include name="checkFirstNews"/>
                     <include name="checkPopularBlock"/>
                     <include name="checkNewsPopular"/>
-                </methods>
-            </class>
-
-            <class name="test.mainPageTest.RecommendationsTest">
-                <methods>
-                    <include name="checkRegexRecommend"/>
-                    <include name="checkHeaderRecommendBlock"/>
                 </methods>
             </class>
 
