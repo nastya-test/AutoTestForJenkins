@@ -25,7 +25,7 @@ import io.qameta.allure.selenide.AllureSelenide;
 public class BaseTest {
 
     private static final SelenideElement stayButton = $("#stay-button");
-    private static final SelenideElement iframe = $("/html/body/div[3]/div/div[3]/div/div/iframe");
+    private static final SelenideElement iframe = $(By.xpath("/html/body/div[3]/div/div[3]/div/div/iframe"));
     private static final SelenideElement elementMainPage = $(".kinopoisk-header-logo__img");
 
     @Step
