@@ -32,7 +32,7 @@ public class FilmTicketsPage extends AbstractPage {
     public SelenideElement  backArrowTickets =  $("[id ='today-in-cinema-block'] + div > section > div > [class *='carousel'] > [class *='iconLeftDir']");
 
     @NameOfElement("Плашка Билеты в кино")
-    public ElementsCollection  textIconTickets =  $$("[class *='labelPlaceholder']+[class *='labelVisible']");
+    public ElementsCollection  textIconTickets =  $$("[class *='styles_nameplate__Ei1aO']");
 
     @NameOfElement("Постер у сниппета фильма")
     public ElementsCollection posterImgTickets =  $$("[class *='posterLink']>[class *='poster']");

@@ -1,15 +1,17 @@
 package cucumber.steps;
 
+import com.codeborne.selenide.Condition;
 import io.cucumber.java.ru.Дано;
 import io.cucumber.java.ru.И;
-import test.BaseTest;
+import java.time.Duration;
 import static cucumber.map.PageMap.*;
-import static test.BaseTest.authorized;
+import static cucumber.pageobjects.mainPage.MainPage.elementMainPage;
 
 public class BaseSteps {
+
     @Дано("открывает главную страницу")
     public void открывает_главную_страницу() {
-        BaseTest.baseOpenPage();
+        elementMainPage.shouldBe(Condition.visible, Duration.ofMinutes(1));
     }
 
     @И("устанавливает страницу {string}, как активную")
@@ -17,8 +19,4 @@ public class BaseSteps {
         setPopularPages(savePageMap.get(page));
     }
 
-    @И("авторизуется")
-    public void авторизуется() {
-        authorized();
-    }
 }

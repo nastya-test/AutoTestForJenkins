@@ -1,17 +1,13 @@
 package cucumber.steps;
 
-import com.codeborne.selenide.Condition;
 import cucumber.pageobjects.AbstractPage;
-import cucumber.pageobjects.mainPage.MainPage;
 import io.cucumber.java.ru.И;
-import java.time.Duration;
-import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.Selenide.sleep;
 import static cucumber.map.PageMap.activePageMap;
 import static cucumber.steps.AbstractSteps.bestScroll;
 
 public class ActionSteps {
-//    MainPage mainPage = page(MainPage.class);
+
     AbstractPage mainPage = activePageMap.get(true);
 
     @И("скролит к элементу {string}")
@@ -27,6 +23,7 @@ public class ActionSteps {
 
     @И("нажимает на элемент {string}")
     public void нажимаетНаЭлемент(String element) {
+        bestScroll(mainPage.get(element));
         mainPage.get(element).click();
     }
 

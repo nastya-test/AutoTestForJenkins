@@ -9,6 +9,7 @@ public class ColourMap {
     public static Map<String, String> colourMap = new HashMap<String, String>() {
         {
             put("Оранжевый", colourPattern.orangeColour());
+            put("Оранжевый для плеера", colourPattern.orangePlayerColour());
         }
     };
 

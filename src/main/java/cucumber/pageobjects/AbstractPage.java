@@ -1,7 +1,6 @@
 package cucumber.pageobjects;
 
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 import java.lang.reflect.Field;
@@ -22,7 +21,6 @@ public class AbstractPage {
                 }
             }
         }
-        Selenide.screenshot("No_element");
         throw new IllegalArgumentException("ERROR: there is no such element with name " + cucumberElementName + " at page " + this.getClass().getName());
     }
 
@@ -41,7 +39,6 @@ public class AbstractPage {
                 }
             }
         }
-        Selenide.screenshot("No_elements");
         throw new IllegalArgumentException("ERROR: there is no such element with name " + cucumberElementName + " at page " + this.getClass().getName());
     }
 
