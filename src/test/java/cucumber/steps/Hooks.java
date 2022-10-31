@@ -39,9 +39,9 @@ public class Hooks {
         System.out.println(scenario.getSourceTagNames());
     }
 
-    @After
-    public void test(Scenario scenario) {
-      sleep(50200000);
-    }
+//    @After
+//    public void test(Scenario scenario) {
+//      sleep(50200000);
+//    }
 
 }

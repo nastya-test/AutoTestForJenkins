@@ -1,5 +1,17 @@
 package test.mockitoTest;
 
+import data.model.Film;
+import db.dao.FilmDao;
+import db.services.DbInteraction;
+import io.qameta.allure.Description;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import test.BaseTest;
+
 public class MockWithAnnotation {
    /*
    //Первый способ. First way to do mocking, by @Mock annotation
@@ -108,7 +120,6 @@ public class MockWithAnnotation {
     }
 */
 
-/*
     //Для теста
     @Mock
     private FilmDao filmDAO;
@@ -118,7 +129,7 @@ public class MockWithAnnotation {
     @BeforeMethod
     public void openPage() {
         MockitoAnnotations.initMocks(this);
-        BaseTest.baseOpenPage("web",8);
+        BaseTest.baseOpenPage();
         mockSetting();
     }
 
@@ -128,14 +139,13 @@ public class MockWithAnnotation {
     }
 
     @Test
-    @Description("Добавление в DB одного фильма с баннера")
+    @Description("")
     public void checkDbInsertFilm(){
         dbInteraction.InsertFilm(
                 new Film("название3Mock", "ссылка3", "год3")
         );
-        Film film = filmDAO.findFilmByName("названиеMock");
+        Film film = filmDAO.findFilmByName("названиеMock8");
         System.out.println("Get mock trailer: " + film);
     }
-*/
 
 }
