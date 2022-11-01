@@ -12,22 +12,23 @@ import static cucumber.steps.Authorize.authorized;
 
 public class Hooks {
 
-    @Before("@recommendation")
+    @Before(order=1)
+    public void startBrowser() {
+        Configuration.browserSize= "1024x768";
+        String url = ConfProperties.getProperty("loginPageUrl");
+        open(url);
+    }
+
+    @Before(order=2, value="@recommendation")
     public void authorize() {
         try {
+            System.out.println("Авторизуемся");
             authorized();
         }
         catch (ElementNotFound ex)
         {
             System.out.println("Авторизация не потребовалась"+ ex);
         }
-    }
-
-    @Before
-    public void startBrowser() {
-        Configuration.browserSize= "1024x768";
-        String url = ConfProperties.getProperty("loginPageUrl");
-        open(url);
     }
 
     @After("@success")
